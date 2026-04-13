@@ -1,0 +1,39 @@
+# Hermes 101
+
+> Free 7-day tutorial to master Hermes Agent — build your own AI personal assistant.
+
+## About
+
+Hermes 101 is the definitive learning resource for Hermes Agent (built by Nous Research), an open-source AI agent framework. The site provides a structured 7-day tutorial that takes you from zero to running your own AI personal assistant, plus a curated resource library with 30+ tools, skills, and integrations.
+
+Hermes Agent lets you build a self-hosted AI assistant that can manage email, browse the web, execute code, automate workflows, and connect to services like Telegram, Gmail, Google Calendar, and more.
+
+## Key Pages
+
+- [Home](https://hermes101.dev/): Overview and course introduction
+- [Day 1: Meet Hermes Agent](https://hermes101.dev/day/1): What is Hermes Agent, architecture overview, and what it can do
+- [Day 2: Installation](https://hermes101.dev/day/2): Step-by-step setup guide for server and local environments
+- [Day 3: Give Your Assistant a Soul](https://hermes101.dev/day/3): Personality configuration with SOUL.md and USER.md
+- [Day 4: Connect Your Digital Life](https://hermes101.dev/day/4): Integrating Gmail, Calendar, browser, and other services
+- [Day 5: Skills Ecosystem](https://hermes101.dev/day/5): Installing and creating skills (plugins) for your assistant
+- [Day 6: Automation & Heartbeat](https://hermes101.dev/day/6): Setting up proactive monitoring, cron jobs, and heartbeat checks
+- [Day 7: Advanced Techniques](https://hermes101.dev/day/7): Multi-agent workflows, browser automation, and advanced tips
+- [Resources](https://hermes101.dev/resources): 30+ curated tools, skills, and community resources
+- [中文首页](https://hermes101.dev/zh): Chinese version of the full tutorial
+
+## FAQ
+
+- Q: What is Hermes Agent?
+  A: Hermes Agent is an open-source AI agent framework that lets you build a self-hosted personal AI assistant. It connects to services like Telegram, Gmail, and browsers, and can execute code, automate tasks, and manage your digital life 24/7.
+
+- Q: Is Hermes Agent free?
+  A: Yes, Hermes Agent is fully open-source and free to use. You only pay for the AI model API costs (e.g., Claude, GPT) and server hosting.
+
+- Q: How do I install Hermes Agent?
+  A: You need a Linux server (or Mac/Windows with Docker). Install Node.js, clone the repository, configure your API keys, and run the gateway. The Day 2 tutorial covers this step by step.
+
+- Q: What AI models does Hermes Agent support?
+  A: Hermes Agent supports Claude (Anthropic), GPT-4 (OpenAI), Gemini (Google), Grok (xAI), and any OpenRouter-compatible model.
+
+- Q: What can a Hermes Agent assistant do?
+  A: It can manage email, schedule calendar events, browse the web, write and execute code, analyze SEO data, create content, monitor websites, automate workflows, and more through its extensible skills system.

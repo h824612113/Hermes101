@@ -1,0 +1,68 @@
+name: Resource suggestion
+description: Suggest a Hermes Agent-related article, video, tutorial, or tool for inclusion on Hermes Agent 101.
+title: "[Resource]: "
+body:
+  - type: input
+    id: resource_title
+    attributes:
+      label: Resource title
+      placeholder: Title of the article / video / tutorial
+    validations:
+      required: true
+
+  - type: input
+    id: resource_url
+    attributes:
+      label: Resource URL
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource type
+      options:
+        - Tutorial / walkthrough
+        - Blog post / analysis
+        - Video / livestream
+        - Tool / integration
+        - Deployment guide
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Why is this relevant to Hermes Agent users?
+      placeholder: Explain the direct Hermes Agent / Hermes Skills Hub / ecosystem relevance.
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Suggested one-paragraph summary
+      placeholder: Write the summary you think should appear on Hermes Agent 101.
+    validations:
+      required: true
+
+  - type: textarea
+    id: affiliation
+    attributes:
+      label: Affiliation / disclosure
+      description: If you are the author, work for the company, or use an affiliate/referral link, disclose it here.
+      placeholder: Optional but recommended.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: This resource is primarily about Hermes Agent, Hermes Skills Hub, or a closely related workflow.
+          required: true
+        - label: This is not a generic ad or unrelated promotional post.
+          required: true
+        - label: I disclosed any affiliation or referral relationship above.
+          required: false

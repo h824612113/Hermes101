@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contribute a resource via PR
+    url: https://github.com/mengjian-github/hermes101/pulls
+    about: If you already have the links and copy ready, a pull request is the fastest way to add or improve content.

@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a broken page, bad link, rendering issue, or code bug on Hermes Agent 101.
+title: "[Bug]: "
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Where did you hit the problem?
+      options:
+        - Home page
+        - Resource list
+        - 7-day guide
+        - i18n / localization
+        - Layout / mobile UI
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page_url
+    attributes:
+      label: Page URL
+      description: Paste the exact page URL if possible.
+      placeholder: https://hermes101.pages.dev/...
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What should happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / extra context
+      description: Optional, but very helpful for UI issues.

@@ -1,0 +1,47 @@
+name: Content feedback
+description: Suggest improvements to copy, structure, clarity, translations, or tutorial guidance.
+title: "[Content]: "
+body:
+  - type: dropdown
+    id: content_area
+    attributes:
+      label: Which content area needs improvement?
+      options:
+        - Home page copy
+        - 7-day guide
+        - Resource descriptions
+        - Chinese translation
+        - English translation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page_url
+    attributes:
+      label: Page URL
+      placeholder: https://hermes101.pages.dev/...
+
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: What feels wrong or unclear?
+      placeholder: Describe the confusing / misleading / incomplete part.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_change
+    attributes:
+      label: What change do you suggest?
+      placeholder: Write the new wording, structure, or guidance you want to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_it_matters
+    attributes:
+      label: Why this matters
+      placeholder: Explain why this improves clarity, accuracy, or user understanding.
+    validations:
+      required: true
