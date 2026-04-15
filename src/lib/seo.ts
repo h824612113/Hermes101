@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export type SiteLocale = 'en' | 'zh';
 
 export const SITE_NAME = 'Hermes 101';
-export const SITE_URL = 'https://hermes101.dev';
+export const SITE_URL = 'https://cyberhz.com';
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const DEFAULT_SITE_DESCRIPTION =
   'Free 7-day tutorial to master Hermes Agent. Learn to build your own AI personal assistant with installation guides, curated resources, automation tips, and step-by-step workflows.';
