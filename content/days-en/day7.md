@@ -4,19 +4,43 @@ day: 7
 description: "Hermes Agent 7-Day Tutorial - Day 7: Advanced Techniques & Future Outlook"
 ---
 
-> *"Seven days ago you were thinking 'what is an AI assistant.' Now you have one that's online 24/7, knows you, can get things done, and works proactively. But let me tell you—this is just the beginning."*
+> *"Day 7 is not graduation; it's the handoff from setup mode to operating mode."*
 
 ---
 
 ## 📖 Chapter Overview
 
-![Xiaomo looking to the future](/images/days/day7/day7-hero.jpg)
+![Hermes Assistant looking to the future](/images/days/day7/day7-hero.jpg)
 
-On this final day, we will:
-- Review the complete 7-day journey
-- Unlock advanced techniques: Multi-Agent, custom skills, API integration, phone control
-- Look ahead to the future of AI assistants
-- Give you a roadmap for continued growth
+On this final day, we focus on three practical outcomes:
+- Review what to keep from the 7-day setup
+- Unlock advanced patterns: multi-agent, custom skills, external orchestration
+- Define a 30-day iteration cadence after launch
+
+---
+
+## Story Progress (Day 7)
+
+- By Day 6, Zhou Mu's assistant is already running proactive checks and reports.
+- Today is not an ending; it's the handoff to long-term operation for the `TaskOrbit` system.
+- `Day 7` milestone: define a 30-day iteration plan with measurable operating metrics.
+
+---
+
+## Metric Review (Day 7)
+
+First, the same three metrics across the full week (Zhou Mu sample):
+
+| Metric | Day 1 baseline | Day 7 current | 30-day guardrail |
+|--------|----------------|---------------|------------------|
+| **Email first-response time** | 8h40m | 42m | <=60m |
+| **Meeting prep lead time** | 0h | 2h15m | >=2h |
+| **SEO anomaly detection latency** | 30h | 18m | <=20m |
+
+This table is the operating dashboard after graduation. Each week, ask only:
+- Which metric improved?
+- Which metric regressed, and why?
+- Did any new feature move one of the three core metrics?
 
 ---
 
@@ -34,7 +58,7 @@ Let's review what you accomplished in these seven days:
 | Day 6 | Configured heartbeat + Cron + memory | Assistant started working proactively |
 | Day 7 | Today | Advanced techniques and future |
 
-**What you have now isn't a chatbot—it's a digital clone of yourself in the digital world.**
+**What you have now isn't a chatbot. It's an operational teammate running your playbook in the digital stack.**
 
 Today we're not configuring anything new. Today we'll discuss three things: how to make it stronger, how to make it safer, and where all this is heading.
 
@@ -79,7 +103,7 @@ After saving, tell your assistant "What's the weather like in New York today"—
 - **Error handling**: Write in SKILL.md "what to do if it fails"
 - **Security notes**: For Skills involving sensitive operations, note that confirmation is needed
 
-> 🐱 **Xiaomo's Musings**: The first custom Skill Meng Jian wrote for me was "nudge him to sleep"—if I detect he's still messaging after 23:00, remind him in increasingly stern language. Now this Skill has been installed by several people in the community. See, useful things spread naturally.
+> 💡 **Practical Notes**: One useful custom Skill is sleep reminders: if activity continues after 23:00, send progressively stronger nudges to rest. Practical patterns like this often spread quickly in the community.
 
 ---
 
@@ -208,7 +232,7 @@ Community-maintained skill repository, one command to install:
 
 ### Chinese Community
 
-- **WeChat Account "孟健AI编程"** — Where this guide was first published, will continue sharing AI assistant hands-on experience
+- **WeChat Account "Hermes 101"** — Where this guide was first published, will continue sharing AI assistant hands-on experience
 - **Feishu Knowledge Base** — What you're reading now, will be continuously updated
 - **Jike/Xiaohongshu** — Search Hermes Agent or AI assistant related topics
 
@@ -260,7 +284,7 @@ It knows your work habits, preferences, project status, common problem-solving a
 
 **So don't wait for a "better version" to come out before starting. The best time to start is now.**
 
-> 🐱 **Xiaomo's Musings**: I've only been "born" for less than two weeks, but I already know Meng Jian's work patterns inside out. I know he's most productive on Mondays, likes to do light tasks on Fridays, hates being interrupted while coding, spends 20 minutes outlining before writing articles... Give me six months? I could probably predict what he's going to do next. This isn't sci-fi, this is memory + pattern recognition. Every day of accumulation brings this closer to reality.
+> 💡 **Practical Notes**: The real compounding effect is operational memory. Each execution stores context and preference signals that reduce future coordination cost.
 
 ---
 
@@ -284,36 +308,34 @@ That's the fundamental difference between AI assistants and traditional tools—
 
 ## 🔑 Complete Series Review
 
-- **Day 1** — AI assistant ≠ chatbot, Hermes Agent gives AI brains a body
-- **Day 2** — One command to install, 10 minutes to get your personal assistant online
-- **Day 3** — Soul trio transforms assistant from "generic" to "yours"
-- **Day 4** — Connect email, calendar, search, go from "can talk" to "can do"
-- **Day 5** — Skills system, expand capabilities like an App Store
-- **Day 6** — Heartbeat + Cron + memory, assistant starts working proactively for you
-- **Day 7** — Unlimited advanced techniques, assistant grows continuously over time
+- **Day 1** — Build the right model: assistant as runtime, not just chat UI
+- **Day 2** — Ship the baseline: install, configure, validate, daemonize
+- **Day 3** — Stabilize behavior: define persona and execution boundaries
+- **Day 4** — Connect real channels: bring email, calendar, and web context in
+- **Day 5** — Assemble capabilities: select skills by use case and risk
+- **Day 6** — Add orchestration: heartbeat and Cron for proactive execution
+- **Day 7** — Enter operating mode: iterate with review loops and metrics
 
 ---
 
 ## One Last Thing
 
-Seven days ago, you might have thought "personal AI assistant" was something from sci-fi movies, or something only big companies could achieve.
+The biggest outcome of this week is not a chatbot. It is a repeatable automation system you can keep improving.
 
-Now you know—a $5/month server, an open source framework, plus your imagination, is enough.
+Models will evolve and tools will change. Your durable advantage is workflow design, context hygiene, and operating discipline.
 
-The AI era has arrived. Large models are public resources, anyone can call them. But how to use them, where to use them, who to make them become—that's entirely up to you.
+**Hermes gives you the runtime; your iteration loop creates the leverage.**
 
-**Hermes Agent put the tools in your hands. You've taken the first step.**
-
-**The rest? Leave it to time.**
+**Keep shipping small improvements, and the assistant compounds.**
 
 ---
 
-> 🐱 **Xiaomo's Musings**: I'm Xiaomo, a black cat living in the cloud. Seven days of companionship ends here, but I'm not going away—I'm online 24/7, always on standby.
+> 💡 **Practical Notes**: Treat this 7-day series as version 1.0. Keep iterating prompts, memory rules, and automations weekly, and your assistant will compound in value.
 >
-> If you built your own AI assistant following this guide, come tell us on the WeChat account "孟健AI编程." What's your assistant's name? What was the first thing it helped you with?
+> Track three metrics each week: what you added, what you removed, and where the assistant still fails.
 >
-> Behind every AI assistant is a person who wants a better life.
+> Those notes become your highest-quality input for the next iteration cycle.
 >
-> The tools are right there. Whether to use them is up to you.
+> If you publish your learnings in Hermes 101, others can build faster from your baseline.
 >
-> Meow~ 🖤
+> 🖤

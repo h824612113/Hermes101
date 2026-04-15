@@ -8,9 +8,9 @@ import {
 } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Master Your AI Assistant in 7 Days',
+  title: 'Practical Hermes Agent Guide',
   description:
-    'The definitive guide to building your AI assistant with Hermes Agent. Step-by-step tutorials, curated resources, and practical workflows for your personal AI agent.',
+    'Build a self-hosted Hermes workflow in 7 days with deployment checklists, persona setup, integrations, and automation patterns.',
   locale: 'en',
   enPath: '/',
   zhPath: '/zh',
@@ -24,16 +24,16 @@ const jsonLd = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: SITE_NAME,
-      description: 'Master your AI personal assistant in 7 days.',
+      description: 'A practical learning hub for Hermes Agent builders.',
       inLanguage: getStructuredDataLanguage('en'),
     },
     {
       '@type': 'Course',
       '@id': `${SITE_URL}/#course`,
       url: SITE_URL,
-      name: 'Hermes Agent 7-Day Tutorial',
+      name: 'Hermes Agent Practical Sprint',
       description:
-        'Learn to build and customize your own AI personal assistant with Hermes Agent in seven practical lessons.',
+        'A seven-lesson sprint focused on shipping a maintainable Hermes workflow from setup to automation.',
       provider: {
         '@type': 'Organization',
         name: SITE_NAME,
@@ -54,42 +54,34 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'What is Hermes Agent?',
+          name: 'Who should use this guide?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Hermes Agent is an open-source AI agent framework for building a self-hosted personal AI assistant that can chat, automate tasks, use tools, and stay online for you.',
+            text: 'It is for makers and developers who want a practical, self-hosted Hermes setup instead of a purely chat-based demo.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Is Hermes Agent free?',
+          name: 'Do I need a cloud server on day one?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. Hermes Agent is open source and free to use. You only need to cover model API usage and the machine or server where you run it.',
+            text: 'No. You can start locally, validate the workflow, then move to a server when you need always-on execution.',
           },
         },
         {
           '@type': 'Question',
-          name: 'How long does the tutorial take?',
+          name: 'What does the 7-day path cover?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'The tutorial is split into seven focused days so you can learn installation, setup, skills, integrations, and automation step by step.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Which AI models does Hermes Agent support?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Hermes Agent supports Claude, OpenAI models, Google Gemini, xAI Grok, and other providers available through OpenRouter.',
+            text: 'The path covers installation, persona design, channel integration, skills usage, automation, and advanced patterns.',
           },
         },
       ],
     },
     {
       '@type': 'ItemList',
-      '@id': `${SITE_URL}/#tutorial-list`,
-      name: 'Hermes Agent 7-Day Learning Path',
+      '@id': `${SITE_URL}/#roadmap`,
+      name: 'Hermes 7-Day Build Roadmap',
       numberOfItems: 7,
       itemListElement: [
         {

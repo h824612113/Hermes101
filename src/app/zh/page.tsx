@@ -8,9 +8,9 @@ import {
 } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: '7天掌握你的AI私人助理',
+  title: 'Hermes Agent 实战路线图',
   description:
-    '从零开始，7天掌握你的 Hermes Agent AI 私人助理。包含安装、配置、技能、自动化与精选资源的一站式教程。',
+    '用 7 天完成一个可持续运行的 Hermes Agent 工作流，覆盖部署、人格设定、技能与自动化。',
   locale: 'zh',
   enPath: '/',
   zhPath: '/zh',
@@ -24,15 +24,15 @@ const jsonLd = {
       '@id': `${SITE_URL}/zh#website`,
       url: `${SITE_URL}/zh`,
       name: SITE_NAME,
-      description: '从零开始，7天掌握你的 AI 私人助理。',
+      description: '面向实战的 Hermes Agent 学习与资源站。',
       inLanguage: getStructuredDataLanguage('zh'),
     },
     {
       '@type': 'Course',
       '@id': `${SITE_URL}/zh#course`,
       url: `${SITE_URL}/zh`,
-      name: 'Hermes Agent 7天教程',
-      description: '7天循序渐进学习 Hermes Agent 的安装、配置、技能、接入与自动化。',
+      name: 'Hermes Agent 7 天实战冲刺',
+      description: '从部署到自动化的七个主题，聚焦可复现的落地流程。',
       provider: {
         '@type': 'Organization',
         name: SITE_NAME,
@@ -53,42 +53,34 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Hermes Agent 是什么？',
+          name: '这套内容适合谁？',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Hermes Agent 是一个开源 AI Agent 框架，你可以把它部署到自己的电脑或服务器上，打造能聊天、调用工具、执行自动化任务的私人 AI 助手。',
+            text: '适合希望把 Hermes 用在真实工作流中的开发者和进阶用户，而不是只看演示。',
           },
         },
         {
           '@type': 'Question',
-          name: 'Hermes Agent 免费吗？',
+          name: '必须先买云服务器吗？',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Hermes Agent 本身是开源免费的。你主要需要承担模型 API 调用费用，以及运行它的本地机器或云服务器成本。',
+            text: '不需要。可以先本地完成验证，再按需求迁移到云端保持长期在线。',
           },
         },
         {
           '@type': 'Question',
-          name: '这套教程适合新手吗？',
+          name: '7 天路线会覆盖哪些内容？',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '适合。教程按 7 天拆解，从部署、配置到技能和自动化，尽量用最少术语带你一步步搭起来。',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Hermes Agent 支持哪些模型？',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Hermes Agent 支持 Claude、OpenAI、Google Gemini、xAI Grok，以及通过 OpenRouter 接入的其他模型。',
+            text: '包括安装、人格配置、渠道接入、技能使用、自动化调度和进阶多 Agent 玩法。',
           },
         },
       ],
     },
     {
       '@type': 'ItemList',
-      '@id': `${SITE_URL}/zh#tutorial-list`,
-      name: 'Hermes Agent 7天学习路径',
+      '@id': `${SITE_URL}/zh#roadmap`,
+      name: 'Hermes 7 天实战路线图',
       numberOfItems: 7,
       itemListElement: [
         {

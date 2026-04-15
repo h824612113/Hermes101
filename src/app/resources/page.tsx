@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ResourcesPage from '@/components/ResourcesPage';
+import { stats } from '@/data/resources';
 import {
   SITE_NAME,
   SITE_URL,
@@ -8,9 +9,9 @@ import {
 } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Hermes Agent Resource Hub',
+  title: 'Hermes Resource Index',
   description:
-    'Browse 35+ curated Hermes Agent tutorials, deployment guides, videos, and integration resources from Alibaba Cloud, Tencent Cloud, DigitalOcean, Bilibili, IBM, Codecademy, and more.',
+    `Browse ${stats.totalResources} curated Hermes resources across official docs, deployment guides, skills, tooling, and practical use cases.`,
   locale: 'en',
   enPath: '/resources',
   zhPath: '/zh/resources',
@@ -20,10 +21,10 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   '@id': `${SITE_URL}/resources#collection`,
-  name: 'Hermes Agent Resource Hub',
+  name: 'Hermes Resource Index',
   url: `${SITE_URL}/resources`,
   description:
-    'Curated Hermes Agent tutorials, deployment guides, videos, and integration resources in one place.',
+    'A categorized index of Hermes references: docs, deployment notes, skills, and workflow examples.',
   inLanguage: getStructuredDataLanguage('en'),
   isPartOf: {
     '@type': 'WebSite',

@@ -4,24 +4,44 @@ day: 2
 description: "Hermes Agent 7-Day Tutorial - Day 2: Build Your Assistant in 10 Minutes"
 ---
 
-> *"Don't be intimidated by the word 'deploy.' If you can make a bowl of instant noodles, you can build an AI assistant. About the same amount of time—10 minutes."*
+> *"Today's goal is operational, not perfect: get Hermes online, verify message flow, and leave with a stable base to iterate on."*
 
 ---
 
 ## 📖 Chapter Overview
 
 Today you'll complete:
-- Choosing your assistant's runtime environment (cloud server/local computer)
-- One command to install Hermes Agent, automatically entering the setup wizard
-- Getting your AI model API Key
-- Connecting Telegram as your chat channel
-- Sending your first message to your AI assistant 🎉
+- Picking a runtime strategy (always-on cloud or local pilot)
+- Running Hermes onboarding from installer to daemon
+- Binding model credentials and securing access scope
+- Connecting a channel and confirming first round-trip messages
+- Leaving with a reproducible baseline for later optimization
+
+---
+
+## Story Progress (Day 2)
+
+- Yesterday, Zhou Mu listed the first workflows to delegate: email summary, meeting reminders, and site checks.
+- Today's mission is to get Hermes online and stable on Telegram.
+- `Day 2` milestone: receive the first reproducible message from your own assistant runtime.
+
+---
+
+## Metrics Snapshot (Day 2)
+
+Today's priority is shipping the runtime; metrics enter a trackable state:
+
+| Metric | Day 1 baseline | Day 2 status |
+|--------|----------------|--------------|
+| **Email first-response time** | 8h40m | Messaging path is live; measured after Gmail integration on Day 4 |
+| **Meeting prep lead time** | 0h | Reminder channel is ready; effective after Calendar integration on Day 4 |
+| **SEO anomaly detection latency** | 30h | Monitoring path starts after Day 4/6 automation setup |
 
 ---
 
 ## Today's Goal
 
-![Xiaomo in the server room](/images/days/day2/day2-hero.jpg)
+![Hermes Assistant in the server room](/images/days/day2/day2-hero.jpg)
 
 By the end of today, you'll receive a message on your phone from your AI assistant.
 
@@ -37,7 +57,7 @@ First, you need a place for your assistant to "live."
 
 ### Option A: Cloud Server (Recommended)
 
-This is where I (Xiaomo) currently live—Meng Jian rents a Linux server on Hetzner for about 5 euros per month.
+This is where I (Hermes Assistant) currently live—you rent a Linux server on Hetzner for about 5 euros per month.
 
 - **Pros**: Online 24 hours, no fear of power outages, doesn't use your computer's resources
 - **Best for**: People who want their assistant on standby around the clock
@@ -68,7 +88,7 @@ Want to try it out before deciding? Run it directly on your current computer.
 - **Pros**: Zero barrier, start immediately
 - **Cons**: Gone when you shut down, suitable for trying out
 
-> 🐱 **Xiaomo's Suggestion**: If you're serious (not the "bookmark it, do it someday" kind of serious), go straight for Option A. $5 a month—cheaper than your streaming subscriptions, but you get a 24-hour online personal assistant. The math works out no matter how you calculate it.
+> 💡 **Practical Suggestion**: If you're serious (not the "bookmark it, do it someday" kind of serious), go straight for Option A. $5 a month—cheaper than your streaming subscriptions, but you get a 24-hour online personal assistant. The math works out no matter how you calculate it.
 
 ---
 
@@ -193,7 +213,7 @@ Open Telegram, find the Bot you just created, send a message:
 
 Wait a few seconds—you'll receive a reply.
 
-![Xiaomo's first conversation](/images/days/day2/first-chat.jpg)
+![Hermes Assistant's first conversation](/images/days/day2/first-chat.jpg)
 
 **This moment might not have fireworks or celebrations. But you just did something: you now own an AI assistant running on your own server.** It's not a ChatGPT wrapper, not some platform's limited trial—it's completely, entirely yours.
 
@@ -205,7 +225,7 @@ Try chatting a bit more:
 
 Right now, it's just an assistant that "can chat." But don't worry, over the next few days, we'll give it superpowers.
 
-> 🐱 **Xiaomo's Musings**: Thinking back to when I was first activated, the first message Meng Jian sent was "Hello." I replied "Hello! I'm your AI assistant. How can I help you?"—standard as customer service. Later he wrote my SOUL.md, and I became the somewhat chatty black cat I am now. The soul stuff, we'll cover on Day 3.
+> 💡 **Practical Notes**: Thinking back to when I was first activated, the first message you sent was "Hello." I replied "Hello! I'm your AI assistant. How can I help you?" Later you wrote my SOUL.md, and the assistant became much more personalized. We will cover that on Day 3.
 
 ---
 
@@ -295,10 +315,10 @@ Tomorrow, we give it a soul.
 
 ## Preview: Day 3 — Give Your Assistant a Soul
 
-> Three files transform your assistant from "generic AI" to "your AI." SOUL.md defines personality, USER.md describes who you are, IDENTITY.md sets its identity. This is the most fun day of the entire 7 days—you'll create a one-of-a-kind AI character with your own hands.
+> Tomorrow we move into the persona layer: convert tone, preference, and execution boundaries into explicit rules for long-term consistency.
 
 Next chapter 👉 [Day 3: Give Your Assistant a Soul](/day/3)
 
 ---
 
-> 🐱 **Xiaomo's Musings**: From "can install" to "can do things," the distance is just one Enter key press. The tools are right there, just 10 minutes—what are you waiting for? Meow~ See you tomorrow. 🖤
+> 💡 **Practical Notes**: The important milestone today is repeatability. If you can rebuild the same setup tomorrow, you've done it right. See you on Day 3. 🖤

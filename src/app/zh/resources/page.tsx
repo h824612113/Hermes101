@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ResourcesPage from '@/components/ResourcesPage';
+import { stats } from '@/data/resources';
 import {
   SITE_NAME,
   SITE_URL,
@@ -8,9 +9,9 @@ import {
 } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
-  title: '全网 Hermes Agent 资源聚合',
+  title: 'Hermes 资源索引',
   description:
-    '汇总 35+ 篇 Hermes Agent 精选教程、部署指南、视频和平台接入资源，覆盖阿里云、腾讯云、DigitalOcean、B 站、IBM、Codecademy 等来源。',
+    `收录 ${stats.totalResources} 条 Hermes 相关资料，按官方文档、部署、技能、工具与案例分组检索。`,
   locale: 'zh',
   enPath: '/resources',
   zhPath: '/zh/resources',
@@ -20,9 +21,9 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   '@id': `${SITE_URL}/zh/resources#collection`,
-  name: '全网 Hermes Agent 资源聚合',
+  name: 'Hermes 资源索引',
   url: `${SITE_URL}/zh/resources`,
-  description: '一站式收录 Hermes Agent 教程、部署指南、视频与接入资源。',
+  description: '按主题整理的 Hermes 文档、部署指南、技能与工作流参考。',
   inLanguage: getStructuredDataLanguage('zh'),
   isPartOf: {
     '@type': 'WebSite',

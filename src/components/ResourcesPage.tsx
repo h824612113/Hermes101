@@ -14,8 +14,9 @@ import ConsultButton from './ConsultButton';
 const texts = {
   en: {
     backToHome: 'Back to home',
-    heroTitle: 'Resource Hub',
-    heroSubtitle: 'Alibaba Cloud, Tencent Cloud, DigitalOcean, Bilibili, Codecademy, IBM…\nOne-stop access to the best Hermes Agent tutorials. Open source, continuously updated.',
+    heroTitle: 'Resource Index',
+    heroSubtitle:
+      'A maintained index of Hermes references.\nPrioritize official docs first, then deployment notes, skills, and use-case writeups.',
     statsResources: 'resources',
     statsChinese: 'Chinese',
     statsEnglish: 'English',
@@ -31,11 +32,11 @@ const texts = {
     open: 'Open →',
     zhLabel: '中文',
     enLabel: 'EN',
-    contributeTitle: '🤝 Found a great resource?',
-    contributeDesc: 'This is an open source project. Edit',
-    contributeDesc2: ', submit a PR, and help more people.',
+    contributeTitle: '🤝 Know a better reference?',
+    contributeDesc: 'This repository is open source. Update',
+    contributeDesc2: ' and open a PR so others can reuse it.',
     submitPR: 'Submit PR',
-    footerMadeBy: 'Made with 🐈‍⬛ by',
+    footerMadeBy: 'Maintained by',
     catDescriptions: {
       official: 'First-hand materials from the Hermes Agent team',
       'cloud-deploy': 'One-click deployment solutions for major cloud platforms',
@@ -50,8 +51,9 @@ const texts = {
   },
   zh: {
     backToHome: '返回首页',
-    heroTitle: '全网资源聚合',
-    heroSubtitle: '阿里云、腾讯云、DigitalOcean、B站、Codecademy、IBM……\n一站式获取 Hermes Agent 最佳教程，开源共享，持续更新。',
+    heroTitle: '资源索引',
+    heroSubtitle:
+      '按主题维护的 Hermes 参考链接集合。\n先看官方文档，再看部署、技能和真实案例。',
     statsResources: '篇资源',
     statsChinese: '中文',
     statsEnglish: '英文',
@@ -67,16 +69,16 @@ const texts = {
     open: '打开 →',
     zhLabel: '中文',
     enLabel: 'EN',
-    contributeTitle: '🤝 发现好资源？',
-    contributeDesc: '这是一个开源项目。编辑',
-    contributeDesc2: '，提一个 PR，就能帮助更多人。',
+    contributeTitle: '🤝 发现更好的资料？',
+    contributeDesc: '这是开源仓库。更新',
+    contributeDesc2: ' 后提交 PR，其他人就能直接复用。',
     submitPR: '提交 PR',
-    footerMadeBy: 'Made with 🐈‍⬛ by',
+    footerMadeBy: '维护者',
     catDescriptions: {
       official: '来自 Hermes Agent 团队的第一手资料',
       'cloud-deploy': '主流云平台一键部署方案',
       'getting-started': '从零开始的保姆级教程',
-      'channel-integration': '飞书、钉钉、Telegram、企业微信等平台接入',
+      'channel-integration': '飞书、钉钉、Telegram、企业社群等平台接入',
       'skill-dev': '创建和发布自定义技能',
       video: '看得见的教程更好学',
       'deep-dive': '架构分析、行业评论和进阶内容',
@@ -134,6 +136,13 @@ const sourceDots: Record<string, string> = {
   'Bilibili': '#fb7299',
   'MiniMax': '#7c3aed',
   'GitHub': '#24292f',
+  'GitHub Releases': '#24292f',
+  'Nous Research': '#2563eb',
+  'Hermes Docs': '#2563eb',
+  'Nous Portal': '#0f172a',
+  'OpenRouter': '#0f766e',
+  'Ollama': '#059669',
+  'Hugging Face': '#f59e0b',
   'Hermes Agent': '#2563eb',
   'Hermes Agent Docs': '#2563eb',
   'Hermes Skills Hub': '#10b981',
@@ -286,6 +295,7 @@ export default function ResourcesPage({ locale }: ResourcesPageProps) {
   const mainRef = useRef<HTMLDivElement>(null);
   const t = texts[locale];
   const homeUrl = locale === 'zh' ? '/zh' : '/';
+  const sourceList = Array.from(new Set(resources.map((r) => r.source))).slice(0, 14);
 
   const searchResults = search
     ? resources.filter((r) => {
@@ -329,7 +339,6 @@ export default function ResourcesPage({ locale }: ResourcesPageProps) {
           </a>
 
           <div className="flex items-start gap-8">
-            {/* Left */}
             <div className="flex-1 min-w-0">
               <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4" style={{ color: '#fff' }}>
                 {t.heroTitle}
@@ -369,39 +378,25 @@ export default function ResourcesPage({ locale }: ResourcesPageProps) {
               </div>
             </div>
 
-            {/* Right: floating cards */}
-            <div className="hidden lg:block relative w-80 h-72 shrink-0">
-              <div className="absolute top-2 right-0 w-56 rounded-xl p-4 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(12px)' }}>
-                <div className="flex items-center gap-2.5 mb-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center text-sm" style={{ background: 'rgba(255, 106, 0, 0.2)' }}>☁️</div>
-                  <span className="text-sm font-semibold" style={{ color: '#fff' }}>{locale === 'zh' ? '阿里云' : 'Alibaba Cloud'}</span>
-                </div>
-                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                  {locale === 'zh' ? '一键部署 Hermes Agent，构建钉钉 AI 助理' : 'One-click deploy Hermes Agent, build DingTalk AI assistant'}
-                </p>
+            <div className="hidden lg:block relative w-80 shrink-0">
+              <div
+                className="rounded-xl p-5 shadow-2xl"
+                style={{
+                  background: 'rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  backdropFilter: 'blur(12px)',
+                }}
+              >
+                <h3 className="text-sm font-semibold mb-3" style={{ color: '#fff' }}>
+                  {locale === 'zh' ? '使用建议' : 'Usage Notes'}
+                </h3>
+                <ol className="space-y-2 text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                  <li>{locale === 'zh' ? '1. 先阅读官方文档再看社区文章。' : '1. Start from official docs before community posts.'}</li>
+                  <li>{locale === 'zh' ? '2. 搜索时优先按场景和关键词组合。' : '2. Combine use-case and keyword in search.'}</li>
+                  <li>{locale === 'zh' ? '3. 安装第三方能力前先审查权限。' : '3. Review permissions before installing third-party skills.'}</li>
+                  <li>{locale === 'zh' ? '4. 发现失效链接请直接提 PR。' : '4. Open a PR when you find stale links.'}</li>
+                </ol>
               </div>
-
-              <div className="absolute top-20 left-0 w-52 rounded-xl p-4 shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(12px)' }}>
-                <div className="flex items-center gap-2.5 mb-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center text-sm" style={{ background: 'rgba(0, 130, 255, 0.2)' }}>🔷</div>
-                  <span className="text-sm font-semibold" style={{ color: '#fff' }}>{locale === 'zh' ? '腾讯云' : 'Tencent Cloud'}</span>
-                </div>
-                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                  {locale === 'zh' ? 'Lighthouse 部署 + 飞书接入教程' : 'Lighthouse deploy + Feishu integration'}
-                </p>
-              </div>
-
-              <div className="absolute bottom-4 right-4 w-48 rounded-xl p-4 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(12px)' }}>
-                <div className="flex items-center gap-2.5 mb-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center text-sm" style={{ background: 'rgba(0, 105, 255, 0.2)' }}>🌊</div>
-                  <span className="text-sm font-semibold" style={{ color: '#fff' }}>DigitalOcean</span>
-                </div>
-                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>One-Click Deploy Guide</p>
-              </div>
-
-              <div className="absolute top-0 left-8 px-2.5 py-1 rounded-full text-[10px] font-medium animate-bounce" style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#6ee7b7', border: '1px solid rgba(16, 185, 129, 0.3)', animationDuration: '3s' }}>B站</div>
-              <div className="absolute bottom-16 left-2 px-2.5 py-1 rounded-full text-[10px] font-medium animate-bounce" style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#fca5a5', border: '1px solid rgba(239, 68, 68, 0.3)', animationDuration: '4s', animationDelay: '1s' }}>IBM Think</div>
-              <div className="absolute top-14 right-4 px-2.5 py-1 rounded-full text-[10px] font-medium animate-bounce" style={{ background: 'rgba(168, 85, 247, 0.2)', color: '#c4b5fd', border: '1px solid rgba(168, 85, 247, 0.3)', animationDuration: '3.5s', animationDelay: '0.5s' }}>Codecademy</div>
             </div>
           </div>
         </div>
@@ -411,23 +406,13 @@ export default function ResourcesPage({ locale }: ResourcesPageProps) {
       <div className="border-b border-gray-100 bg-white">
         <div className="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center gap-2 text-xs text-gray-400">
           <span className="font-medium text-gray-500 mr-1">{t.sourcesLabel}</span>
-          {[
-            { name: locale === 'zh' ? '阿里云' : 'Alibaba Cloud', color: '#ff6a00' },
-            { name: locale === 'zh' ? '腾讯云' : 'Tencent Cloud', color: '#0052d9' },
-            { name: 'DigitalOcean', color: '#0069ff' },
-            { name: 'Hostinger', color: '#6c47ff' },
-            { name: 'IBM', color: '#0f62fe' },
-            { name: 'Codecademy', color: '#1557ff' },
-            { name: locale === 'zh' ? 'B站' : 'Bilibili', color: '#fb7299' },
-            { name: 'MiniMax', color: '#7c3aed' },
-            { name: locale === 'zh' ? '博客园' : 'Cnblogs', color: '#3b82f6' },
-            { name: 'CSDN', color: '#fc5531' },
-            { name: 'Reddit', color: '#ff4500' },
-            { name: 'Substack', color: '#ff6719' },
-          ].map((s) => (
-            <span key={s.name} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 rounded-md text-gray-600 border border-gray-100">
-              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.color }} />
-              {s.name}
+          {sourceList.map((name) => (
+            <span key={name} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 rounded-md text-gray-600 border border-gray-100">
+              <span
+                className="w-1.5 h-1.5 rounded-full shrink-0"
+                style={{ background: sourceDots[name] || '#9ca3af' }}
+              />
+              {name}
             </span>
           ))}
         </div>
@@ -471,7 +456,7 @@ export default function ResourcesPage({ locale }: ResourcesPageProps) {
             </p>
           </div>
           <a
-            href="https://github.com/mengjian-github/hermes101"
+            href="https://github.com/h824612113/Hermes101"
             target="_blank"
             rel="noopener noreferrer"
             className="relative shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:shadow-lg transition-all hover:-translate-y-0.5"
@@ -487,7 +472,7 @@ export default function ResourcesPage({ locale }: ResourcesPageProps) {
       {/* ── footer ── */}
       <footer className="hero-glow py-8 mt-4">
         <div className="max-w-5xl mx-auto px-4 text-center text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
-          {t.footerMadeBy} <span style={{ color: 'rgba(255,255,255,0.7)' }}>小墨</span> · <a href={homeUrl} className="hover:underline" style={{ color: 'rgba(255,255,255,0.6)' }}>Hermes 101</a> · <a href="https://github.com/mengjian-github/hermes101" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: 'rgba(255,255,255,0.6)' }}>GitHub</a>
+          {t.footerMadeBy} <a href={homeUrl} className="hover:underline" style={{ color: 'rgba(255,255,255,0.6)' }}>Hermes 101</a> · <a href="https://github.com/h824612113/Hermes101" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: 'rgba(255,255,255,0.6)' }}>GitHub</a>
         </div>
       </footer>
 

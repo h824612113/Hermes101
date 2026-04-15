@@ -12,66 +12,73 @@ export default function ConsultButton({ locale }: ConsultButtonProps) {
 
   return (
     <>
-      {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 group"
-        aria-label={isZh ? '商务合作' : 'Business Collaboration'}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+        aria-label={isZh ? '获取支持' : 'Get Support'}
       >
         <span className="text-xl">💬</span>
-        <span className="hidden sm:inline">{isZh ? '商务合作' : 'Business'}</span>
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+        <span className="hidden sm:inline">{isZh ? '获取支持' : 'Support'}</span>
       </button>
 
-      {/* Modal */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         >
-          <div 
-            className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-in fade-in zoom-in duration-200"
+          <div
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label={isZh ? '关闭' : 'Close'}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            {/* Header */}
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                <span className="text-3xl">🦞</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">
-                {isZh ? 'Hermes Agent 商务合作' : 'Hermes Agent Business Collaboration'}
-              </h3>
-              <p className="text-gray-500 text-sm mt-1">
-                {isZh ? '腾讯T11 · 字节3-1 · AI编程专家' : 'Ex-Tencent T11 · Ex-ByteDance · AI Expert'}
-              </p>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              {isZh ? 'Hermes 101 支持入口' : 'Hermes 101 Support'}
+            </h3>
+            <p className="text-sm text-gray-600 mb-5">
+              {isZh
+                ? '你可以通过以下渠道提问、反馈问题或参与贡献。'
+                : 'Use the links below for help, bug reports, or contributions.'}
+            </p>
 
-            {/* QR Code */}
-            <div className="text-center mb-2">
-              <img
-                src="/wechat-personal-qr.jpg"
-                alt={isZh ? '微信二维码' : 'WeChat QR'}
-                className="block w-full max-w-[220px] h-auto mx-auto rounded-xl border border-gray-200 mb-3 bg-white p-1 object-contain"
-              />
-              <p className="text-sm text-gray-600 leading-6">
-                {isZh ? '扫码添加微信，备注「Hermes Agent合作」即可' : 'Scan to add WeChat and note "Hermes Agent Collaboration"'}
-              </p>
-            </div>
+            <div className="space-y-3">
+              <a
+                href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl border border-gray-200 px-4 py-3 hover:border-blue-300 hover:bg-blue-50 transition-colors"
+              >
+                <div className="font-medium text-gray-900">{isZh ? '官方快速开始' : 'Official Quickstart'}</div>
+                <div className="text-xs text-gray-500 mt-1">hermes-agent.nousresearch.com/docs</div>
+              </a>
 
-            {/* Trust badges */}
-            <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-gray-100">
-              <span className="text-xs text-gray-400">📚 {isZh ? '《DeepSeek》作者' : 'DeepSeek Book Author'}</span>
-              <span className="text-xs text-gray-400">👥 {isZh ? '3万+粉丝' : '30k+ Followers'}</span>
+              <a
+                href="https://discord.gg/NousResearch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl border border-gray-200 px-4 py-3 hover:border-indigo-300 hover:bg-indigo-50 transition-colors"
+              >
+                <div className="font-medium text-gray-900">Discord</div>
+                <div className="text-xs text-gray-500 mt-1">Nous Research community</div>
+              </a>
+
+              <a
+                href="https://github.com/h824612113/Hermes101/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl border border-gray-200 px-4 py-3 hover:border-gray-300 hover:bg-gray-50 transition-colors"
+              >
+                <div className="font-medium text-gray-900">GitHub Issues</div>
+                <div className="text-xs text-gray-500 mt-1">{isZh ? '报告问题 / 提建议' : 'Report bugs / Request features'}</div>
+              </a>
             </div>
           </div>
         </div>

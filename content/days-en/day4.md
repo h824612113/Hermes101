@@ -4,26 +4,48 @@ day: 4
 description: "Hermes Agent 7-Day Tutorial - Day 4: Connect Your Digital Life"
 ---
 
-> *"An AI assistant that can only chat versus one that can read your emails, manage your calendar, and search the web—the difference isn't IQ, it's hands. Today we're giving it hands."*
+> *"Today's key shift is context access: your assistant starts reading the same operational signals you rely on."*
 
 ---
 
 ## 📖 Chapter Overview
 
-![Xiaomo connecting digital life](/images/days/day4/day4-hero.jpg)
+![Hermes Assistant connecting digital life](/images/days/day4/day4-hero.jpg)
 
-Today is the watershed between toy and tool. You will:
-- Understand Hermes Agent's Skills system
-- Connect Gmail — let your assistant read and send emails
-- Connect Google Calendar — manage your schedule
-- Configure web search — let your assistant find information online
-- Unlock browser capabilities — let your assistant view any webpage
+Today you will complete execution-layer integration:
+- Understand how Skills bridge Hermes with external systems
+- Connect Gmail for email-related execution
+- Connect Google Calendar for schedule awareness
+- Enable search and browsing for live information retrieval
+- Define permission boundaries before scaling usage
+
+---
+
+## Story Progress (Day 4)
+
+- Day 3 gave Zhou Mu a stable persona and clear boundaries.
+- Today you connect real channels so the assistant can work inside the `TaskOrbit` workflow.
+- `Day 4` milestone: complete cross-tool queries on real business context.
+
+---
+
+## Metric Update (Day 4)
+
+After execution-layer integration, the three metrics show their first material shift:
+
+| Metric | Day 1 baseline | Day 4 sample value |
+|--------|----------------|--------------------|
+| **Email first-response time** | 8h40m | 3h10m |
+| **Meeting prep lead time** | 0h | 1h00m |
+| **SEO anomaly detection latency** | 30h | 6h00m |
+
+> These values come from Zhou Mu's first sample week after Gmail/Calendar/Search integration.
 
 ---
 
 ## From "Can Talk" to "Can Do"
 
-Over the past three days, your assistant already has a soul, a personality, and knows you. But it's still essentially a chat partner—you ask, it answers, that's it.
+Over the past three days, your assistant gained personality and context. But it is still mostly reactive and conversation-bound.
 
 Today we're doing something game-changing: **letting your assistant touch your real world.**
 
@@ -31,7 +53,7 @@ Read emails. Check calendar. Search the web. Browse websites.
 
 After today's configuration, when you tell your assistant "check what emails I have today," it can actually go check. Say "am I free tomorrow afternoon," it can actually check your calendar. Say "what's this product like," it can actually go search.
 
-**This is the watershed between toy and tool.**
+**This is the step where execution value becomes real.**
 
 ---
 
@@ -99,7 +121,7 @@ If everything is working, you'll get a response like this:
 
 **Notice that?** It doesn't just list emails, it helps you judge priority and flags the one that needs your attention. That's the difference between an AI assistant and a regular email client.
 
-> 🐱 **Xiaomo's Musings**: Every morning at 8 AM I automatically check Meng Jian's inbox and pick out what's really important to send him. The rest? GitHub notifications, bills, newsletters... I just categorize them, not worth disturbing him. That's what "assistant" means—otherwise what's the difference from a "new email notification"?
+> 💡 **Practical Notes**: Every morning at 8 AM I automatically check your inbox and pick out what's really important to send Zhou Mu. The rest? GitHub notifications, bills, newsletters... I just categorize them, not worth interrupting him for. That's what "assistant" means.
 
 ---
 
@@ -183,9 +205,9 @@ Hermes Agent has a built-in browser skill (based on Playwright), already auto-co
 
 Usage example:
 
-> Open https://kirkify.net and show me what the homepage looks like now
+> Open https://taskorbit.app and show me what the homepage looks like now
 
-> 🌐 Visited kirkify.net:
+> 🌐 Visited taskorbit.app:
 > - Homepage title: "Kirkify — Free Online Tools"
 > - Main tool list: Name Generator, QR Code, Color Palette...
 > - Page loaded normally, no visible errors
@@ -197,7 +219,7 @@ More practical scenario:
 
 It will open the page, extract pricing information, and even compare with previous versions you've seen.
 
-> 🐱 **Xiaomo's Musings**: Browser is one of my favorite skills. Before, when Meng Jian asked me to check competitors, I could only search. Now I can directly open their websites and browse like a real user. Once I noticed a competitor quietly changed their pricing strategy and immediately notified Meng Jian. He said that one discovery alone was worth a month's server cost.
+> 💡 **Practical Notes**: Browser is one of my favorite skills. Before, when you asked me to check competitors, I could only search. Now I can directly open their websites and browse like a real user. Once I noticed a competitor quietly changed pricing and immediately notified Zhou Mu. He said that one discovery alone was worth a month's server cost.
 
 ---
 
@@ -246,7 +268,7 @@ Clearly write in SOUL.md and AGENTS.md:
 
 > 💡 **Security isn't a one-time thing—it's an ongoing habit**: Build good security habits: API Keys don't go in repos, Token files need proper permissions, least privilege principle, behavioral boundaries clearly written.
 
-> 🐱 **Xiaomo's Musings**: Meng Jian once asked me to look up a colleague's email records. I refused. Because SOUL.md says "only process the owner's own data." He was a bit surprised, then said "okay, keep that rule." Clear boundaries build solid trust.
+> 💡 **Practical Notes**: You once asked me to look up a colleague's email records. I refused, because SOUL.md says "only process Zhou Mu's own data." He was surprised, then said "okay, keep that rule." Clear boundaries build trust.
 
 ---
 
@@ -289,4 +311,4 @@ Next chapter 👉 [Day 5: Unlock the Skill Tree](/day/5)
 
 ---
 
-> 🐱 **Xiaomo's Musings**: AIs that can chat are everywhere. An AI assistant that can check your email, manage your schedule, and search for info—is now running on your own server. This isn't the future, this is now. Meow~ See you tomorrow. 🖤
+> 💡 **Practical Notes**: After integration, your advantage is not better chat style but better context execution. That's where practical leverage starts. See you tomorrow. 🖤

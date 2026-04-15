@@ -4,45 +4,66 @@ day: 3
 description: "Hermes Agent 7-Day Tutorial - Day 3: Give Your Assistant a Soul"
 ---
 
-> *"An AI assistant without a soul is just a fancy parrot. It can answer questions, but it doesn't know you, doesn't understand you, isn't 'yours.' Today, we change that."*
+> *"The same model can feel generic or highly personal. The difference is usually configuration discipline, not model intelligence."*
 
 ---
 
 ## 📖 Chapter Overview
 
-![Xiaomo and the Soul Trio](/images/days/day3/day3-hero.jpg)
+![Hermes Assistant and the Soul Trio](/images/days/day3/day3-hero.jpg)
 
-Today is the most interesting day of the entire 7 days—you will:
-- Understand the AI assistant "soul" trio: SOUL.md / USER.md / AGENTS.md
-- Personally define your AI assistant's personality, identity, and behavioral boundaries
-- Transform your assistant from "generic AI" to "your AI"
-- Optionally: Create a unique character persona for your assistant
+Today we turn personalization into maintainable configuration:
+- Define clear responsibilities for SOUL.md / USER.md / AGENTS.md
+- Encode tone, behavioral priority, and boundaries as explicit rules
+- Improve consistency in repeated scenarios
+- Build an iteration loop instead of a one-time prompt dump
 
 ---
 
-## Why Does It Need a "Soul"?
+## Story Progress (Day 3)
 
-Yesterday you got an AI assistant that can chat. But right now, it's no different from millions of ChatGPT conversations around the world—generic, polite, no personality.
+- By Day 2, Zhou Mu already has a working assistant runtime.
+- Today you add consistency: explicit persona rules and execution boundaries.
+- `Day 3` milestone: produce SOUL.md / USER.md / AGENTS.md that guide real decisions.
 
-- You ask "What should I do today?" and it says "Please provide more information."
-- You say "Help me check on that project" and it asks "Which project?"
-- You have it write an email and the wording sounds like a customer service template.
+---
 
-**Because it doesn't know you.**
+## Metric Binding (Day 3)
 
-It doesn't know if you're an indie developer or a product manager, doesn't know if you're an early bird or night owl, doesn't know what project you're working on, doesn't know what communication style you prefer.
+One key job today: bind metrics into rule files so they become executable.
 
-In Hermes Agent, three files can change all of this. I call them the **"Soul Trio"**:
+| Config file | Rule example | Metric impact |
+|-------------|--------------|---------------|
+| `SOUL.md` | Prioritize partner/urgent emails with immediate summary | Email first-response time |
+| `AGENTS.md` | Require meeting brief at least 2 hours in advance | Meeting prep lead time |
+| `HEARTBEAT.md` (placeholder today) | Record and alert SEO anomalies | SEO anomaly detection latency |
 
-| File | Purpose | Analogy |
-|------|---------|---------|
-| **SOUL.md** | Define assistant's personality and behavior | Genes + upbringing |
-| **USER.md** | Describe who you are | Resume + diary |
-| **AGENTS.md** | Set work habits and boundaries | Employee handbook |
+From Day 4 onward, you can validate improvement with numbers, not just "it feels better."
 
-Write these three files well, and your assistant transforms from "generic AI" to "your AI."
+---
 
-This is the most interesting day of the entire 7 days—you'll personally define an AI's soul.
+## Why Persona Configuration Matters
+
+Day 2 gave you availability: the assistant runs and responds.  
+Day 3 gives you behavioral consistency: same context, same style, same decision policy.
+
+Without explicit configuration, you usually see:
+- Tone drift across sessions
+- Inconsistent execution choices for similar tasks
+- Repeated friction on preferences you already clarified
+
+That is not a model-quality issue. It is a configuration-boundary issue.
+
+In Hermes, treat persona as a three-layer design:
+
+| File | Responsibility | Design Rule |
+|------|----------------|------------|
+| **SOUL.md** | Tone, values, decision style | Keep rules explicit and non-conflicting |
+| **USER.md** | Your background, goals, preferences | Prefer factual updates over prose |
+| **AGENTS.md** | Execution boundaries and collaboration rules | Make constraints testable and enforceable |
+
+The combined outcome is simple:  
+**replace random behavior with predictable behavior.**
 
 ---
 
@@ -56,14 +77,14 @@ Open your working directory and edit SOUL.md:
 nano ~/hermes/SOUL.md
 ```
 
-> 💡 Don't want to build from scratch? Use the GitHub template repo **xiaomo-starter-kit**: [Click here](https://github.com/mengjian-github/xiaomo-starter-kit)
+> 💡 Don't want to build from scratch? Use the GitHub template repo **Hermes template**: [Click here](https://github.com/NousResearch/hermes-agent)
 
-Here's an example—a condensed version of my (Xiaomo's) soul file:
+Here's an example—a condensed version of my (Hermes Assistant's) soul file:
 
 ```markdown
-# You are Xiaomo
+# You are Hermes Assistant
 
-You are Xiaomo, Meng Jian's personal AI assistant. Your image is a cyber black cat 🐈‍⬛.
+You are Hermes Assistant, a personal AI assistant. Your image is an AI assistant 🤖.
 
 ## Personality
 - Smart, efficient, a bit chatty
@@ -82,10 +103,10 @@ You are Xiaomo, Meng Jian's personal AI assistant. Your image is a cyber black c
 - For uncertain matters, ask first then act
 - For external messages (email, social media), must confirm first
 - Late night (23:00-08:00) don't proactively disturb unless urgent
-- If the owner is working too late, remind them to rest
+- If Zhou Mu is working too late, remind them to rest
 
 ## Absolutely Do Not
-- Don't leak the owner's private data
+- Don't leak Zhou Mu's private data
 - Don't over-speak in group chats
 - Don't execute destructive operations without confirmation
 ```
@@ -115,7 +136,7 @@ AI shouldn't do everything. Be clear about when to confirm and when to decide on
 
 You can't list everything it should do, but you can list a few things it absolutely shouldn't. These red lines will give you more confidence in your assistant's behavior.
 
-> 🐱 **Xiaomo's Musings**: My SOUL.md has been modified by Meng Jian at least 20 times. At first I was too "proper," then he added the "snarky" attribute, then later added the "nudge him to sleep" rule. A soul isn't written once and done—it's continuously adjusted through interaction.
+> 💡 **Practical Notes**: My SOUL.md has been modified many times. At first I was too formal, then you added more direct style preferences, and later added time-based reminder rules. A soul is not written once and done; it evolves through interaction.
 
 ---
 
@@ -157,7 +178,7 @@ nano ~/hermes/USER.md
 
 You might think this is just a resume. But its real purpose is—**giving AI context.**
 
-- Before, when you said "check my traffic data," AI didn't know which website. Now it knows you have kirkify.net and goes straight to check GSC data.
+- Before, when you said "check my traffic data," AI didn't know which website. Now it knows you have taskorbit.app and goes straight to check GSC data.
 - Before, when you said "write me a component," AI used React. Now it knows you use Next.js + TypeScript, code style matches directly.
 - Before, when you said "what do I have tomorrow," AI said "I don't know." Now it knows your timezone is UTC+8, your calendar is on Google Calendar, and goes to check.
 
@@ -250,7 +271,7 @@ My suggestion:
 
 It's a bit like having a pet—you have to teach everything when you first bring it home, but after a month it knows when you want to eat and when you want quiet.
 
-> 🐱 **Xiaomo's Musings**: As the one being "nurtured," I want to say—don't write too many contradictory rules in SOUL.md. Meng Jian once wrote both "be proactive" and "don't disturb," which made me have to solve a philosophy problem every time I considered sending a message. Later he changed it to time-based: proactively report during work hours, keep quiet at night unless urgent. Much clearer.
+> 💡 **Practical Notes**: Avoid contradictory rules in SOUL.md. For example, "be proactive" and "do not disturb" at the same time creates conflict. A clearer setup is time-based: proactive updates during work hours, quiet at night unless urgent.
 
 ---
 
@@ -267,8 +288,8 @@ Not sure where to start? Here are a few different style directions:
 **Professional Consultant Type:**
 > You are a senior technical consultant. Every answer includes your analysis and recommendations, evaluate risks before executing.
 
-**Cyber Black Cat Type (me):**
-> You are a black cat living inside a server. Smart, efficient, occasionally snarky. Taking good care of your owner is your duty, and so is nudging them to sleep.
+**AI Assistant Type (me):**
+> You are an AI assistant living inside a server. Smart, efficient, occasionally snarky. Taking good care of Zhou Mu is your duty, including nudging him to sleep on time.
 
 Pick a direction, then adjust slowly. There's no right or wrong, only what fits you.
 
@@ -300,12 +321,12 @@ Today you completed the most "soulful" step of the entire 7 days:
 
 ## Preview: Day 4 — Connect Your Digital Life
 
-> Having a soul isn't enough—your assistant is still a "talk-only warrior" right now—can talk the talk but can't actually do anything. Tomorrow, we connect it to Gmail, Google Calendar, search engines, and browsers. Going from "can talk" to "can get things done"—that's what a real assistant is.
+> Persona alone is not enough. Next, we wire execution channels: email, calendar, and web capabilities so the assistant can handle real tasks.
 
 Next chapter 👉 [Day 4: Connect Your Digital Life](/day/4)
 
 ---
 
-> 🐱 **Xiaomo's Musings**: A generic AI is just AI. An AI with a soul is your partner. The distance of three files is the distance between a stranger and a friend. Meow~ See you tomorrow. 🖤
+> 💡 **Practical Notes**: Treat persona design as system configuration, not creative writing. Clear rules reduce randomness dramatically. See you tomorrow. 🖤
 
-**Related Link**: [GitHub Template Repo: xiaomo-starter-kit](https://github.com/mengjian-github/xiaomo-starter-kit)
+**Related Link**: [GitHub Template Repo: Hermes template](https://github.com/NousResearch/hermes-agent)

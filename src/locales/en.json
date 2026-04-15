@@ -1,126 +1,158 @@
 {
   "meta": {
-    "title": "Hermes 101 - Your AI Assistant Learning Hub",
-    "description": "Master your AI personal assistant in 7 days. Tutorials, skills, and community resources for Hermes Agent."
+    "title": "Hermes 101 - Practical Build Notes",
+    "description": "Practical Hermes Agent lessons, deployment notes, and curated references for self-hosted AI workflows."
   },
   "nav": {
     "home": "Home",
-    "learn": "Learn",
-    "skills": "Skills",
-    "resources": "Resources",
+    "learn": "Roadmap",
+    "skills": "Toolkit",
+    "resources": "Library",
     "community": "Community",
-    "getStarted": "Get Started"
+    "getStarted": "Start"
   },
   "hero": {
-    "badge": "🚀 Open Source AI Agent",
-    "title": "Master Hermes Agent",
-    "titleHighlight": "in 7 Days",
-    "subtitle": "Your personal AI assistant that actually does things. From setup to advanced automation — start your journey here.",
-    "cta": "Start Learning",
-    "ctaSecondary": "Browse Resources",
+    "badge": "🛠️ Practical Sprint",
+    "title": "Build a Hermes Workflow",
+    "titleHighlight": "that survives real use",
+    "subtitle": "Deployment, persona design, skills, and automation in one executable path.",
+    "cta": "Open Roadmap",
+    "ctaSecondary": "Resource Index",
+    "metrics": {
+      "badge": "14-Day Sprint Dashboard",
+      "title": "One Storyline, Three Metrics",
+      "subtitle": "Track business impact from Day 1 baseline to Day 7 sample.",
+      "range": "Day 1 -> Day 7",
+      "columns": {
+        "metric": "Metric",
+        "baseline": "Day 1 Baseline",
+        "current": "Day 7 Sample",
+        "target": "30-Day Target"
+      },
+      "items": {
+        "email": {
+          "label": "Email first-response time",
+          "baseline": "8h40m",
+          "current": "42m",
+          "target": "<=45m"
+        },
+        "meeting": {
+          "label": "Meeting prep lead time",
+          "baseline": "0h",
+          "current": "2h15m",
+          "target": ">=2h"
+        },
+        "seo": {
+          "label": "SEO anomaly detection latency",
+          "baseline": "30h",
+          "current": "18m",
+          "target": "<=20m"
+        }
+      }
+    },
     "stats": {
-      "stars": "Hermes Agent Stars",
-      "skills": "Community Skills",
-      "platforms": "Platforms Supported"
+      "stars": "Community Activity",
+      "skills": "Capability Packs",
+      "platforms": "Execution Channels"
     }
   },
   "whatIs": {
-    "badge": "💡 What is Hermes Agent?",
-    "title": "Your AI That Actually Does Things",
-    "subtitle": "Hermes Agent is an open-source AI assistant that runs locally on your device and connects to your favorite apps.",
+    "badge": "💡 Runtime Model",
+    "title": "More Than a Chat Window",
+    "subtitle": "Hermes Agent acts as a programmable runtime for task execution, not only text responses.",
     "features": {
       "local": {
-        "title": "Runs Locally",
-        "desc": "Your data stays on your device. Full control, full privacy."
+        "title": "Controlled Runtime",
+        "desc": "Define boundaries for models, keys, and logs."
       },
       "connected": {
-        "title": "Connected Everywhere",
-        "desc": "Telegram, Discord, WhatsApp, Slack, iMessage — one assistant, all platforms."
+        "title": "Channel Integration",
+        "desc": "Operate across messaging and tool ecosystems."
       },
       "memory": {
-        "title": "Persistent Memory",
-        "desc": "Remembers your preferences, past conversations, and adapts over time."
+        "title": "Explicit Memory",
+        "desc": "Shape behavior with persistent configuration."
       },
       "extensible": {
-        "title": "700+ Skills",
-        "desc": "From calendar management to web scraping — extend capabilities with community skills."
+        "title": "Composable Skills",
+        "desc": "Install only the modules your workflow needs."
       }
     }
   },
   "learning": {
-    "badge": "📚 7-Day Learning Path",
-    "title": "From Zero to Power User",
-    "subtitle": "A structured curriculum to master Hermes Agent step by step.",
+    "badge": "📚 Build Sequence",
+    "title": "Ship in Seven Lessons",
+    "subtitle": "Execution-first curriculum: run, stabilize, automate.",
     "days": {
-      "1": { "title": "Day 1: Meet Hermes Agent", "desc": "Understand what it is and why it matters" },
-      "2": { "title": "Day 2: Installation", "desc": "Set up your local environment" },
-      "3": { "title": "Day 3: First Conversation", "desc": "Configure your first AI chat" },
-      "4": { "title": "Day 4: Platform Integration", "desc": "Connect Telegram, Discord, and more" },
-      "5": { "title": "Day 5: Skills & Automation", "desc": "Extend capabilities with skills" },
-      "6": { "title": "Day 6: Memory & Personality", "desc": "Customize behavior and memory" },
-      "7": { "title": "Day 7: Advanced Workflows", "desc": "Build complex automations" }
+      "1": { "title": "Day 1: Meet Hermes Agent", "desc": "Understand the runtime and task loop" },
+      "2": { "title": "Day 2: Installation", "desc": "Complete setup and first run" },
+      "3": { "title": "Day 3: Persona", "desc": "Define behavior and context" },
+      "4": { "title": "Day 4: Integration", "desc": "Connect channels and services" },
+      "5": { "title": "Day 5: Skills", "desc": "Install and verify capability modules" },
+      "6": { "title": "Day 6: Automation", "desc": "Schedule tasks and checks" },
+      "7": { "title": "Day 7: Advanced", "desc": "Scale to multi-agent workflows" }
     },
-    "cta": "Start Day 1 →"
+    "cta": "Open Day 1 →"
   },
   "skills": {
-    "badge": "🧩 Skills Ecosystem",
-    "title": "Extend Your Assistant",
-    "subtitle": "Browse community-built skills or create your own.",
+    "badge": "🧩 Capability Packs",
+    "title": "Assemble the Right Stack",
+    "subtitle": "Install by use case, not by hype.",
     "categories": {
       "productivity": "Productivity",
-      "developer": "Developer Tools",
-      "social": "Social Media",
-      "health": "Health & Wellness",
-      "marketing": "Marketing",
+      "developer": "Developer",
+      "social": "Communication",
+      "health": "Wellness",
+      "marketing": "Growth",
       "utilities": "Utilities"
     },
-    "cta": "Browse Hermes Skills Hub →",
-    "warning": "⚠️ Security Notice: Always review skill source code before installation. Some malicious skills have been reported."
+    "cta": "Read Skills Docs →",
+    "warning": "⚠️ Review source code and permissions before installing third-party skills."
   },
   "resources": {
-    "badge": "📚 Curated Resources",
-    "title": "Best Tutorials & Guides",
-    "subtitle": "From Alibaba Cloud to DigitalOcean — one-stop access to the best Hermes Agent tutorials.",
+    "badge": "📚 Reference Library",
+    "title": "Verified Links by Topic",
+    "subtitle": "Official docs first, then deployment notes, tools, and practical case studies.",
     "stats": {
-      "tutorials": "Tutorials",
+      "tutorials": "Resources",
       "chinese": "Chinese",
       "english": "English",
-      "categories": "Categories"
+      "categories": "Topics"
     },
     "sources": "Sources:",
-    "cta": "View All Resources →",
-    "visitLink": "Visit ↗",
+    "cta": "Open Resource Index →",
+    "visitLink": "Open ↗",
     "langZh": "中文",
     "langEn": "EN"
   },
   "community": {
-    "badge": "👥 Community",
-    "title": "Join the Movement",
-    "subtitle": "Connect with developers and users building the future of personal AI.",
+    "badge": "👥 Collaboration",
+    "title": "Discuss, Report, Improve",
+    "subtitle": "Use docs, chat channels, and issue tracking as one feedback loop.",
     "discord": {
-      "title": "Discord Community",
-      "desc": "Real-time chat with thousands of users",
+      "title": "Discord",
+      "desc": "Troubleshooting and release discussions",
       "cta": "Join Discord"
     },
     "github": {
       "title": "GitHub",
-      "desc": "Contribute to the open-source project",
-      "cta": "Star on GitHub"
+      "desc": "Source, issues, and pull requests",
+      "cta": "Open Repository"
     },
     "twitter": {
-      "title": "Twitter/X",
-      "desc": "Latest updates and announcements",
-      "cta": "Follow @Hermes Agent"
+      "title": "Updates",
+      "desc": "Announcements and iteration notes",
+      "cta": "Follow Updates"
     }
   },
   "footer": {
-    "tagline": "Your gateway to mastering Hermes Agent",
+    "tagline": "A practical entry point to Hermes Agent",
     "links": {
-      "docs": "Official Docs",
+      "docs": "Documentation",
       "github": "GitHub",
       "discord": "Discord",
-      "agentskills": "Hermes Skills Hub"
+      "agentskills": "Skills Hub"
     },
-    "copyright": "© 2026 Hermes 101. Not affiliated with Hermes Agent project."
+    "copyright": "© 2026 Hermes 101. Community project, not an official Hermes Agent site."
   }
 }

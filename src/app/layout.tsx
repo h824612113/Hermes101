@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
+import HtmlLangUpdater from '@/components/HtmlLangUpdater';
 import {
   DEFAULT_OG_IMAGE,
   SITE_KEYWORDS,
@@ -9,7 +10,6 @@ import {
 } from '@/lib/seo';
 
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const CURRENT_SKILLS_COUNT = '5,400+';
 
 const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -17,7 +17,8 @@ const siteMetadata: Metadata = {
     default: SITE_NAME,
     template: `%s | ${SITE_NAME}`,
   },
-  description: `Free 7-day tutorial to master Hermes Agent. Learn to build your own AI personal assistant with installation guides, ${CURRENT_SKILLS_COUNT} community skills, curated resources, automation tips, and step-by-step workflows.`,
+  description:
+    'A practical 7-day Hermes Agent guide with setup notes, workflow templates, and curated resources for self-hosted AI assistant builders.',
   keywords: SITE_KEYWORDS,
   icons: {
     icon: '/favicon.svg',
@@ -96,7 +97,10 @@ plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init();`}
         </Script>
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <HtmlLangUpdater />
+        {children}
+      </body>
     </html>
   );
 }

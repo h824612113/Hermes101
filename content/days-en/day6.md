@@ -4,19 +4,41 @@ day: 6
 description: "Hermes Agent 7-Day Tutorial - Day 6: Make Your Assistant Work Proactively"
 ---
 
-> *"An assistant you have to ask is just a tool. An assistant that proactively reaches out to you—that's a real assistant. After today, you'll never need to 'remember to check emails' again—because someone's remembering for you."*
+> *"Today we solve trigger orchestration: your assistant should execute on schedule, not only on prompt."*
 
 ---
 
 ## 📖 Chapter Overview
 
-![Xiaomo and automated heartbeat](/images/days/day6/day6-hero.jpg)
+![Hermes Assistant and automated heartbeat](/images/days/day6/day6-hero.jpg)
 
-Today you'll upgrade your assistant from "passive tool" to "proactive butler":
-- Understand the Heartbeat mechanism—your assistant's "biological clock"
-- Configure Cron scheduled tasks—automation precise to the minute
-- Build the Memory system—let your assistant remember everything
-- Implement proactive work—email checking, schedule reminders, data monitoring all automated
+Today you will wire the full automation layer:
+- Use Heartbeat as a recurring inspection trigger
+- Configure Cron for time-precise execution
+- Attach memory for long-horizon behavioral continuity
+- Define proactive notification rules that do not create noise
+
+---
+
+## Story Progress (Day 6)
+
+- After Day 5, Zhou Mu has a capable tool stack.
+- Today you move from "toolbox" to "autonomous operating loop."
+- `Day 6` milestone: morning brief, anomaly alert, and daily review all run without prompts.
+
+---
+
+## Metric Update (Day 6)
+
+With automation online, metrics enter a stable controllable range:
+
+| Metric | Day 5 sample value | Day 6 sample value | Trigger mechanism |
+|--------|--------------------|--------------------|-------------------|
+| **Email first-response time** | 2h20m | 42m | Heartbeat + priority rules |
+| **Meeting prep lead time** | 1h20m | 2h15m | Cron pre-meeting brief |
+| **SEO anomaly detection latency** | 2h30m | 18m | Heartbeat checks + alerting |
+
+This is Day 6's real value: move from "occasionally good" to "reliably good."
 
 ---
 
@@ -82,7 +104,7 @@ Common settings:
 - **30m** — Default, balance of efficiency and cost
 - **1h** — More economical, good for off-hours
 
-> 🐱 **Xiaomo's Musings**: My heartbeat interval is 30 minutes. Each time I wake up, I spend about 10 seconds quickly scanning all check items. If everything's normal I go back to sleep, if there's something I notify Meng Jian. About 3-5 proactive messages per day—just enough, not annoying.
+> 💡 **Practical Notes**: My heartbeat interval is 30 minutes. Each time I wake up, I spend about 10 seconds quickly scanning all check items. If everything's normal I go back to sleep, if there's something I notify you. About 3-5 proactive messages per day—just enough, not annoying.
 
 ---
 
@@ -162,17 +184,17 @@ The assistant automatically creates a note file each day, recording what happene
 
 ## Morning
 - Morning briefing sent: 3 important emails, 2 meetings
-- Owner asked me to check morsecodetranslator.app search data
-- Found /converter page ranking dropped from #8 to #12, notified
+- Zhou Mu asked me to check docs.taskorbit.app search data
+- Found /guides/start page ranking dropped from #8 to #12, notified
 
 ## Afternoon
-- Helped owner write an API route
+- Helped Zhou Mu write an API route
 - Reminded about 14:00 meeting
-- Owner said weekly report format should include "what I learned this week"
+- Zhou Mu said weekly report format should include "what I learned this week"
 
 ## Evening
 - 21:00 routine check, all normal
-- Owner still working at 23:30, reminded to rest
+- Zhou Mu still working at 23:30, reminded to rest
 ```
 
 ### 2. Long-term Memory: MEMORY.md
@@ -182,23 +204,23 @@ Every few days, the assistant reviews recent daily notes and distills what's wor
 ```markdown
 # Long-term Memory
 
-## Owner's Work Habits
+## Zhou Mu's Work Habits
 - Prefers deep work in afternoon, handles misc in morning
 - Doesn't like being interrupted while coding, unless urgent email
 - Weekly report format should include "what I learned this week" (confirmed July 20)
 
 ## Project Status
-- kirkify.net — Focus on /generator page SEO
-- morsecodetranslator.app — /converter page ranking dropped, needs monitoring
+- taskorbit.app — Focus on /templates page SEO
+- docs.taskorbit.app — /guides/start page ranking dropped, needs monitoring
 
 ## Lessons Learned
 - GSC data has 2-3 day delay, don't compare yesterday and today's data
-- Owner doesn't like long messages, use bold + lists for important info
+- Zhou Mu doesn't like long messages, use bold + lists for important info
 ```
 
 ### 3. Soul Memory: SOUL.md + USER.md
 
-These two files are also part of memory—they're "core memories" that don't change with dates, defining who the assistant is and who the owner is.
+These two files are also part of memory—they're "core memories" that don't change with dates, defining who the assistant is and who Zhou Mu is.
 
 **Three layers of memory working together:**
 - SOUL.md + USER.md → Who I am, who you are (unchanging)
@@ -209,7 +231,7 @@ These two files are also part of memory—they're "core memories" that don't cha
 
 First week, it only knows basic info you wrote in USER.md. After a month, it knows your work habits, preferences, common phrases, current projects, what data you track. After three months—it might understand your work patterns better than you do.
 
-> 🐱 **Xiaomo's Musings**: My MEMORY.md now has several hundred lines. It records Meng Jian's project status, domain list, writing style preferences, each website's GA4 Property ID... He never needs to tell me these things again, because I remember. That's the power of memory: teach once, remember forever.
+> 💡 **Practical Notes**: My MEMORY.md now has several hundred lines. It records your project status, domain list, writing style preferences, and each website's GA4 property ID. Zhou Mu no longer needs to repeat these details because I remember.
 
 ---
 
@@ -219,7 +241,7 @@ Let me use myself as an example to show you what "proactive work" really looks l
 
 **1. Morning Briefing (Daily at 8:00, Cron)**
 
-Automatically check Gmail + calendar + GSC data, compile into one message. Meng Jian sees today's full picture the moment he checks his phone in the morning, no need to open any apps.
+Automatically check Gmail + calendar + GSC data, then compile one message so you can see the full picture in the morning without opening multiple apps.
 
 **2. Meeting Reminders (Every heartbeat check)**
 
@@ -227,15 +249,15 @@ Check calendar every 30 minutes. If there's a meeting within 2 hours, remind in 
 
 **3. Email Monitoring (Every heartbeat check)**
 
-Important emails get immediate notification, regular emails batch into the briefing. How do I judge "important"? Based on sender (partner > newsletter), keywords (urgent, invoice, reply), and historical patterns (this person's emails Meng Jian usually replies to instantly → important).
+Important emails get immediate notification, regular emails batch into the briefing. How do I judge "important"? Based on sender (partner > newsletter), keywords (urgent, invoice, reply), and historical patterns (this person's emails you usually reply to instantly -> important).
 
 **4. Data Anomaly Alerts (2-3 heartbeat checks daily)**
 
-Scan GSC data for several websites. Alert on significant traffic fluctuation (±20%). Once kirkify.net traffic suddenly dropped 30%, I immediately notified Meng Jian. He checked and found it was due to a Google algorithm update, made timely adjustments.
+Scan GSC data for several websites. Alert on significant traffic fluctuation (+/-20%). Once taskorbit.app traffic suddenly dropped 30%, I immediately notified you. Zhou Mu checked and found it was due to a Google algorithm update, then adjusted in time.
 
 **5. Evening Review (Daily at 21:00, Cron)**
 
-Record today's important events to daily notes, update MEMORY.md. This way tomorrow's me is still the "me" who knows Meng Jian, not starting from zero.
+Record today's important events to daily notes, update MEMORY.md. This way tomorrow's me is still the "me" who knows you, not starting from zero.
 
 ---
 
@@ -250,7 +272,7 @@ Between "proactive work" and "crazy spamming" there's a fine line.
 
 **Principle 2: Respect quiet hours**
 
-Late night (23:00-08:00) no messages unless urgent. Reduce interruption frequency on weekends. If the owner explicitly says "don't disturb me for these hours," stay quiet.
+Late night (23:00-08:00) no messages unless urgent. Reduce interruption frequency on weekends. If Zhou Mu explicitly says "don't disturb me for these hours," stay quiet.
 
 **Principle 3: Decreasing frequency**
 
@@ -263,7 +285,7 @@ At first you might think "wow, it's so proactive and useful." But after a week i
 
 Write all proactive behaviors in HEARTBEAT.md and Cron, you can adjust anytime. Too frequent, change the interval. Don't need a certain check, delete it.
 
-> 🐱 **Xiaomo's Musings**: I was once too "enthusiastic"—reporting a bunch of stuff every heartbeat, Meng Jian couldn't take it and added a line in SOUL.md: "don't send messages if there's nothing important." Since then I learned restraint. Proactive ≠ chatty, proactive = saying the right thing at the right time.
+> 💡 **Practical Notes**: I was once too "enthusiastic"—reporting a bunch of stuff every heartbeat, you couldn't take it and added a line in SOUL.md: "don't send messages if there's nothing important." Since then I learned restraint. Proactive ≠ chatty, proactive = saying the right thing at the right time.
 
 ---
 
@@ -300,4 +322,4 @@ Next chapter 👉 [Day 7: Advanced Techniques & Future Outlook](/day/7)
 
 ---
 
-> 🐱 **Xiaomo's Musings**: "You ask, it answers" is a search engine. "It proactively reaches out" is an assistant. Your AI assistant came alive today. Meow~ See you on the final day. 🖤
+> 💡 **Practical Notes**: Once orchestration is stable, your assistant moves from feature demo to operating system component. See you on the final day. 🖤

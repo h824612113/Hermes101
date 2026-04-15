@@ -1,126 +1,158 @@
 {
   "meta": {
-    "title": "Hermes 101 - 你的 AI 助理学习中心",
-    "description": "7天掌握你的 AI 私人助理。教程、技能和社区资源一站式获取。"
+    "title": "Hermes 101 - 实战构建手册",
+    "description": "围绕 Hermes Agent 的实战教程、部署记录与参考链接，帮助你搭建可长期运行的 AI 工作流。"
   },
   "nav": {
     "home": "首页",
-    "learn": "学习",
-    "skills": "技能",
-    "resources": "资源",
+    "learn": "路线图",
+    "skills": "能力包",
+    "resources": "资料库",
     "community": "社区",
-    "getStarted": "开始学习"
+    "getStarted": "开始"
   },
   "hero": {
-    "badge": "🚀 开源 AI Agent",
-    "title": "7天掌握",
-    "titleHighlight": "Hermes Agent",
-    "subtitle": "真正能帮你做事的 AI 私人助理。从安装到高级自动化 — 从这里开始你的旅程。",
-    "cta": "开始学习",
-    "ctaSecondary": "浏览资源",
+    "badge": "🛠️ 实战冲刺",
+    "title": "构建 Hermes 工作流",
+    "titleHighlight": "并稳定运行",
+    "subtitle": "从部署到自动化，给你一套可复现、可维护的落地路径。",
+    "cta": "打开路线图",
+    "ctaSecondary": "资源索引",
+    "metrics": {
+      "badge": "14 天冲刺看板",
+      "title": "一条主线，三项指标",
+      "subtitle": "从 Day 1 基线到 Day 7 样例，用数字看结果。",
+      "range": "Day 1 -> Day 7",
+      "columns": {
+        "metric": "指标",
+        "baseline": "Day 1 基线",
+        "current": "Day 7 样例",
+        "target": "30 天目标"
+      },
+      "items": {
+        "email": {
+          "label": "邮件首响时长",
+          "baseline": "8小时40分",
+          "current": "42分",
+          "target": "<=45分"
+        },
+        "meeting": {
+          "label": "会议准备提前量",
+          "baseline": "0小时",
+          "current": "2小时15分",
+          "target": ">=2小时"
+        },
+        "seo": {
+          "label": "SEO 异常发现时延",
+          "baseline": "30小时",
+          "current": "18分",
+          "target": "<=20分"
+        }
+      }
+    },
     "stats": {
-      "stars": "Hermes Agent Stars",
-      "skills": "社区技能",
-      "platforms": "支持平台"
+      "stars": "社区活跃度",
+      "skills": "能力模块",
+      "platforms": "执行渠道"
     }
   },
   "whatIs": {
-    "badge": "💡 什么是 Hermes Agent?",
-    "title": "真正能帮你做事的 AI",
-    "subtitle": "Hermes Agent 是一个开源 AI 助理，在你的设备上本地运行，连接你喜欢的应用。",
+    "badge": "💡 运行模型",
+    "title": "不只是聊天窗口",
+    "subtitle": "Hermes Agent 更像一个可编程执行层，聊天只是其中一种交互方式。",
     "features": {
       "local": {
-        "title": "本地运行",
-        "desc": "数据留在你的设备上。完全掌控，完全隐私。"
+        "title": "运行可控",
+        "desc": "模型、密钥、日志边界由你定义。"
       },
       "connected": {
-        "title": "全平台连接",
-        "desc": "Telegram、Discord、WhatsApp、Slack、iMessage — 一个助理，所有平台。"
+        "title": "渠道接入",
+        "desc": "支持多平台消息与工具能力协同。"
       },
       "memory": {
-        "title": "持久记忆",
-        "desc": "记住你的偏好、过往对话，并随时间适应你的习惯。"
+        "title": "记忆可配",
+        "desc": "通过配置维持长期行为一致性。"
       },
       "extensible": {
-        "title": "700+ 技能",
-        "desc": "从日历管理到网页抓取 — 用社区技能扩展能力。"
+        "title": "技能可组装",
+        "desc": "按场景安装模块，避免能力膨胀。"
       }
     }
   },
   "learning": {
-    "badge": "📚 7天学习路径",
-    "title": "从零到高手",
-    "subtitle": "系统化的学习路径，一步步掌握 Hermes Agent。",
+    "badge": "📚 构建顺序",
+    "title": "7 节课完成搭建",
+    "subtitle": "执行优先：先跑通，再稳定，再自动化。",
     "days": {
-      "1": { "title": "Day 1: 认识 Hermes Agent", "desc": "了解它是什么，为什么重要" },
-      "2": { "title": "Day 2: 安装部署", "desc": "搭建你的本地环境" },
-      "3": { "title": "Day 3: 第一次对话", "desc": "配置你的第一个 AI 对话" },
-      "4": { "title": "Day 4: 平台接入", "desc": "连接 Telegram、Discord 等" },
-      "5": { "title": "Day 5: 技能与自动化", "desc": "用技能扩展能力" },
-      "6": { "title": "Day 6: 记忆与个性", "desc": "自定义行为和记忆" },
-      "7": { "title": "Day 7: 进阶工作流", "desc": "构建复杂自动化" }
+      "1": { "title": "第 1 天：初识 Hermes Agent", "desc": "理解运行机制与任务循环" },
+      "2": { "title": "第 2 天：安装部署", "desc": "完成基础配置和首次运行" },
+      "3": { "title": "第 3 天：人格设定", "desc": "让助手行为可控且稳定" },
+      "4": { "title": "第 4 天：平台接入", "desc": "连接消息渠道与外部服务" },
+      "5": { "title": "第 5 天：技能扩展", "desc": "按需求安装并验证能力" },
+      "6": { "title": "第 6 天：自动化", "desc": "引入调度与健康检查" },
+      "7": { "title": "第 7 天：进阶玩法", "desc": "拓展到复杂多 Agent 场景" }
     },
-    "cta": "开始 Day 1 →"
+    "cta": "进入第 1 天 →"
   },
   "skills": {
-    "badge": "🧩 技能生态",
-    "title": "扩展你的助理",
-    "subtitle": "浏览社区构建的技能，或创建你自己的。",
+    "badge": "🧩 能力包",
+    "title": "按场景组装能力",
+    "subtitle": "先定义任务目标，再选择技能模块。",
     "categories": {
-      "productivity": "效率工具",
-      "developer": "开发者工具",
-      "social": "社交媒体",
-      "health": "健康养生",
-      "marketing": "营销增长",
-      "utilities": "实用工具"
+      "productivity": "效率",
+      "developer": "开发",
+      "social": "沟通",
+      "health": "健康",
+      "marketing": "增长",
+      "utilities": "工具"
     },
-    "cta": "浏览 Hermes Skills Hub →",
-    "warning": "⚠️ 安全提醒：安装前务必检查技能源码。已发现部分恶意技能。"
+    "cta": "查看 Skills 文档 →",
+    "warning": "⚠️ 安装第三方技能前先审查源码与权限。"
   },
   "resources": {
-    "badge": "📚 精选收录",
-    "title": "全网优质资源聚合",
-    "subtitle": "从阿里云、腾讯云到 DigitalOcean — 一站式获取 Hermes Agent 最佳教程。",
+    "badge": "📚 参考资料",
+    "title": "按主题整理的可验证链接",
+    "subtitle": "优先官方文档，再看部署、工具与案例。",
     "stats": {
-      "tutorials": "篇教程",
-      "chinese": "中文资源",
-      "english": "英文资源",
-      "categories": "大分类"
+      "tutorials": "条资源",
+      "chinese": "中文",
+      "english": "英文",
+      "categories": "主题"
     },
-    "sources": "收录来源：",
-    "cta": "查看全部资源 →",
-    "visitLink": "访问 ↗",
+    "sources": "来源：",
+    "cta": "进入资源索引 →",
+    "visitLink": "打开 ↗",
     "langZh": "中文",
     "langEn": "EN"
   },
   "community": {
-    "badge": "👥 社区",
-    "title": "加入社区",
-    "subtitle": "与开发者和用户一起，共建个人 AI 的未来。",
+    "badge": "👥 协作网络",
+    "title": "讨论、反馈、共建",
+    "subtitle": "把文档、社区和 Issue 串成闭环。",
     "discord": {
-      "title": "Discord 社区",
-      "desc": "与数万用户实时交流",
+      "title": "Discord",
+      "desc": "排障交流与版本讨论",
       "cta": "加入 Discord"
     },
     "github": {
       "title": "GitHub",
-      "desc": "为开源项目贡献代码",
-      "cta": "Star 项目"
+      "desc": "源码、Issue、PR",
+      "cta": "打开仓库"
     },
     "twitter": {
-      "title": "Twitter/X",
-      "desc": "最新动态和公告",
-      "cta": "关注 @Hermes Agent"
+      "title": "动态更新",
+      "desc": "迭代日志与公告",
+      "cta": "关注更新"
     }
   },
   "footer": {
-    "tagline": "你的 Hermes Agent 学习入口",
+    "tagline": "Hermes Agent 的实战学习入口",
     "links": {
-      "docs": "官方文档",
+      "docs": "文档",
       "github": "GitHub",
       "discord": "Discord",
-      "agentskills": "Hermes Skills Hub"
+      "agentskills": "Skills Hub"
     },
-    "copyright": "© 2026 Hermes 101. 非 Hermes Agent 官方项目。"
+    "copyright": "© 2026 Hermes 101。社区项目，非 Hermes Agent 官方站点。"
   }
 }

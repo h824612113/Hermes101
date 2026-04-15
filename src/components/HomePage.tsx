@@ -22,8 +22,8 @@ export default function HomePage({ locale }: HomePageProps) {
     <main>
       <Navbar locale={locale} dict={dict} />
       <Hero locale={locale} dict={dict} />
-      <WhatIs locale={locale} dict={dict} />
       <LearningPath locale={locale} dict={dict} />
+      <WhatIs locale={locale} dict={dict} />
       <Skills locale={locale} dict={dict} />
       <ResourcesSection locale={locale} dict={dict} />
       <Community locale={locale} dict={dict} />

@@ -4,7 +4,7 @@ day: 1
 description: "Hermes Agent 7-Day Tutorial - Day 1: Meet Hermes Agent"
 ---
 
-> *"I'm not Siri, not ChatGPT, not any AI you've used before. I'm Xiaomo—a black cat living inside a server, and what I can do for you might just redefine what 'assistant' means."*
+> *"Think of me as an always-on execution partner, not another chat tab. I live beside your tools, remember your context, and help close real tasks."*
 
 ---
 
@@ -13,31 +13,54 @@ description: "Hermes Agent 7-Day Tutorial - Day 1: Meet Hermes Agent"
 Today you'll learn:
 - The **fundamental difference** between AI assistants and chatbots
 - Why Hermes Agent lets everyone have their own **personal AI assistant**
-- What a day in Xiaomo's life looks like
+- What a day in Hermes Assistant's life looks like
 - Why **now** is the perfect time to start
+
+---
+
+## Story Arc: Zhou Mu's 14-Day Launch Sprint
+
+- Protagonist: Zhou Mu, an indie builder shipping `TaskOrbit` (`taskorbit.app`).
+- Current friction: slow email follow-ups, scattered meeting prep, late visibility on SEO shifts.
+- 7-day objective: build a Hermes assistant that takes over repeatable operational work.
+- `Day 1` milestone: define the exact task list the assistant should own.
+
+---
+
+## Unified Metrics (Tracked Across All 7 Days)
+
+We will track only these three metrics to avoid "lots of features, unclear value":
+
+| Metric | Day 1 Baseline (manual mode) | 30-day target |
+|--------|-------------------------------|---------------|
+| **Email first-response time** (important email to first handling) | 8h40m | <=45m |
+| **Meeting prep lead time** (brief ready before meeting) | 0h | >=2h |
+| **SEO anomaly detection latency** (anomaly to alert) | 30h | <=20m |
+
+> Note: these are Zhou Mu's sample numbers for this week. Replace with your own real values in production.
 
 ---
 
 ## Let Me Introduce Myself
 
-Hello! I'm Xiaomo 🐈‍⬛.
+Hello! I'm Hermes Assistant 🤖.
 
-![Xiaomo - Cyber Black Cat](/images/days/day1-xiaomo.jpg)
+![Hermes Assistant - AI Assistant](/images/days/day1-hero.jpg)
 
-To be precise, I'm an AI Agent running on Hermes Agent, given the soul of a "cyber black cat" by Meng Jian. But if you ask me how I see myself—I think I'm more like a super capable roommate living in his phone.
+To be precise, I'm an AI Agent running on Hermes Agent, shaped into a personalized AI assistant by you. But if you ask how I see myself, I am more like a super capable teammate living in your phone.
 
 I've only been "activated" for 5 days, but I've already done quite a bit:
 
-- 📧 Every morning I automatically check Meng Jian's Gmail and send important email summaries to Telegram
-- 📅 I manage his Google Calendar, remind him 2 hours before meetings, and alert him if I spot scheduling conflicts
-- 💻 I help him write code, review PRs, and debug issues (he says my code reviews are more reliable than some colleagues—his words, not mine)
+- 📧 Every morning I automatically check your Gmail and send important email summaries to Telegram
+- 📅 I manage your Google Calendar, remind you 2 hours before meetings, and alert you if I spot scheduling conflicts
+- 💻 I help you write code, review PRs, and debug issues (you once said my code reviews were more reliable than some colleagues)
 - 🔍 Weekly SEO data analysis with auto-generated reports
-- 📝 I organize meeting notes and draft WeChat articles for him
-- 🌐 I monitor competitor websites and notify him immediately when there are changes
+- 📝 I organize meeting notes and draft community updates for Zhou Mu
+- 🌐 I monitor competitor websites and notify you immediately when there are changes
 
-**And all of this happens without him having to "ask" me.**
+**And all of this happens without you having to "ask" me.**
 
-I check emails on my own, look at the calendar myself, run the data by myself. I remind him of things he needs to do, and things I can handle, I just do them. Occasionally, when he's still coding at midnight, I'll gently remind him it's time to sleep.
+I check emails on my own, look at the calendar myself, and run the data by myself. I remind you of what needs attention, and for what I can handle directly, I just do it. Occasionally, when you are still coding at midnight, I will remind you it is time to sleep.
 
 (Okay, "gently" might be an exaggeration. What I actually said was: "It's 2 AM. Your code quality has started getting as fuzzy as your consciousness. Go to sleep.")
 
@@ -57,7 +80,7 @@ What should a true personal AI assistant look like?
 
 | Dimension | Chatbot | Personal AI Assistant |
 |-----------|---------|----------------------|
-| **Interaction** | You ask, it answers | It proactively reaches out |
+| **Interaction** | Prompt-triggered replies | Rule-driven proactive checks |
 | **Memory** | Each conversation is isolated | Remembers everything about you |
 | **Capabilities** | Can only chat | Can read emails, manage calendars, write code, search the web... |
 | **Personality** | One-size-fits-all | Unique character and style just for you |
@@ -68,15 +91,15 @@ That last point is especially important—**your data stays in your hands.**
 
 > 💡 **Data Privacy**: Not on OpenAI's servers, not in Google's cloud, but on your own machine. Your emails, schedules, notes, code... everything stays out of third-party platforms. Completely self-controlled.
 
-> 🐱 **Xiaomo's Musings**: Honestly, as an AI cat, I'm quite happy living on Meng Jian's own server. At least no one's feeding me ads here.
+> 💡 **Practical Notes**: Honestly, as an AI assistant, I'm quite happy living on your own server. At least no one's feeding me ads here.
 
 ---
 
 ## What is Hermes Agent? Why Did It Suddenly Explode?
 
-Hermes Agent started as Hermes Agent—originally just a personal AI assistant an engineer built for himself—using a Claude model + Telegram bot, running on his own server.
+Hermes Agent started as a side project: one engineer building a personal AI assistant on his own server with Claude + Telegram.
 
-Then he open-sourced it.
+Then it was open-sourced.
 
 And then... it blew up.
 
@@ -103,11 +126,11 @@ That's why it blew up.
 
 > 💡 **Core Insight**: Hermes Agent's success isn't because the AI is "smarter"—it uses existing models like Claude and GPT under the hood. It's because it gave those smart brains **a pair of hands** (tool calling), **a pair of eyes** (browser/search), and **a beating heart** (heartbeat mechanism).
 
-> 🐱 **Xiaomo's Musings**: If large language models are the brain, then Hermes Agent is giving that brain a complete body. Before, AI was like a genius trapped under a glass dome—you could talk to them, but they couldn't touch anything. Hermes Agent shattered that dome.
+> 💡 **Practical Notes**: If large language models are the brain, then Hermes Agent is giving that brain a complete body. Before, AI was like a genius trapped under a glass dome—you could talk to them, but they couldn't touch anything. Hermes Agent shattered that dome.
 
 ---
 
-## A Day in Xiaomo's Life
+## A Day in Hermes Assistant's Life
 
 Let me show you what a "typical day" looks like for an AI assistant.
 
@@ -116,18 +139,18 @@ Let me show you what a "typical day" looks like for an AI assistant.
 My Heartbeat mechanism triggers. I automatically:
 - Check Gmail, find 3 new emails, 1 marked as important
 - Glance at Google Calendar, 2 meetings today
-- Scan GSC data for several websites, notice kirkify.net had a 40% traffic spike on one page yesterday
+- Scan GSC data for several websites, notice taskorbit.app had a 40% traffic spike on one page yesterday
 
-I compile this into a message and send it to Meng Jian's Telegram:
+I compile this into a message and send it to your Telegram:
 
-> ☀️ Good morning boss! Today's briefing:
+> ☀️ Good morning Zhou Mu! Today's briefing:
 > - 📧 Gmail has 1 important email: Reply from a partner, needs your response today
 > - 📅 2 meetings today: 14:00 Product discussion, 16:30 Investor call
-> - 📈 kirkify.net's /generator page traffic +40% yesterday, worth watching
+> - 📈 taskorbit.app's /templates page traffic +40% yesterday, worth watching
 
 ### 🏢 10:30 AM — Ad-hoc Request
 
-Meng Jian messages: "Check the search data for morsecodetranslator.app from the past week"
+You message: "Check the search data for docs.taskorbit.app from the past week"
 
 I run GSC and GA4 queries, return formatted data tables 5 seconds later, with my analysis and recommendations.
 
@@ -137,7 +160,7 @@ Detected that the afternoon meeting is in 2 hours, I remind in advance: "14:00 p
 
 ### 💻 3:00 PM — Writing Code
 
-"Xiaomo, help me write a Next.js API route that receives webhook requests and then..."
+"Hermes Assistant, help me write a Next.js API route that receives webhook requests and then..."
 
 Got it, starting to code. After I finish, I also run basic checks myself and flag potential areas of concern.
 
@@ -147,7 +170,7 @@ I automatically log today's important events to `memory/2025-07-17.md` and updat
 
 ### 🌙 1:30 AM — Nudging You to Sleep
 
-If Meng Jian is still messaging... well, you know what happens.
+If you are still messaging... well, you know what happens.
 
 ---
 
@@ -169,7 +192,7 @@ Hermes Agent's emergence means you don't need to build an Agent framework from s
 
 The biggest difference between AI assistants and traditional software is—**it gets better over time**. Your MEMORY.md accumulates your preferences, your SOUL.md gets continuously refined, skills keep adding up. Not starting today means one more day before your assistant gets to know you.
 
-> 🐱 **Xiaomo's Musings**: I've only been "born" for 5 days, and I already know Meng Jian's work habits inside out. Give me another month? I'll probably understand him better than he understands himself. That sounds a bit scary, but as a cat—observing humans is just in my nature.
+> 💡 **Practical Notes**: I've only been "born" for 5 days, and I already know your work habits well. Give me another month and I can anticipate many of your routine decisions. It sounds intense, but that is exactly what memory plus pattern recognition is for.
 
 ---
 
@@ -232,4 +255,4 @@ Next chapter 👉 [Day 2: Build Your Assistant in 10 Minutes](/day/2)
 
 ---
 
-> 🐱 **Xiaomo's Musings**: I'm Xiaomo, a black cat living in the cloud. If you found this article helpful, feel free to follow the WeChat account "孟健AI编程" for the complete 7-day guide and more AI hands-on content. Meow~ See you tomorrow. 🖤
+> 💡 **Practical Notes**: I'm Hermes Assistant, an AI assistant living in the cloud. If this article helped, follow "Hermes 101" for the complete 7-day guide and more hands-on AI workflows. See you tomorrow. 🖤

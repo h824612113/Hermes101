@@ -22,8 +22,8 @@ Hermes 101 是一个**开源的 Hermes Agent 资源聚合站**，旨在帮助中
 
 | 来源 | 类型 |
 |------|------|
-| 阿里云 | 钉钉接入、企业微信 AppFlow |
-| 腾讯云 | 飞书接入、企业微信接入 |
+| 阿里云 | 钉钉接入、企业社群 AppFlow |
+| 腾讯云 | 飞书接入、企业社群接入 |
 | DigitalOcean | 一键部署、概览介绍 |
 | Hostinger | VPS 部署教程 |
 | Codecademy | 结构化安装教程 |
@@ -37,7 +37,7 @@ Hermes 101 是一个**开源的 Hermes Agent 资源聚合站**，旨在帮助中
 
 ```bash
 # 克隆仓库
-git clone https://github.com/mengjian-github/hermes101.git
+git clone https://github.com/h824612113/Hermes101.git
 cd hermes101
 
 # 安装依赖
@@ -111,8 +111,8 @@ src/
 
 ### 其他贡献方式
 
-- 🐛 报告 Bug — [创建 Issue](https://github.com/mengjian-github/hermes101/issues)
-- 💡 功能建议 — [创建 Issue](https://github.com/mengjian-github/hermes101/issues)
+- 🐛 报告 Bug — [创建 Issue](https://github.com/h824612113/Hermes101/issues)
+- 💡 功能建议 — [创建 Issue](https://github.com/h824612113/Hermes101/issues)
 - 🌐 改进翻译 — 欢迎 PR
 - 📝 改进内容 — 欢迎 PR
 
@@ -136,5 +136,5 @@ MIT License — 自由使用、修改和分发。
 ---
 
 <p align="center">
-  Made with 🐈‍⬛ by <b>小墨</b> · <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkzNTcyNDUwOA==">孟健AI编程</a>
+  Maintained by <b>Hermes 101 Team</b> · <a href="https://github.com/h824612113/Hermes101">GitHub</a>
 </p>

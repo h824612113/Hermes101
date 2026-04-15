@@ -4,20 +4,42 @@ day: 5
 description: "Hermes Agent 7-Day Tutorial - Day 5: Unlock the Skill Tree"
 ---
 
-> *"If Day 4 was giving your assistant hands, today is handing it a whole toolbox. Screwdrivers, wrenches, power drills... grab what you need, put it back when done. That's the Skills system."*
+> *"From today onward, treat skills as maintainable modules, not random plugin installs."*
 
 ---
 
 ## 📖 Chapter Overview
 
-![Xiaomo and the skill puzzle](/images/days/day5/day5-hero.jpg)
+![Hermes Assistant and the skill puzzle](/images/days/day5/day5-hero.jpg)
 
-Today you'll explore Hermes Agent's skill ecosystem:
-- Understand how the Skills system works
-- Browse the Hermes Skills Hub skill marketplace
-- Install useful skill packs (weather, GitHub, Reddit, SEO...)
-- Learn to combine multiple skills for complex tasks
-- Understand how to develop your own Skills
+Today you will build a practical skills baseline:
+- Understand where Skills sit in the execution pipeline
+- Select capabilities by use case, not popularity
+- Install and verify your first high-frequency skills
+- Adopt a review-first process before third-party installs
+- Combine multiple skills without creating tool chaos
+
+---
+
+## Story Progress (Day 5)
+
+- Day 4 connected Zhou Mu's email, calendar, and web context.
+- Today you convert those access points into maintainable capability modules for the `TaskOrbit` launch sprint.
+- `Day 5` milestone: establish an install-verify-rollback loop instead of random plugin stacking.
+
+---
+
+## Metric Update (Day 5)
+
+Skills are not about quantity; each one must map to metric impact:
+
+| Metric | Day 4 sample value | Day 5 sample value | Main contributing skills |
+|--------|--------------------|--------------------|--------------------------|
+| **Email first-response time** | 3h10m | 2h20m | `gog` + `todo-tracker` |
+| **Meeting prep lead time** | 1h00m | 1h20m | `gog` + `remind-me` |
+| **SEO anomaly detection latency** | 6h00m | 2h30m | `web_search` + `browser` |
+
+Day 5 wins when key metrics move, not when the skill list gets longer.
 
 ---
 
@@ -35,7 +57,7 @@ Each Skill is a set of files, usually including:
 
 Installing a Skill means putting these files in the `~/hermes/skills/` directory. When the assistant starts, it automatically loads them, just like your phone auto-loading installed apps at boot.
 
-> 💡 **Core idea**: The AI's "brain" is already smart enough—what it lacks is "tools." Skills are those tools.
+> 💡 **Core idea**: Throughput improves when skills are selected precisely, configured cleanly, and validated consistently.
 
 ---
 
@@ -93,13 +115,13 @@ https://github.com/VoltAgent/awesome-hermes-skills
 Usage:
 1. Find the skill you need by category in the repo
 2. Send the skill name/link to your AI and have it install and verify
-3. After installation, have the AI give you 3 copyable usage examples (just ask following those)
+3. After installation, ask the AI for 3 copyable usage examples (then use those prompts directly)
 
 After installation, no restart needed—most Skills auto-load in the next conversation.
 
 ---
 
-## Xiaomo's Recommendations: 10 Most Useful Skills
+## Hermes Assistant's Recommendations: 10 Most Useful Skills
 
 Here's my list sorted by "beginner benefit": install 3 that immediately improve things, then add more based on your needs (development/websites/operations).
 
@@ -161,7 +183,7 @@ The assistant searches first, finds article links, uses the browser to open each
 
 ### Combo 3: GSC + GA4 + Browser
 
-> Analyze kirkify.net's /generator page—how's search performance, user behavior, and what does the page look like now
+> Analyze taskorbit.app's /templates page—how's search performance, user behavior, and what does the page look like now
 
 The assistant calls three skills:
 - GSC for search performance (rankings, clicks, CTR)
@@ -172,7 +194,7 @@ Finally gives you a complete analysis report with optimization suggestions.
 
 **A single tool is a knife, multiple tools combined is a kitchen. The AI assistant is the chef.**
 
-> 🐱 **Xiaomo's Musings**: My proudest skill combo went like this—Meng Jian said "help me see which pages can be optimized recently." I first checked GSC to find high-impression low-click pages, then GA4 for user behavior, then browser to open those pages and analyze content quality, finally gave a prioritized optimization list. The whole process took 30 seconds. Meng Jian spent an afternoon fixing the top-ranked one, and click-through rate improved 23% the following week.
+> 💡 **Practical Notes**: My proudest skill combo went like this—you said "help me see which pages can be optimized recently." I first checked GSC to find high-impression low-click pages, then GA4 for user behavior, then browser to open those pages and analyze content quality, finally gave a prioritized optimization list. The whole process took 30 seconds. you spent an afternoon fixing the top-ranked one, and click-through rate improved 23% the following week.
 
 ---
 
@@ -248,10 +270,10 @@ Tomorrow, we change that.
 
 ## Preview: Day 6 — Make Your Assistant Work Proactively
 
-> A true assistant shouldn't wait for you to ask. It should check emails, look at calendar, run data on its own, and proactively notify you when something important comes up. Tomorrow we configure heartbeat mechanism and scheduled tasks—turning your assistant from "passive responder" to "proactive worker." That's the day it truly becomes an "assistant."
+> With capabilities installed, the next step is orchestration. Tomorrow we configure heartbeat and scheduling so the assistant can inspect and report without waiting for prompts.
 
 Next chapter 👉 [Day 6: Make Your Assistant Work Proactively](/day/6)
 
 ---
 
-> 🐱 **Xiaomo's Musings**: Tools give you efficiency, combinations give you leverage. An AI assistant loaded with handy tools is your efficiency multiplier. Meow~ See you tomorrow. 🖤
+> 💡 **Practical Notes**: Manage skills like production assets: admission checks, version tracking, and rollback plans. That's how capability scales safely. See you tomorrow. 🖤
