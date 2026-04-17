@@ -199,7 +199,19 @@ After the wizard completes, your assistant is already running in the background.
 hermes gateway status
 ```
 
-![Hermes Agent Status](/images/days/day2/hermes-status.jpg)
+You'll see something like:
+
+```
+┌──────────────────────────────────────────────┐
+│  Hermes Agent Gateway                        │
+├──────────────────────────────────────────────┤
+│  Status:    ✅ Running                       │
+│  Uptime:    2 minutes                        │
+│  Channel:   Telegram                         │
+│  Model:     anthropic/claude-sonnet-4-20250514│
+│  Skills:    0 installed                      │
+└──────────────────────────────────────────────┘
+```
 
 If you see the Gateway is running, everything is ready.
 

@@ -199,7 +199,19 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 hermes gateway status
 ```
 
-![Hermes Agent Status](/images/days/day2/hermes-status.jpg)
+你会看到类似输出：
+
+```
+┌──────────────────────────────────────────────┐
+│  Hermes Agent Gateway                        │
+├──────────────────────────────────────────────┤
+│  Status:    ✅ Running                       │
+│  Uptime:    2 minutes                        │
+│  Channel:   Telegram                         │
+│  Model:     anthropic/claude-sonnet-4-20250514│
+│  Skills:    0 installed                      │
+└──────────────────────────────────────────────┘
+```
 
 如果看到 Gateway 正在运行，说明一切就绪。
 

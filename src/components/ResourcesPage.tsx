@@ -175,6 +175,13 @@ const sourceDots: Record<string, string> = {
   'Apiyi': '#3b82f6',
   'YouTube': '#ff0000',
   '阿里云开发者社区': '#ff6a00',
+  'Hermes Agent Blog': '#2563eb',
+  '小灰灰的笔记': '#8b5cf6',
+  'Byteiota': '#059669',
+  '高效码农': '#f97316',
+  'Pickaxe': '#6366f1',
+  'GetClaw': '#10b981',
+  'OpenAIToolsHub': '#14b8a6',
 };
 
 interface ResourcesPageProps {
@@ -227,22 +234,35 @@ function Card({ r, color, t }: { r: Resource; color: string; t: typeof texts.en 
 }
 
 /* ── section per category ── */
-function CategorySection({ 
-  cat, 
-  index, 
-  locale, 
-  t 
-}: { 
-  cat: ResourceCategory; 
-  index: number; 
+function CategorySection({
+  cat,
+  index,
+  locale,
+  t
+}: {
+  cat: ResourceCategory;
+  index: number;
   locale: 'en' | 'zh';
   t: typeof texts.en;
 }) {
   const meta = categoryMeta[cat];
   const color = meta.color;
-  const items = resources.filter((r) => r.category === cat);
-  if (items.length === 0) return null;
+  const allItems = resources.filter((r) => r.category === cat);
+  if (allItems.length === 0) return null;
   const isAlt = index % 2 === 1;
+
+  // sort: featured first, then rest
+  const sorted = [...allItems].sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return 0;
+  });
+  const featuredItems = sorted.filter((r) => r.featured);
+  const moreItems = sorted.filter((r) => !r.featured);
+  const hasMore = moreItems.length > 0;
+
+  const [showAll, setShowAll] = useState(false);
+  const displayItems = showAll ? sorted : (hasMore ? featuredItems : sorted);
 
   return (
     <section
@@ -269,8 +289,16 @@ function CategorySection({
               className="text-[11px] px-2 py-0.5 rounded-full font-medium"
               style={{ background: `${borderColors[color]}15`, color: borderColors[color] }}
             >
-              {items.length} {t.itemsLabel}
+              {allItems.length} {t.itemsLabel}
             </span>
+            {hasMore && !showAll && (
+              <span
+                className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+                style={{ background: 'rgba(245,158,11,0.1)', color: '#d97706' }}
+              >
+                ⭐ {featuredItems.length} {locale === 'zh' ? '精选' : 'featured'}
+              </span>
+            )}
           </div>
           <p className="text-sm text-gray-400 mt-0.5">{t.catDescriptions[cat]}</p>
         </div>
@@ -281,10 +309,30 @@ function CategorySection({
 
       {/* cards grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {items.map((r) => (
+        {displayItems.map((r) => (
           <Card key={r.url} r={r} color={color} t={t} />
         ))}
       </div>
+
+      {/* show more / collapse toggle */}
+      {hasMore && (
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="mt-4 flex items-center gap-2 mx-auto px-4 py-2 rounded-lg text-sm font-medium transition-all hover:-translate-y-0.5"
+          style={{
+            background: showAll ? 'rgba(0,0,0,0.04)' : `${borderColors[color]}10`,
+            color: borderColors[color],
+            border: `1px solid ${borderColors[color]}20`,
+          }}
+        >
+          {showAll
+            ? (locale === 'zh' ? `收起 · 仅显示精选` : `Collapse · Featured only`)
+            : (locale === 'zh'
+              ? `展开全部 · 再显示 ${moreItems.length} 篇`
+              : `Show all · ${moreItems.length} more`)
+          }
+        </button>
+      )}
     </section>
   );
 }
