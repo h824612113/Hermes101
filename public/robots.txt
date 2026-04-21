@@ -31,4 +31,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://hermes101.dev/sitemap.xml
+Sitemap: https://cyberhz.com/sitemap.xml

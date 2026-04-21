@@ -8,7 +8,7 @@ const projectRoot = path.resolve(__dirname, '..');
 const publicDir = path.join(projectRoot, 'public');
 const outDir = path.join(projectRoot, 'out');
 
-const siteUrl = 'https://hermes101.dev';
+const siteUrl = 'https://cyberhz.com';
 const aiBots = [
   'GPTBot',
   'ChatGPT-User',

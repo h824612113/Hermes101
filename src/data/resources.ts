@@ -178,6 +178,7 @@ export const resources: Resource[] = [
     source: 'Hermes Docs',
     lang: 'en',
     category: 'getting-started',
+    featured: true,
     tags: ['安装'],
   },
   {
@@ -371,6 +372,117 @@ export const resources: Resource[] = [
     category: 'video',
     tags: ['视频', '社区'],
   },
+  {
+    title: 'Hermes Agent 新手使用十大技巧',
+    desc: '视频教程：涵盖主模型配置、辅助模型、灵魂配置、记忆机制等。11分钟，6.7K播放',
+    url: 'https://www.youtube.com/watch?v=hLiN_X7dzdw',
+    source: 'YouTube',
+    lang: 'zh',
+    category: 'video',
+    featured: true,
+    tags: ['视频', '教程'],
+  },
+
+  // ============ Deep Dive (auto-discovered) ============
+  {
+    title: 'Hermes Agent Tutorial: Build Self-Improving AI Agents (2026)',
+    desc: 'v0.7.0 learning loop、memory architecture、安装对比与适用场景深度解析',
+    url: 'https://byteiota.com/hermes-agent-tutorial-build-self-improving-ai-agents-2026/',
+    source: 'Byteiota',
+    lang: 'en',
+    category: 'deep-dive',
+    tags: ['Tutorial'],
+  },
+  {
+    title: '我用了一周Hermes Agent，整理出这十件必做的事',
+    desc: '实际上手体验，十项优先配置：防爬浏览器、灵魂定义、多模型路由、三层记忆、Hooks、Docker 沙箱等',
+    url: 'https://cloud.tencent.com/developer/article/2654715',
+    source: '腾讯云',
+    lang: 'zh',
+    category: 'deep-dive',
+    featured: true,
+    tags: ['中文', '实战'],
+  },
+  {
+    title: '彻底搞懂Hermes Agent：10个必试功能让AI助理秒变专家',
+    desc: '基于源码分析的十个核心功能详解，含 SOUL.md 最佳实践、Auxiliary 模型路由、Hooks 审计实操',
+    url: 'https://www.xugj520.cn/archives/hermes-agent-guide-top-features.html',
+    source: '高效码农',
+    lang: 'zh',
+    category: 'deep-dive',
+    featured: true,
+    tags: ['中文', '源码'],
+  },
+  {
+    title: 'Hermes Agent vs OpenClaw: Personal Super-Agent Infrastructure Compared',
+    desc: 'Deep dive into architecture differences, ecosystems, and use cases for both open-source agent frameworks',
+    url: 'https://pickaxe.co/post/hermes-agent-vs-openclaw',
+    source: 'Pickaxe',
+    lang: 'en',
+    category: 'deep-dive',
+    tags: ['Comparison'],
+  },
+  {
+    title: 'OpenClaw vs Hermes Agent: Every Feature That Matters for Founders',
+    desc: 'Feature-by-feature breakdown: memory, channels, skills, deployment, model support, security',
+    url: 'https://getclaw.sh/blog/openclaw-vs-hermes-agent-feature-comparison-founders-2026',
+    source: 'GetClaw',
+    lang: 'en',
+    category: 'deep-dive',
+    tags: ['Comparison'],
+  },
+  {
+    title: 'Hermes AI Agent — Open Source LLM Agent Framework Review',
+    desc: 'Detailed review of tool library, memory system, remote terminal, and real-world use cases',
+    url: 'https://openaitoolshub.org/en/blog/hermes-agent-ai-review',
+    source: 'OpenAIToolsHub',
+    lang: 'en',
+    category: 'deep-dive',
+    tags: ['Review'],
+  },
+
+  // ============ Getting Started (auto-discovered) ============
+  {
+    title: 'Hermes Agent Setup Guide (2026)',
+    desc: 'Complete installation guide — from zero to your first working agent in under 20 minutes',
+    url: 'https://hermes-agent.ai/blog/hermes-agent-setup-guide',
+    source: 'Hermes Agent',
+    lang: 'en',
+    category: 'getting-started',
+    tags: ['Tutorial', 'Setup'],
+  },
+  {
+    title: 'Hermes Agent Tutorial: Install & Set Up Your First Self-Improving AI (2026)',
+    desc: 'Zero to running agent with Telegram/Discord bot, cron jobs, and first skill in 30 minutes',
+    url: 'https://www.nxcode.io/resources/news/hermes-agent-tutorial-install-setup-first-agent-2026',
+    source: 'NxCode',
+    lang: 'en',
+    category: 'getting-started',
+    tags: ['Tutorial', 'Setup'],
+  },
+  {
+    title: 'Hermes Agent 完全指南：2 分钟打造你的 AI 智能助手',
+    desc: '从零开始安装配置，覆盖文件操作、定时任务、记忆管理、技能系统和高级用法',
+    url: 'https://www.tinyash.com/blog/hermes-agent-ai/',
+    source: '小灰灰的笔记',
+    lang: 'zh',
+    category: 'getting-started',
+    tags: ['教程', '中文'],
+  },
+
+  // ============ Cloud Deploy (auto-discovered) ============
+  {
+    title: 'Running Hermes Agent on a $5 VPS: A Practical Guide',
+    desc: 'Practical guide on a $5/mo VPS — covers model choice, gateway setup, and decisions that matter on small machines',
+    url: 'https://hermesagents.net/blog/running-hermes-on-a-cheap-vps/',
+    source: 'Hermes Agent Blog',
+    lang: 'en',
+    category: 'cloud-deploy',
+    featured: true,
+    tags: ['VPS', 'Deploy'],
+  },
+
+  // ============ Use Cases (auto-discovered) ============
 ];
 
 export function getFeaturedResources(): Resource[] {

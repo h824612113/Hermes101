@@ -21,7 +21,7 @@ Today you'll complete:
 
 ## Story Progress (Day 2)
 
-- Yesterday, Xiao Bin listed the first workflows to delegate: email summary, meeting reminders, and site checks.
+- Yesterday, Zhou Mu listed the first workflows to delegate: email summary, meeting reminders, and site checks.
 - Today's mission is to get Hermes online and stable on Telegram.
 - `Day 2` milestone: receive the first reproducible message from your own assistant runtime.
 
@@ -35,7 +35,7 @@ Today's priority is shipping the runtime; metrics enter a trackable state:
 |--------|----------------|--------------|
 | **Email first-response time** | 8h40m | Messaging path is live; measured after Gmail integration on Day 4 |
 | **Meeting prep lead time** | 0h | Reminder channel is ready; effective after Calendar integration on Day 4 |
-| **Data anomaly detection latency** | 30h | Monitoring path starts after Day 4/6 automation setup |
+| **SEO anomaly detection latency** | 30h | Monitoring path starts after Day 4/6 automation setup |
 
 ---
 
@@ -199,7 +199,19 @@ After the wizard completes, your assistant is already running in the background.
 hermes gateway status
 ```
 
+You'll see something like:
 
+```
+┌──────────────────────────────────────────────┐
+│  Hermes Agent Gateway                        │
+├──────────────────────────────────────────────┤
+│  Status:    ✅ Running                       │
+│  Uptime:    2 minutes                        │
+│  Channel:   Telegram                         │
+│  Model:     anthropic/claude-sonnet-4-20250514│
+│  Skills:    0 installed                      │
+└──────────────────────────────────────────────┘
+```
 
 If you see the Gateway is running, everything is ready.
 
