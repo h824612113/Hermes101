@@ -413,24 +413,7 @@ export const resources: Resource[] = [
     featured: true,
     tags: ['中文', '源码'],
   },
-  {
-    title: 'Hermes Agent vs OpenClaw: Personal Super-Agent Infrastructure Compared',
-    desc: 'Deep dive into architecture differences, ecosystems, and use cases for both open-source agent frameworks',
-    url: 'https://pickaxe.co/post/hermes-agent-vs-openclaw',
-    source: 'Pickaxe',
-    lang: 'en',
-    category: 'deep-dive',
-    tags: ['Comparison'],
-  },
-  {
-    title: 'OpenClaw vs Hermes Agent: Every Feature That Matters for Founders',
-    desc: 'Feature-by-feature breakdown: memory, channels, skills, deployment, model support, security',
-    url: 'https://getclaw.sh/blog/openclaw-vs-hermes-agent-feature-comparison-founders-2026',
-    source: 'GetClaw',
-    lang: 'en',
-    category: 'deep-dive',
-    tags: ['Comparison'],
-  },
+
   {
     title: 'Hermes AI Agent — Open Source LLM Agent Framework Review',
     desc: 'Detailed review of tool library, memory system, remote terminal, and real-world use cases',
