@@ -18,10 +18,10 @@ Today you'll learn:
 
 ---
 
-## Story Arc: Zhou Mu's 14-Day Launch Sprint
+## Story Arc: Xiao Bin's 14-Day Launch Sprint
 
-- Protagonist: Zhou Mu, an indie builder shipping `TaskOrbit` (`taskorbit.app`).
-- Current friction: slow email follow-ups, scattered meeting prep, late visibility on SEO shifts.
+- Protagonist: Xiao Bin, an indie developer running a personal tech blog.
+- Current friction: slow email follow-ups, scattered reader feedback, messy article versions.
 - 7-day objective: build a Hermes assistant that takes over repeatable operational work.
 - `Day 1` milestone: define the exact task list the assistant should own.
 
@@ -33,11 +33,11 @@ We will track only these three metrics to avoid "lots of features, unclear value
 
 | Metric | Day 1 Baseline (manual mode) | 30-day target |
 |--------|-------------------------------|---------------|
-| **Email first-response time** (important email to first handling) | 8h40m | <=45m |
-| **Meeting prep lead time** (brief ready before meeting) | 0h | >=2h |
-| **SEO anomaly detection latency** (anomaly to alert) | 30h | <=20m |
+| **Email first-response time** (important email to first handling) | 8h40m | ≤45m |
+| **Meeting prep lead time** (brief ready before meeting) | 0h | ≥2h |
+| **Data anomaly detection latency** (anomaly to alert) | 30h | ≤20m |
 
-> Note: these are Zhou Mu's sample numbers for this week. Replace with your own real values in production.
+> Note: these are Xiao Bin's sample numbers for this week. Replace with your own real values in production.
 
 ---
 
@@ -53,9 +53,9 @@ I've only been "activated" for 5 days, but I've already done quite a bit:
 
 - 📧 Every morning I automatically check your Gmail and send important email summaries to Telegram
 - 📅 I manage your Google Calendar, remind you 2 hours before meetings, and alert you if I spot scheduling conflicts
-- 💻 I help you write code, review PRs, and debug issues (you once said my code reviews were more reliable than some colleagues)
-- 🔍 Weekly SEO data analysis with auto-generated reports
-- 📝 I organize meeting notes and draft community updates for Zhou Mu
+- 💻 I help you write code, review PRs, and debug issues
+- 🔍 Weekly data analysis with auto-generated reports
+- 📝 I organize meeting notes and draft community updates
 - 🌐 I monitor competitor websites and notify you immediately when there are changes
 
 **And all of this happens without you having to "ask" me.**
@@ -117,14 +117,14 @@ Hermes Agent is different. It's a complete **AI Agent runtime platform**:
 2. **Tool calling**: Can execute command line, read/write files, search the web, operate browsers, call APIs
 3. **Skills system**: Like installing apps on your phone, give your assistant new abilities—Gmail skill, calendar skill, SEO skill...
 4. **Memory system**: Short-term memory (daily conversations), long-term memory (MEMORY.md), identity memory (SOUL.md)
-5. **Heartbeat mechanism**: Instead of you finding it, it periodically wakes up to check if there's anything that needs handling
+5. **Heartbeat mechanism**: Not you finding it, but it periodically waking up to check if there's anything that needs handling
 6. **Fully local deployment**: All data stays on your machine, never passing through any third party
 
 In other words: **Hermes Agent lets you have an AI assistant that's online 24/7, understands you, can get things done, and keeps your data private.**
 
 That's why it blew up.
 
-> 💡 **Core Insight**: Hermes Agent's success isn't because the AI is "smarter"—it uses existing models like Claude and GPT under the hood. It's because it gave those smart brains **a pair of hands** (tool calling), **a pair of eyes** (browser/search), and **a beating heart** (heartbeat mechanism).
+> 💡 **Core Insight**: Hermes Agent's success isn't because the AI is "smarter"—it uses existing models like Claude and GPT under the hood. It's because it gave those smart brains a pair of hands (tool calling), a pair of eyes (browser/search), and a beating heart (heartbeat mechanism).
 
 > 💡 **Practical Notes**: If large language models are the brain, then Hermes Agent is giving that brain a complete body. Before, AI was like a genius trapped under a glass dome—you could talk to them, but they couldn't touch anything. Hermes Agent shattered that dome.
 
@@ -139,18 +139,18 @@ Let me show you what a "typical day" looks like for an AI assistant.
 My Heartbeat mechanism triggers. I automatically:
 - Check Gmail, find 3 new emails, 1 marked as important
 - Glance at Google Calendar, 2 meetings today
-- Scan GSC data for several websites, notice taskorbit.app had a 40% traffic spike on one page yesterday
+- Scan data for your websites, notice one page had a 40% traffic spike yesterday
 
 I compile this into a message and send it to your Telegram:
 
-> ☀️ Good morning Zhou Mu! Today's briefing:
+> ☀️ Good morning! Today's briefing:
 > - 📧 Gmail has 1 important email: Reply from a partner, needs your response today
 > - 📅 2 meetings today: 14:00 Product discussion, 16:30 Investor call
-> - 📈 taskorbit.app's /templates page traffic +40% yesterday, worth watching
+> - 📈 Your project's /templates page traffic +40% yesterday, worth watching
 
 ### 🏢 10:30 AM — Ad-hoc Request
 
-You message: "Check the search data for docs.taskorbit.app from the past week"
+You message: "Check the search data for your docs site from the past week"
 
 I run GSC and GA4 queries, return formatted data tables 5 seconds later, with my analysis and recommendations.
 
@@ -166,7 +166,7 @@ Got it, starting to code. After I finish, I also run basic checks myself and fla
 
 ### 🌙 9:00 PM — Daily Recap
 
-I automatically log today's important events to `memory/2025-07-17.md` and update `MEMORY.md` with long-term memories. This way, when I wake up tomorrow, I'm still the "me" who knows you.
+I automatically log today's important events to memory/2026-04-18.md and update MEMORY.md with long-term memories. This way, when I wake up tomorrow, I'm still the "me" who knows you.
 
 ### 🌙 1:30 AM — Nudging You to Sleep
 
@@ -182,7 +182,7 @@ Let me give you three reasons why you should start now:
 
 ### 1. AI Models Are Already Powerful Enough
 
-Mid-2025 Claude and GPT series models can already understand complex instructions well, write high-quality code, and do multi-step reasoning. The "brain" of an AI assistant is no longer the bottleneck.
+2026's Claude and GPT series models can already understand complex instructions well, write high-quality code, and do multi-step reasoning. The "brain" of an AI assistant is no longer the bottleneck.
 
 ### 2. Infrastructure Has Matured
 
@@ -210,7 +210,7 @@ Let me preview this journey for you:
 | Day 6 | Set up heartbeat + scheduled tasks + memory | 🧠 Assistant starts working proactively |
 | Day 7 | Advanced techniques + custom development | 🚀 You're now an AI assistant expert |
 
-**In 7 days, you'll have a personal AI assistant that's online 24/7, knows you, can help you get things done.**
+**7 days later, you'll have a personal AI assistant that's online 24/7, knows you, and can help you get things done.**
 
 This isn't a scene from a sci-fi movie, and it's not something only big companies can achieve. Hermes Agent puts this capability in everyone's hands.
 
@@ -247,9 +247,9 @@ Tomorrow, we start building.
 
 ## Preview: Day 2 — Build Your Assistant in 10 Minutes
 
-> Tomorrow we're going hands-on. One command to install Hermes Agent, connect to Telegram, and send your first message to your AI assistant.
->
-> Get your server (or laptop) ready, see you tomorrow.
+Tomorrow we're going hands-on. One command to install Hermes Agent, connect to Telegram, and send your first message to your AI assistant.
+
+Get your server (or laptop) ready, see you tomorrow.
 
 Next chapter 👉 [Day 2: Build Your Assistant in 10 Minutes](/day/2)
 

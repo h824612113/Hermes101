@@ -23,8 +23,8 @@ Today you will build a practical skills baseline:
 
 ## Story Progress (Day 5)
 
-- Day 4 connected Zhou Mu's email, calendar, and web context.
-- Today you convert those access points into maintainable capability modules for the `TaskOrbit` launch sprint.
+- Day 4 connected Xiao Bin's email, calendar, and web context.
+- Today you convert those access points into maintainable capability modules for the `他的个人网站` launch sprint.
 - `Day 5` milestone: establish an install-verify-rollback loop instead of random plugin stacking.
 
 ---
@@ -63,7 +63,7 @@ Installing a Skill means putting these files in the `~/hermes/skills/` directory
 
 ## Skill Marketplace
 
-The Hermes Agent community maintains a growing skill repository: [hermeshub.com](https://hermeshub.com)
+The Hermes Agent community maintains a growing skill repository: [hermes skills catalog](https://hermes skills catalog)
 
 **Browse by category:**
 
@@ -87,7 +87,7 @@ Let's use **remind-me** (reminders) as an example—this is the most beginner-fr
 ### Method 1: Install from Hermes Skills Hub (Recommended)
 
 ```bash
-hermeshub install remind-me
+hermes skills install remind-me
 ```
 
 It downloads the skill from Hermes Skills Hub and installs it to your skills directory:
@@ -183,7 +183,7 @@ The assistant searches first, finds article links, uses the browser to open each
 
 ### Combo 3: GSC + GA4 + Browser
 
-> Analyze taskorbit.app's /templates page—how's search performance, user behavior, and what does the page look like now
+> Analyze xiaobin.dev's /templates page—how's search performance, user behavior, and what does the page look like now
 
 The assistant calls three skills:
 - GSC for search performance (rankings, clicks, CTR)
@@ -209,15 +209,15 @@ hermes skills list
 **Install/update skills from Hermes Skills Hub**
 
 ```bash
-hermeshub install <skill-name>    # Install
-hermeshub update <skill-name>     # Update single
-hermeshub update --all            # Update all
+hermes skills install <skill-name>    # Install
+hermes skills update <skill-name>     # Update single
+hermes skills update --all            # Update all
 ```
 
 **Search skill marketplace**
 
 ```bash
-hermeshub search <keyword>
+hermes skills search <keyword>
 ```
 
 **Skill configuration**

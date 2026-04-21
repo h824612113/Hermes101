@@ -21,15 +21,15 @@ On this final day, we focus on three practical outcomes:
 
 ## Story Progress (Day 7)
 
-- By Day 6, Zhou Mu's assistant is already running proactive checks and reports.
-- Today is not an ending; it's the handoff to long-term operation for the `TaskOrbit` system.
+- By Day 6, Xiao Bin's assistant is already running proactive checks and reports.
+- Today is not an ending; it's the handoff to long-term operation for the `他的个人网站` system.
 - `Day 7` milestone: define a 30-day iteration plan with measurable operating metrics.
 
 ---
 
 ## Metric Review (Day 7)
 
-First, the same three metrics across the full week (Zhou Mu sample):
+First, the same three metrics across the full week (Xiao Bin sample):
 
 | Metric | Day 1 baseline | Day 7 current | 30-day guardrail |
 |--------|----------------|---------------|------------------|

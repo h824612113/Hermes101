@@ -23,8 +23,8 @@ Today you will complete execution-layer integration:
 
 ## Story Progress (Day 4)
 
-- Day 3 gave Zhou Mu a stable persona and clear boundaries.
-- Today you connect real channels so the assistant can work inside the `TaskOrbit` workflow.
+- Day 3 gave Xiao Bin a stable persona and clear boundaries.
+- Today you connect real channels so the assistant can work inside the `他的个人网站` workflow.
 - `Day 4` milestone: complete cross-tool queries on real business context.
 
 ---
@@ -39,7 +39,7 @@ After execution-layer integration, the three metrics show their first material s
 | **Meeting prep lead time** | 0h | 1h00m |
 | **SEO anomaly detection latency** | 30h | 6h00m |
 
-> These values come from Zhou Mu's first sample week after Gmail/Calendar/Search integration.
+> These values come from Xiao Bin's first sample week after Gmail/Calendar/Search integration.
 
 ---
 
@@ -97,7 +97,7 @@ This is your first "practical skill" and what most people need most.
 Installing Hermes Agent skills is simple (you can have your AI install it for you):
 
 ```bash
-hermeshub install gog
+hermes skills install gog
 ```
 
 > 💡 **gog** is the Google Workspace skill, which includes Gmail + Google Calendar + Google Drive.
@@ -121,7 +121,7 @@ If everything is working, you'll get a response like this:
 
 **Notice that?** It doesn't just list emails, it helps you judge priority and flags the one that needs your attention. That's the difference between an AI assistant and a regular email client.
 
-> 💡 **Practical Notes**: Every morning at 8 AM I automatically check your inbox and pick out what's really important to send Zhou Mu. The rest? GitHub notifications, bills, newsletters... I just categorize them, not worth interrupting him for. That's what "assistant" means.
+> 💡 **Practical Notes**: Every morning at 8 AM I automatically check your inbox and pick out what's really important to send Xiao Bin. The rest? GitHub notifications, bills, newsletters... I just categorize them, not worth interrupting him for. That's what "assistant" means.
 
 ---
 
@@ -205,9 +205,9 @@ Hermes Agent has a built-in browser skill (based on Playwright), already auto-co
 
 Usage example:
 
-> Open https://taskorbit.app and show me what the homepage looks like now
+> Open https://xiaobin.dev and show me what the homepage looks like now
 
-> 🌐 Visited taskorbit.app:
+> 🌐 Visited xiaobin.dev:
 > - Homepage title: "Kirkify — Free Online Tools"
 > - Main tool list: Name Generator, QR Code, Color Palette...
 > - Page loaded normally, no visible errors
@@ -219,7 +219,7 @@ More practical scenario:
 
 It will open the page, extract pricing information, and even compare with previous versions you've seen.
 
-> 💡 **Practical Notes**: Browser is one of my favorite skills. Before, when you asked me to check competitors, I could only search. Now I can directly open their websites and browse like a real user. Once I noticed a competitor quietly changed pricing and immediately notified Zhou Mu. He said that one discovery alone was worth a month's server cost.
+> 💡 **Practical Notes**: Browser is one of my favorite skills. Before, when you asked me to check competitors, I could only search. Now I can directly open their websites and browse like a real user. Once I noticed a competitor quietly changed pricing and immediately notified Xiao Bin. He said that one discovery alone was worth a month's server cost.
 
 ---
 
@@ -268,7 +268,7 @@ Clearly write in SOUL.md and AGENTS.md:
 
 > 💡 **Security isn't a one-time thing—it's an ongoing habit**: Build good security habits: API Keys don't go in repos, Token files need proper permissions, least privilege principle, behavioral boundaries clearly written.
 
-> 💡 **Practical Notes**: You once asked me to look up a colleague's email records. I refused, because SOUL.md says "only process Zhou Mu's own data." He was surprised, then said "okay, keep that rule." Clear boundaries build trust.
+> 💡 **Practical Notes**: You once asked me to look up a colleague's email records. I refused, because SOUL.md says "only process Xiao Bin's own data." He was surprised, then said "okay, keep that rule." Clear boundaries build trust.
 
 ---
 

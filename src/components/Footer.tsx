@@ -75,7 +75,7 @@ export default function Footer({ locale }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a href="https://my.feishu.cn/wiki/YkWgwqSchi9xW3kEuZscAm0lnFf" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <a href="https://acne8it01tyq.feishu.cn/wiki/AedTwCM5oiijCUkFVAmcXmopnQe" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   {isZh ? '飞书知识库' : 'Feishu Wiki'}
                 </a>
               </li>

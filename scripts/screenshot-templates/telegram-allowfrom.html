@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'SF Mono', 'Fira Code', monospace; }
+.terminal {
+  width: 640px; background: #1a1a2e; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.titlebar {
+  background: #16162a; padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+.titlebar .title { color: #94a3b8; font-size: 13px; margin-left: 12px; font-family: -apple-system, sans-serif; }
+.body { padding: 20px; font-size: 14px; line-height: 1.8; }
+.output { color: #94a3b8; }
+.question { color: #e2e8f0; font-weight: 600; margin: 12px 0 8px 0; font-family: -apple-system, sans-serif; }
+.warn { color: #f59e0b; }
+.input { color: #3b82f6; font-weight: 600; }
+.success { color: #10b981; }
+</style></head>
+<body>
+<div class="terminal">
+  <div class="titlebar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="title">Terminal — Hermes Setup Wizard</div>
+  </div>
+  <div class="body">
+    <div class="output">🐾 Admin Access Configuration</div>
+    <br>
+    <div class="question">Enter your Telegram User ID:</div>
+    <div class="output">(Search @userinfobot on Telegram to find your numeric ID)</div>
+    <br>
+    <div class="warn">⚠️ Only this user can interact with your Hermes assistant.</div>
+    <div class="warn">   This prevents unauthorized use of your API credits.</div>
+    <br>
+    <div class="output">Admin User ID: <span class="input">123456789</span></div>
+    <br>
+    <div class="success">✓ Admin configured: allowFrom = [123456789]</div>
+  </div>
+</div>
+</body></html>

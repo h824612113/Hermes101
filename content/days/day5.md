@@ -23,8 +23,8 @@ description: "Hermes Agent 7天教程 - 第 5 天：解锁技能树"
 
 ## 主线进度（Day 5）
 
-- Day 4 已经打通周沐的邮件、日历和网页上下文。
-- 今天把这些能力做成可维护模块，围绕 `TaskOrbit` 发布冲刺选择技能组合。
+- Day 4 已经打通小滨的邮件、日历和网页上下文。
+- 今天把这些能力做成可维护模块，围绕 `他的个人网站` 发布冲刺选择技能组合。
 - `Day 5` 里程碑：形成“安装-验证-回滚”闭环，而不是随手堆功能。
 
 ---
@@ -63,7 +63,7 @@ description: "Hermes Agent 7天教程 - 第 5 天：解锁技能树"
 
 ## 技能市场
 
-Hermes Agent 社区维护了一个不断增长的技能仓库：[hermeshub.com](https://hermeshub.com)
+Hermes Agent 社区维护了一个不断增长的技能仓库：[hermes skills catalog](https://hermes skills catalog)
 
 **按类别浏览：**
 
@@ -87,7 +87,7 @@ Hermes Agent 社区维护了一个不断增长的技能仓库：[hermeshub.com](
 ### 方式一：从 Hermes Skills Hub 安装（推荐）
 
 ```bash
-hermeshub install remind-me
+hermes skills install remind-me
 ```
 
 它会从 Hermes Skills Hub 下载 skill，并安装到你的技能目录里：
@@ -183,7 +183,7 @@ https://github.com/VoltAgent/awesome-hermes-skills
 
 ### 组合 3：GSC + GA4 + 浏览器
 
-> 分析一下 taskorbit.app 的 /templates 页面——搜索表现怎么样、用户行为怎么样、页面现在长什么样
+> 分析一下 xiaobin.dev 的 /templates 页面——搜索表现怎么样、用户行为怎么样、页面现在长什么样
 
 助手分别调用三个技能：
 - GSC 查搜索表现（排名、点击、CTR）
@@ -209,15 +209,15 @@ hermes skills list
 **从 Hermes Skills Hub 安装/更新技能**
 
 ```bash
-hermeshub install <skill-name>    # 安装
-hermeshub update <skill-name>     # 更新单个
-hermeshub update --all            # 更新全部
+hermes skills install <skill-name>    # 安装
+hermes skills update <skill-name>     # 更新单个
+hermes skills update --all            # 更新全部
 ```
 
 **搜索技能市场**
 
 ```bash
-hermeshub search <keyword>
+hermes skills search <keyword>
 ```
 
 **技能配置**

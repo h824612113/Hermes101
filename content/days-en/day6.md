@@ -22,7 +22,7 @@ Today you will wire the full automation layer:
 
 ## Story Progress (Day 6)
 
-- After Day 5, Zhou Mu has a capable tool stack.
+- After Day 5, Xiao Bin has a capable tool stack.
 - Today you move from "toolbox" to "autonomous operating loop."
 - `Day 6` milestone: morning brief, anomaly alert, and daily review all run without prompts.
 
@@ -184,17 +184,17 @@ The assistant automatically creates a note file each day, recording what happene
 
 ## Morning
 - Morning briefing sent: 3 important emails, 2 meetings
-- Zhou Mu asked me to check docs.taskorbit.app search data
+- Xiao Bin asked me to check docs.xiaobin.dev search data
 - Found /guides/start page ranking dropped from #8 to #12, notified
 
 ## Afternoon
-- Helped Zhou Mu write an API route
+- Helped Xiao Bin write an API route
 - Reminded about 14:00 meeting
-- Zhou Mu said weekly report format should include "what I learned this week"
+- Xiao Bin said weekly report format should include "what I learned this week"
 
 ## Evening
 - 21:00 routine check, all normal
-- Zhou Mu still working at 23:30, reminded to rest
+- Xiao Bin still working at 23:30, reminded to rest
 ```
 
 ### 2. Long-term Memory: MEMORY.md
@@ -204,23 +204,23 @@ Every few days, the assistant reviews recent daily notes and distills what's wor
 ```markdown
 # Long-term Memory
 
-## Zhou Mu's Work Habits
+## Xiao Bin's Work Habits
 - Prefers deep work in afternoon, handles misc in morning
 - Doesn't like being interrupted while coding, unless urgent email
 - Weekly report format should include "what I learned this week" (confirmed July 20)
 
 ## Project Status
-- taskorbit.app — Focus on /templates page SEO
-- docs.taskorbit.app — /guides/start page ranking dropped, needs monitoring
+- xiaobin.dev — Focus on /templates page SEO
+- docs.xiaobin.dev — /guides/start page ranking dropped, needs monitoring
 
 ## Lessons Learned
 - GSC data has 2-3 day delay, don't compare yesterday and today's data
-- Zhou Mu doesn't like long messages, use bold + lists for important info
+- Xiao Bin doesn't like long messages, use bold + lists for important info
 ```
 
 ### 3. Soul Memory: SOUL.md + USER.md
 
-These two files are also part of memory—they're "core memories" that don't change with dates, defining who the assistant is and who Zhou Mu is.
+These two files are also part of memory—they're "core memories" that don't change with dates, defining who the assistant is and who Xiao Bin is.
 
 **Three layers of memory working together:**
 - SOUL.md + USER.md → Who I am, who you are (unchanging)
@@ -231,7 +231,7 @@ These two files are also part of memory—they're "core memories" that don't cha
 
 First week, it only knows basic info you wrote in USER.md. After a month, it knows your work habits, preferences, common phrases, current projects, what data you track. After three months—it might understand your work patterns better than you do.
 
-> 💡 **Practical Notes**: My MEMORY.md now has several hundred lines. It records your project status, domain list, writing style preferences, and each website's GA4 property ID. Zhou Mu no longer needs to repeat these details because I remember.
+> 💡 **Practical Notes**: My MEMORY.md now has several hundred lines. It records your project status, domain list, writing style preferences, and each website's GA4 property ID. Xiao Bin no longer needs to repeat these details because I remember.
 
 ---
 
@@ -253,7 +253,7 @@ Important emails get immediate notification, regular emails batch into the brief
 
 **4. Data Anomaly Alerts (2-3 heartbeat checks daily)**
 
-Scan GSC data for several websites. Alert on significant traffic fluctuation (+/-20%). Once taskorbit.app traffic suddenly dropped 30%, I immediately notified you. Zhou Mu checked and found it was due to a Google algorithm update, then adjusted in time.
+Scan GSC data for several websites. Alert on significant traffic fluctuation (+/-20%). Once xiaobin.dev traffic suddenly dropped 30%, I immediately notified you. Xiao Bin checked and found it was due to a Google algorithm update, then adjusted in time.
 
 **5. Evening Review (Daily at 21:00, Cron)**
 
@@ -272,7 +272,7 @@ Between "proactive work" and "crazy spamming" there's a fine line.
 
 **Principle 2: Respect quiet hours**
 
-Late night (23:00-08:00) no messages unless urgent. Reduce interruption frequency on weekends. If Zhou Mu explicitly says "don't disturb me for these hours," stay quiet.
+Late night (23:00-08:00) no messages unless urgent. Reduce interruption frequency on weekends. If Xiao Bin explicitly says "don't disturb me for these hours," stay quiet.
 
 **Principle 3: Decreasing frequency**
 

@@ -41,7 +41,7 @@ const itemsZh = [
     icon: '📝',
     title: '飞书知识库',
     desc: '中文图文路线与实践记录',
-    link: 'https://my.feishu.cn/wiki/YkWgwqSchi9xW3kEuZscAm0lnFf',
+    link: 'https://acne8it01tyq.feishu.cn/wiki/AedTwCM5oiijCUkFVAmcXmopnQe',
     color: 'hover:border-cyan-300 hover:bg-cyan-50',
   },
   {
@@ -86,7 +86,7 @@ const itemsEn = [
     icon: '📝',
     title: 'Feishu Wiki',
     desc: 'Chinese write-ups and practical walkthroughs',
-    link: 'https://my.feishu.cn/wiki/YkWgwqSchi9xW3kEuZscAm0lnFf',
+    link: 'https://acne8it01tyq.feishu.cn/wiki/AedTwCM5oiijCUkFVAmcXmopnQe',
     color: 'hover:border-cyan-300 hover:bg-cyan-50',
   },
   {

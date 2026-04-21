@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f172a; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'SF Mono', 'Fira Code', monospace; }
+.card {
+  background: #1e293b; border-radius: 16px; padding: 32px; width: 500px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.success { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.check { width: 40px; height: 40px; border-radius: 50%; background: rgba(16,185,129,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.success-text { color: #10b981; font-size: 18px; font-weight: 700; }
+.label { color: #94a3b8; font-size: 13px; margin-bottom: 8px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.token-box {
+  background: #0f172a; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+  padding: 16px; margin-bottom: 20px;
+}
+.token { color: #f59e0b; font-size: 16px; word-break: break-all; line-height: 1.6; }
+.hint { color: #64748b; font-size: 13px; line-height: 1.6; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.hint strong { color: #94a3b8; }
+</style></head>
+<body>
+<div class="card">
+  <div class="success">
+    <div class="check">✓</div>
+    <div class="success-text">Bot Token Created Successfully</div>
+  </div>
+  <div class="label">YOUR BOT TOKEN</div>
+  <div class="token-box">
+    <div class="token">7234567890:AAH4xKzBdVfGhJkLmNoPqRsTuWxYz123456</div>
+  </div>
+  <div class="hint">
+    <strong>⚠️ Keep this token secret!</strong><br>
+    Anyone with your token can control your bot. Save it somewhere safe — you'll paste it during the Hermes Agent setup wizard.
+  </div>
+</div>
+</body></html>

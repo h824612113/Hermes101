@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'SF Mono', 'Fira Code', monospace; }
+.terminal {
+  width: 640px; background: #1a1a2e; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.titlebar {
+  background: #16162a; padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+.titlebar .title { color: #94a3b8; font-size: 13px; margin-left: 12px; font-family: -apple-system, sans-serif; }
+.body { padding: 20px; font-size: 14px; line-height: 1.8; }
+.output { color: #94a3b8; }
+.question { color: #e2e8f0; font-weight: 600; margin: 12px 0 8px 0; font-family: -apple-system, sans-serif; }
+.option { padding: 6px 0; }
+.option .num { color: #3b82f6; font-weight: 700; }
+.option .name { color: #fff; }
+.option .badge { display: inline-block; background: rgba(16,185,129,0.15); color: #10b981; padding: 1px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+.selected { background: rgba(59,130,246,0.1); border-radius: 6px; padding: 6px 12px; margin: 0 -12px; }
+</style></head>
+<body>
+<div class="terminal">
+  <div class="titlebar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="title">Terminal — Hermes Setup Wizard</div>
+  </div>
+  <div class="body">
+    <div class="output">🐾 Chat Channel Setup</div>
+    <br>
+    <div class="question">Select messaging channel:</div>
+    <div class="option selected">
+      <span class="num">1)</span>
+      <span class="name">Telegram</span>
+      <span class="badge">⭐ Recommended</span>
+    </div>
+    <div class="option">
+      <span class="num">2)</span>
+      <span class="name">Discord</span>
+    </div>
+    <div class="option">
+      <span class="num">3)</span>
+      <span class="name">WhatsApp</span>
+    </div>
+    <div class="option">
+      <span class="num">4)</span>
+      <span class="name">Slack</span>
+    </div>
+    <div class="option">
+      <span class="num">5)</span>
+      <span class="name">Signal</span>
+    </div>
+    <div class="option">
+      <span class="num">6)</span>
+      <span class="name">CLI (local terminal)</span>
+    </div>
+    <br>
+    <div class="output">Enter your choice (1-6): <span style="color:#3b82f6;font-weight:700">1</span></div>
+    <br>
+    <div class="output">Enter your Telegram Bot Token:</div>
+    <div class="output" style="color:#f59e0b">7234567890:AAH4xKzBdV***</div>
+    <div class="output" style="color:#10b981">✓ Token verified</div>
+  </div>
+</div>
+</body></html>

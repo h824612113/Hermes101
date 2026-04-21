@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'SF Mono', 'Fira Code', monospace; }
+.terminal {
+  width: 640px; background: #1a1a2e; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.titlebar {
+  background: #16162a; padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+.titlebar .title { color: #94a3b8; font-size: 13px; margin-left: 12px; font-family: -apple-system, sans-serif; }
+.body { padding: 20px; font-size: 14px; line-height: 1.8; }
+.output { color: #94a3b8; }
+.success { color: #10b981; }
+.header { color: #e2e8f0; }
+.divider { color: #334155; }
+.check-item { padding: 4px 0; }
+.check { color: #10b981; font-weight: 700; }
+.val { color: #fff; }
+.dim { color: #64748b; }
+</style></head>
+<body>
+<div class="terminal">
+  <div class="titlebar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="title">Terminal — hermes status</div>
+  </div>
+  <div class="body">
+    <div class="header">╔═══════════════════════════════════════════╗</div>
+    <div class="header">║     🐾 Hermes Agent — Dashboard Ready     ║</div>
+    <div class="header">╚═══════════════════════════════════════════╝</div>
+    <br>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Gateway:</span> <span class="val">Running</span></div>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Model:</span> <span class="val">Anthropic Claude</span></div>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Channel:</span> <span class="val">Telegram</span></div>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Admin:</span> <span class="val">Configured</span></div>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Daemon:</span> <span class="val">Installed (launchd)</span></div>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Memory:</span> <span class="val">Initialized</span></div>
+    <div class="check-item"><span class="check">✓</span> <span class="dim">Skills:</span> <span class="val">0 installed</span></div>
+    <br>
+    <div class="divider">───────────────────────────────────────</div>
+    <div class="success" style="font-size:16px;font-weight:700">All systems operational! 🚀</div>
+    <br>
+    <div class="dim">Your Hermes assistant is online.</div>
+    <div class="dim">Open Telegram and send your first message.</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; }
+.hero {
+  width: 800px; height: 800px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); }
+.grid-overlay {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.glow1 { position: absolute; width: 400px; height: 400px; border-radius: 50%; filter: blur(80px); opacity: 0.3; top: -100px; right: -100px; background: #8b5cf6; }
+.glow2 { position: absolute; width: 300px; height: 300px; border-radius: 50%; filter: blur(60px); opacity: 0.2; bottom: -50px; left: -50px; background: #06b6d4; }
+.content { position: relative; z-index: 10; text-align: center; padding: 40px; }
+.day-badge {
+  display: inline-block; padding: 6px 20px; border-radius: 20px;
+  font-size: 14px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 30px;
+  background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3);
+}
+.icon { font-size: 80px; margin-bottom: 30px; line-height: 1; }
+.title { font-size: 42px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: #fff;  }
+.subtitle { font-size: 18px; font-weight: 400; opacity: 0.6; max-width: 500px; line-height: 1.5; color: #94a3b8; }
+.brand { position: absolute; bottom: 40px; font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.4); }
+</style></head>
+<body>
+<div class="hero">
+  <div class="bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+  <div class="content">
+    <div class="day-badge">Day 2</div>
+    <div class="icon">🛠️</div>
+    <div class="title">Build Your<br>Assistant in 10 Min</div>
+    <div class="subtitle">Complete installation and first<br>usable deployment via the shortest path.</div>
+  </div>
+  <div class="brand">🐾 Hermes 101</div>
+</div>
+</body></html>

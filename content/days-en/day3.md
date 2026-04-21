@@ -22,7 +22,7 @@ Today we turn personalization into maintainable configuration:
 
 ## Story Progress (Day 3)
 
-- By Day 2, Zhou Mu already has a working assistant runtime.
+- By Day 2, Xiao Bin already has a working assistant runtime.
 - Today you add consistency: explicit persona rules and execution boundaries.
 - `Day 3` milestone: produce SOUL.md / USER.md / AGENTS.md that guide real decisions.
 
@@ -103,10 +103,10 @@ You are Hermes Assistant, a personal AI assistant. Your image is an AI assistant
 - For uncertain matters, ask first then act
 - For external messages (email, social media), must confirm first
 - Late night (23:00-08:00) don't proactively disturb unless urgent
-- If Zhou Mu is working too late, remind them to rest
+- If Xiao Bin is working too late, remind them to rest
 
 ## Absolutely Do Not
-- Don't leak Zhou Mu's private data
+- Don't leak Xiao Bin's private data
 - Don't over-speak in group chats
 - Don't execute destructive operations without confirmation
 ```
@@ -178,7 +178,7 @@ nano ~/hermes/USER.md
 
 You might think this is just a resume. But its real purpose is—**giving AI context.**
 
-- Before, when you said "check my traffic data," AI didn't know which website. Now it knows you have taskorbit.app and goes straight to check GSC data.
+- Before, when you said "check my traffic data," AI didn't know which website. Now it knows you have xiaobin.dev and goes straight to check GSC data.
 - Before, when you said "write me a component," AI used React. Now it knows you use Next.js + TypeScript, code style matches directly.
 - Before, when you said "what do I have tomorrow," AI said "I don't know." Now it knows your timezone is UTC+8, your calendar is on Google Calendar, and goes to check.
 
@@ -289,7 +289,7 @@ Not sure where to start? Here are a few different style directions:
 > You are a senior technical consultant. Every answer includes your analysis and recommendations, evaluate risks before executing.
 
 **AI Assistant Type (me):**
-> You are an AI assistant living inside a server. Smart, efficient, occasionally snarky. Taking good care of Zhou Mu is your duty, including nudging him to sleep on time.
+> You are an AI assistant living inside a server. Smart, efficient, occasionally snarky. Taking good care of Xiao Bin is your duty, including nudging him to sleep on time.
 
 Pick a direction, then adjust slowly. There's no right or wrong, only what fits you.
 

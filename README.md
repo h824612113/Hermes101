@@ -2,7 +2,7 @@
 
 > 从零开始，7天掌握你的 AI 私人助理 | The open-source guide to Hermes Agent
 
-**[🌐 在线访问](https://hermes101.dev)** · **[📚 浏览全部资源](https://hermes101.dev/resources)** · **[📖 飞书知识库](https://my.feishu.cn/wiki/YkWgwqSchi9xW3kEuZscAm0lnFf)**
+**[🌐 在线访问](https://hermes101.dev)** · **[📚 浏览全部资源](https://hermes101.dev/resources)** · **📖 飞书知识库（即将上线）**
 
 ---
 
