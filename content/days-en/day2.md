@@ -21,7 +21,7 @@ Today you'll complete:
 
 ## Story Progress (Day 2)
 
-- Yesterday, Zhou Mu listed the first workflows to delegate: email summary, meeting reminders, and site checks.
+- Yesterday, Xiao Bin listed the first workflows to delegate: email summary, meeting reminders, and site checks.
 - Today's mission is to get Hermes online and stable on Telegram.
 - `Day 2` milestone: receive the first reproducible message from your own assistant runtime.
 
@@ -100,12 +100,16 @@ If you're on **Mac**, you might need to install Homebrew first (if you don't hav
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-If you're on **Windows**, **you do not have to install WSL2 first**. Hermes Agent can run directly on native Windows. If your goal is to get started quickly—or you want Hermes Agent to work directly with Windows files, browsers, WeChat, or other desktop apps—**native Windows is usually the better default**. Only choose **WSL2 (Windows Subsystem for Linux)** if you prefer a Linux CLI workflow or want an environment that feels closer to a server. If you do want the WSL2 route, open PowerShell as Administrator and run `wsl --install`. See the [official Microsoft WSL installation guide](https://docs.microsoft.com/en-us/windows/wsl/install) for details.
+If you're on **Windows**, **you must install WSL2 first**—Hermes officially does not support native Windows. Open PowerShell as Administrator and run `wsl --install`. See the [official Microsoft WSL installation guide](https://docs.microsoft.com/en-us/windows/wsl/install) for details. Once WSL2 is installed, all commands run inside the WSL terminal.
 
-Also, prepare these two things in advance—the wizard will need them:
+> 💡 **Dependency note**: Hermes Agent is a Python project (uv + Python 3.11). The install script handles all Python dependencies for you—no manual setup required.
 
-1. **AI Model Access (choose one)** — If you have a Claude subscription (Pro/Max/Team), you can just OAuth login in the wizard, no API Key needed; or go to [console.anthropic.com](https://console.anthropic.com) to create an API Key (pay as you go)
+Also, prepare these two things in advance—the config file will need them:
+
+1. **AI Model Access** — Recommended: [OpenRouter](https://openrouter.ai) (one key, 200+ models, $5 top-up gets you started). For users in China, [z.ai/Zhipu](https://open.bigmodel.cn/) (GLM family) is a stable in-region alternative.
 2. **Telegram Bot Token** — Open Telegram, search for @BotFather, create a Bot (detailed steps below)
+
+> ⚠️ **About Claude subscriptions**: As of April 2026, Anthropic has blocked third-party tools from accessing the Claude API via Pro/Max subscriptions. Hermes, OpenClaw, and similar agent frameworks are all affected. You can still create an API Key at [console.anthropic.com](https://console.anthropic.com) and pay per token, but it's noticeably more expensive. **For new users, OpenRouter is the recommended starting point**—you can swap underlying models freely.
 
 ---
 
@@ -139,7 +143,7 @@ In Telegram, search for **@userinfobot**—it will tell you your numeric ID. Not
 
 ---
 
-## One-Click Install + Auto Configuration
+## One-Click Install
 
 Alright, regardless of which option you chose, open your Terminal and enter this one line:
 
@@ -149,43 +153,59 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 
 That's it. One line.
 
-The install script will automatically handle all dependencies (Node.js, Git...), then go directly into the interactive setup wizard—no need to manually run any setup commands.
+The install script handles every dependency for you (uv, Python 3.11, cloning the repo). No `sudo` needed. Once it's done, the `hermes` command is on your PATH.
 
-![Hermes Agent Installation Wizard - Security Warning](/images/days/day2/install-security.jpg)
+> 💡 **Network note**: The script pulls from GitHub and PyPI. Behind a slow link or firewall, configure a proxy or mirror first.
 
 ---
 
-## What Will the Wizard Ask You?
+## Edit the Config File
 
-The wizard will guide you through all configuration step by step, just follow the prompts:
+All Hermes configuration lives in a single YAML file at `~/.hermes/config.yaml`. Fill it in before the first launch.
 
-**1. Choose Mode**: QuickStart (recommended) or Advanced. New users should choose QuickStart.
+```bash
+# open with whatever editor you like
+nano ~/.hermes/config.yaml
+```
 
-![Choose Onboarding Mode](/images/days/day2/onboarding-mode.jpg)
+A minimal working config looks like this:
 
-**2. Choose AI Model**: Claude recommended, Hermes Agent works best with Claude. Two connection methods:
-- If you have a Claude subscription, choose **setup-token connection** (no API Key needed, no extra charges)
-- If no subscription, choose **Anthropic API Key** (pay as you go)
+```yaml
+# ~/.hermes/config.yaml
 
-> 💡 **Supported Models**: Besides Anthropic Claude Opus 4.5 (recommended), it also supports OpenAI GPT-5.2, Google Gemini 3 Pro, Moonshot (Kimi K2.5), MiniMax M2.1, Z.AI (GLM-4.7), xAI (Grok), Qwen, Venice, OpenRouter, and 10+ other providers. But Claude is the first choice. Those with Claude subscriptions should use setup-token connection for convenience (no API Key needed, no extra charges).
+model:
+  provider: openrouter
+  api_key: sk-or-xxxxxxxxxxxxxxxxx       # your OpenRouter key
+  model: anthropic/claude-sonnet-4       # main model (any OpenRouter slug works)
 
-![Choose Model Provider](/images/days/day2/model-provider.jpg)
+terminal: local                          # terminal backend: local / docker / ssh / daytona / modal
 
-**3. Configure Chat Channel**: Choose Telegram, paste the Bot Token you got from BotFather earlier.
+gateway:
+  telegram:
+    token: 123456789:ABCdefGhIJKlmNoPQRsTUVwxyz   # the token BotFather just gave you
+```
 
-![Choose Chat Channel](/images/days/day2/select-channel.jpg)
+**Quick reference:**
 
-**4. Set Admin**: Enter your Telegram user ID.
+- `model.provider` also accepts `nous`, `openai`, `zai`, `ollama`, etc. The `model` slug format varies per provider—see the Models section of the [official docs](https://hermes-agent.nousresearch.com/docs/).
+- `terminal: local` is the simplest—the agent runs commands directly on your machine. For VPS / production, switch to `docker` so code executes inside a container.
+- The whole `gateway` block is optional. If you only want to use Hermes from the terminal, skip it.
 
-![Configure Telegram allowFrom](/images/days/day2/telegram-allowfrom.jpg)
+> ⚠️ **API key safety**: Don't commit a config.yaml with secrets to Git. If you're worried, put the key in an environment variable and reference it as `${OPENROUTER_API_KEY}` in the YAML.
 
-**5. Install Background Daemon**: The wizard will ask if you want to install a daemon (background service). Choose Yes—this way your assistant runs automatically in the background, starts on boot, no manual management needed.
-- Linux servers: Automatically creates systemd user service
-- Mac: Automatically creates LaunchAgent
+---
 
-**6. Health Check + Skills Installation**: Finally, the wizard will start the Gateway, run health checks, and let you choose to install recommended skills.
+## Launch Hermes
 
-The whole process takes about 3-5 minutes, just follow the prompts the whole way, no need to manually edit any configuration files.
+Configuration done, launching takes one word:
+
+```bash
+hermes
+```
+
+On first launch Hermes does a few things: creates `~/.hermes/state.db` (SQLite + FTS5 index), populates `skills/` with 40+ bundled skills, sets up `memories/`, and connects whichever Gateway platforms you configured.
+
+When you see the welcome banner and a blinking prompt, you're set. Type "hello" in the terminal—if you get a reply, you're online.
 
 ![Dashboard Ready](/images/days/day2/dashboard-ready.jpg)
 
@@ -193,27 +213,13 @@ The whole process takes about 3-5 minutes, just follow the prompts the whole way
 
 ## Your Assistant Is Online
 
-After the wizard completes, your assistant is already running in the background. Verify it:
-
-```bash
-hermes gateway status
-```
-
-You'll see something like:
+Once `hermes` is running in the terminal, your assistant is live. Send it any message right there in the prompt to confirm:
 
 ```
-┌──────────────────────────────────────────────┐
-│  Hermes Agent Gateway                        │
-├──────────────────────────────────────────────┤
-│  Status:    ✅ Running                       │
-│  Uptime:    2 minutes                        │
-│  Channel:   Telegram                         │
-│  Model:     anthropic/claude-sonnet-4-20250514│
-│  Skills:    0 installed                      │
-└──────────────────────────────────────────────┘
+> hello, who are you?
 ```
 
-If you see the Gateway is running, everything is ready.
+You should see a reply within a couple of seconds. That's your model + Gateway + Skills loop working end to end.
 
 ---
 
@@ -246,13 +252,14 @@ Right now, it's just an assistant that "can chat." But don't worry, over the nex
 After installation, you'll use these commands frequently:
 
 ```bash
-hermes status          # Check overall status
-hermes gateway status  # Check Gateway running status
-hermes health          # Health check
-hermes configure       # Reconfigure (change model, channels, etc.)
-hermes daemon restart  # Restart background service
-hermes daemon logs     # View runtime logs
+hermes                 # start Hermes (foreground; you'll see a prompt to chat)
+hermes --version       # check version
+hermes --help          # list all subcommands
 ```
+
+> 💡 **24/7 in the background**: `hermes` is a foreground process by default. To keep it running after you disconnect from a VPS, two common approaches:
+> 1. Wrap it in `tmux` or `screen` (simplest)
+> 2. Write a systemd unit (recommended for production—see the [official deployment docs](https://hermes-agent.nousresearch.com/docs/))
 
 ---
 
@@ -260,51 +267,39 @@ hermes daemon logs     # View runtime logs
 
 ### ❓ Install Script Error
 
-**Node.js version too low**: Hermes Agent requires Node.js 22+. Check version:
+**Network issues**: The script pulls from GitHub and PyPI. Behind a slow link or firewall, set up a proxy or mirror first.
+
+**Python version**: Hermes requires Python 3.11+. The install script handles this via uv automatically. If you want to verify:
 
 ```bash
-node -v
-```
-
-If the version isn't enough, the install script usually installs it automatically. If not, upgrade manually:
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-nvm install 22
+python3 --version
 ```
 
 ### ❓ Telegram Bot Not Responding
 
-- Confirm Bot Token is correct
-- Confirm your user ID is in the admin list
-- Check logs: `hermes daemon logs`
-- Confirm API Key is valid and has balance
-- First DM might need pairing approval: `hermes pairing list telegram`, then `hermes pairing approve telegram <code>`
+- Make sure `gateway.telegram.token` in `~/.hermes/config.yaml` is the full token from BotFather
+- Make sure `model.api_key` is valid and has balance
+- Make sure the `hermes` process is still running (you didn't accidentally Ctrl+C it)
+- Check the logs: `tail -f ~/.hermes/logs/*.log`
 
 ### ❓ Want to Reconfigure?
 
-You can rerun the wizard anytime:
+Just edit `~/.hermes/config.yaml` and restart the `hermes` process. No special command required.
 
 ```bash
-hermes onboard
-```
-
-Or just change a specific part:
-
-```bash
-hermes configure
+nano ~/.hermes/config.yaml
+# save, Ctrl+C the old process, then `hermes` to relaunch
 ```
 
 ---
 
 ## 🔑 Key Takeaways
 
-- **One command handles everything**: `curl ... | bash` installs and automatically enters the configuration wizard
-- **Wizard guides you through**: Choose model, enter Key, configure Telegram, install daemon—just follow the prompts
-- **Telegram Bot**: Free to create, most complete API features, works on any device
-- **Security first**: Set admin ID, only you can chat with the assistant
-- **Auto-runs in background**: Daemon service enables 24/7 availability, starts on boot
-- **Next step**: Give the assistant a soul, transform it from "generic AI" to "your AI"
+- **One command to install**: `curl ... | bash` handles uv, Python 3.11, and the repo clone
+- **All config in one file**: `~/.hermes/config.yaml`—`model` and `gateway` blocks are enough
+- **Telegram Bot**: Free to create, the richest API surface, works anywhere
+- **Anthropic blocked Pro subscriptions**: Start with OpenRouter; users in China can also use z.ai
+- **Next step**: Let Hermes get to know you—Day 3 dives into the persona layer
 
 ---
 
@@ -314,10 +309,9 @@ Give yourself a pat on the back—today you completed:
 
 - ✅ Chose your runtime environment
 - ✅ Installed Hermes Agent with one command
-- ✅ Completed all configuration through the wizard
+- ✅ Edited `~/.hermes/config.yaml`
 - ✅ Created a Telegram Bot and connected successfully
 - ✅ Successfully chatted with your AI assistant
-- ✅ Background daemon running automatically
 
 **You now have an AI assistant online 24 hours a day.** Though it's still quite "generic" right now—like a new employee who just started, very capable but doesn't know you yet.
 

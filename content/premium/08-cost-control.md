@@ -46,25 +46,32 @@ status: draft
 
 ## 策略二：减少 Token 消耗（省 30-50%）
 
-### 精简 MEMORY.md
+### 精简持久记忆
+
+持久记忆每轮按需注入。如果你写得太啰嗦：
+
 ```
-长版 (500行):  每轮消耗 ~1500 tokens → 月消耗 ~4.5M tokens
-精简版 (100行): 每轮消耗 ~300 tokens  → 月消耗 ~0.9M tokens
+长版（500 条 / 平均 5 行）：每轮检索 + 注入 ~1500 tokens → 月消耗 ~4.5M tokens
+精简版（100 条 / 平均 2 行）：每轮 ~300 tokens → 月消耗 ~0.9M tokens
 省: ~$10/月
 ```
 
+精简方法：直接编辑 `~/.hermes/memories/` 下的文件，删掉项目状态、过时事实，只保留长期不变的偏好和环境信息。
+
 ### 精简 Skill
+
 ```
 每个 skill 都会在匹配时注入。
 装了 20 个 skill，每个 200 行 → 每次注入 ~4000 tokens
 只保留真正用到的 5 个 → 每次注入 ~1000 tokens
 ```
 
-### 精简 HEARTBEAT.md
+### 精简巡检 Skill
+
 ```
-Heartbeat 每 30-60 分钟跑一次。
-如果 HEARTBEAT.md 写了 50 行 → 每次消耗 1500 tokens
-精简到 10 行 → 每次消耗 300 tokens
+巡检 Skill 由 cronjob 每 30-60 分钟唤起一次。
+如果巡检 Skill 写了 50 行规则 → 每次跑消耗 1500 tokens
+精简到 10 行 → 每次 300 tokens
 月省: ~$2
 ```
 
@@ -105,7 +112,7 @@ model:
 
 ### 减少多轮对话
 
-AI 有时候会"确认"三次才行动。在 SOUL.md 里写：
+AI 有时候会"确认"三次才行动。在你的 user-profile Skill（`~/.hermes/skills/user-profile/SKILL.md`）里写：
 
 ```markdown
 ## Efficiency
@@ -116,11 +123,11 @@ AI 有时候会"确认"三次才行动。在 SOUL.md 里写：
 - 不要问"还有什么需要帮忙的"
 ```
 
-### 合并 Cron 任务
+### 合并 cronjob 任务
 
 ```
-原来: 5 个 cron 任务各跑 1 次 = 5 次对话
-合并: 1 个 cron 任务做 5 件事 = 1 次对话
+原来: 5 个 cronjob 各跑 1 次 = 5 次对话
+合并: 1 个 cronjob 做 5 件事 = 1 次对话
 省: 80%
 ```
 
@@ -167,7 +174,7 @@ curl -s https://openrouter.ai/api/v1/auth/key \
 - 典型用户月费 $30-50，但可以压到 $5 以内
 - 四个策略：降模型、减 token、用免费额度、优化对话模式
 - 极限方案：DeepSeek V3 + GPT-4o-mini，月费不到 $1
-- 精简 MEMORY.md 和 Skill 数量是见效最快的方法
+- 精简持久记忆和 Skill 数量是见效最快的方法
 - 监控用量，设自动提醒
 
 **下一章：** 自建 API 中转 — 用 sub2api 搭自己的模型网关。

@@ -52,18 +52,31 @@ What's the App Store on your phone? A place to install various apps—need food 
 Each Skill is a set of files, usually including:
 
 - **SKILL.md** — Skill manual (tells the AI what this skill does and how to use it)
-- **Config files** — API Keys, connection parameters, etc.
-- **Script files** — Specific execution logic (if needed)
+- **Configuration** — API keys, connection params, etc. (usually live in `~/.hermes/config.yaml`, not inside the Skill itself)
+- **Scripts** — Specific execution logic (if needed)
 
-Installing a Skill means putting these files in the `~/hermes/skills/` directory. When the assistant starts, it automatically loads them, just like your phone auto-loading installed apps at boot.
+Installing a Skill means putting these files in `~/.hermes/skills/`. When Hermes starts, it automatically loads them, just like your phone auto-loading installed apps.
 
 > 💡 **Core idea**: Throughput improves when skills are selected precisely, configured cleanly, and validated consistently.
+
+### Three Sources of Skills
+
+| Source | Description | Volume |
+|--------|-------------|--------|
+| **Bundled Skills** | Ship with the repo. Cover GitHub workflows, code-review, systematic-debugging, and 40+ scenarios | 40+ |
+| **Agent-created** | After complex tasks (typically 5+ tool calls), the agent autonomously distills the solution into a new Skill | Grows with use |
+| **Skills Hub** | Community-contributed, follows the [agentskills.io](https://agentskills.io) standard | Continuously growing |
+
+> 💡 **Cross-tool interop**: agentskills.io is an open standard for Skills, supported by 30+ tools including Claude Code, Cursor, Gemini CLI, and Hermes. A Skill you write in one tool loads directly in another. Skills aren't bound to a single agent.
 
 ---
 
 ## Skill Marketplace
 
-The Hermes Agent community maintains a growing skill repository: [hermes skills catalog](https://hermes skills catalog)
+Two main places to find Skills:
+
+- **Official Hub**: [agentskills.io](https://agentskills.io) (cross-tool standard)
+- **Community list**: [awesome-hermes-agent](https://github.com/0xNyk/awesome-hermes-agent) (curated picks for Hermes)
 
 **Browse by category:**
 
@@ -82,42 +95,57 @@ The Hermes Agent community maintains a growing skill repository: [hermes skills 
 
 ## Install Your First Skill
 
-Let's use **remind-me** (reminders) as an example—this is the most beginner-friendly first skill: install it and use it immediately.
+Let's use **remind-me** (reminders) as our example—the friendliest skill for beginners: install it and it works immediately.
 
-### Method 1: Install from Hermes Skills Hub (Recommended)
+### Method 1: Let the Agent install it (recommended)
+
+Just say it in chat:
+
+> Install the remind-me Skill for me
+
+Hermes pulls the matching markdown from agentskills.io, writes it to `~/.hermes/skills/remind-me/SKILL.md`, and activates it immediately—no restart required.
+
+> 💡 **Why conversational install**: Hermes manages Skills through agent tool calls (the `skills` toolset), not a separate CLI subcommand. You can also say "browse Python-development skills on agentskills.io" and have it list them before installing.
+
+### Method 2: Clone manually from GitHub
 
 ```bash
-hermes skills install remind-me
+cd ~/.hermes/skills/
+git clone https://github.com/<author>/<skill-repo>.git remind-me
 ```
 
-It downloads the skill from Hermes Skills Hub and installs it to your skills directory:
-- Default: `<workspace>/skills/` (usually `./skills` in your current directory)
-- Shared install: `~/.hermes/skills` (multiple agents/workspaces on the same machine can share)
+Best for people who want to manage Skill source code themselves—you can fork, edit, and PR back upstream.
 
-### Method 2: Manual Install
+### Method 3: Write your own (covered on Day 7)
 
-```bash
-cd ~/.hermes/skills
-git clone https://github.com/NousResearch/skill-remind-me remind-me
-```
+Drop a `SKILL.md` at `~/.hermes/skills/<my-skill>/SKILL.md` and Hermes will pick it up on next launch.
 
-Manual install is for those who want to manage skill source code themselves; if you just want to get started quickly, use the Hermes Skills Hub method above.
+### Method 4: Pick from the community list
 
-### Method 3: Write Your Own (Covered on Day 7)
+Browse [awesome-hermes-agent](https://github.com/0xNyk/awesome-hermes-agent) for categorized picks. Send the name or URL to Hermes and ask it to install plus give you 3 copy-paste examples.
 
-Create `<workspace>/skills/my-skill/SKILL.md` (or `~/.hermes/skills/my-skill/SKILL.md`), write the instructions, and your assistant will automatically use it.
+---
 
-### Method 4: Pick from GitHub List (Alternative to Hermes Skills Hub)
+## Skill Self-Improvement: Hermes's Killer Feature
 
-If you find the Hermes Skills Hub website hard to use, I recommend picking directly from the GitHub list:
-https://github.com/VoltAgent/awesome-hermes-skills
+This is the single biggest difference between Hermes and OpenClaw, Claude Code, and every other agent skill system.
 
-Usage:
-1. Find the skill you need by category in the repo
-2. Send the skill name/link to your AI and have it install and verify
-3. After installation, ask the AI for 3 copyable usage examples (then use those prompts directly)
+**Traditional Skills are static**: You write the rules, the agent follows them. Want to change them? You hand-edit the markdown.
 
-After installation, no restart needed—most Skills auto-load in the next conversation.
+**Hermes Skills are alive**: They run inside the learning loop and auto-optimize from your feedback.
+
+The mechanism:
+
+1. **Execute the Skill** — Agent follows the steps in the SKILL.md
+2. **Collect feedback** — Your reactions (satisfied / unsatisfied / corrections) land in session memory
+3. **Update the Skill** — Agent analyzes the feedback and rewrites the relevant steps in the SKILL.md
+4. **Use the new version next time** — The improved Skill applies to subsequent tasks automatically
+
+Concrete example: you install a "write Git commit messages" Skill. The first format isn't to your taste, so you say "write the body in English, prefix with the conventional commit type". Next time you don't have to repeat yourself—Hermes has written that rule into the SKILL.md. Open `~/.hermes/skills/git-commit-style/SKILL.md` and you'll see the diff.
+
+> ⚠️ **Observable**: Every Skill change is a markdown diff—readable, revertable, hand-editable. If a learned rule went off the rails, just `nano` it back, and Hermes will incorporate that correction into the next learning pass.
+
+> 💡 **Quality of feedback matters**: If you only say "this isn't quite right" without saying *what* is wrong, the agent can't improve precisely. **Good feedback = good evolution direction.**
 
 ---
 
@@ -200,29 +228,23 @@ Finally gives you a complete analysis report with optimization suggestions.
 
 ## Managing Your Skills
 
-**View installed skills**
+Most Skill management in Hermes happens through conversation. You can ask:
+
+- "List the Skills I currently have installed" → Agent scans `~/.hermes/skills/` for you
+- "Browse Python-development skills on agentskills.io" → Agent searches the hub
+- "Install remind-me" / "Remove the xxx Skill" → Agent uses the `skills` tool
+
+If you prefer the command line, every Skill is just a markdown directory under `~/.hermes/skills/`:
 
 ```bash
-hermes skills list
-```
-
-**Install/update skills from Hermes Skills Hub**
-
-```bash
-hermes skills install <skill-name>    # Install
-hermes skills update <skill-name>     # Update single
-hermes skills update --all            # Update all
-```
-
-**Search skill marketplace**
-
-```bash
-hermes skills search <keyword>
+ls ~/.hermes/skills/                   # list installed
+nano ~/.hermes/skills/<name>/SKILL.md  # edit
+rm -rf ~/.hermes/skills/<name>         # uninstall
 ```
 
 **Skill configuration**
 
-Each skill's config is typically in SKILL.md (and can be overridden in `hermes.json`'s `skills.entries.*`). Skill directories are usually at: `<workspace>/skills/<skill-name>/` or `~/.hermes/skills/<skill-name>/`.
+Each Skill's core file is `~/.hermes/skills/<skill-name>/SKILL.md`. If a Skill needs API keys or other parameters, put them in `~/.hermes/config.yaml` (under toolsets / mcp_servers / custom fields)—not inside SKILL.md. That way config stays centralized and Skills stay clean.
 
 ---
 
@@ -244,11 +266,11 @@ Just like installing phone apps—someone with 200 installed but only using 20 d
 
 ## 🔑 Key Takeaways
 
-- **Skills = AI's App Store**: Each skill is a set of files, install and use
-- **Hermes Skills Hub marketplace**: Community contributed, one command to install
-- **Core recommendations**: Weather, GitHub, Reddit, SEO, social media, video transcription
-- **Skill combos are king**: Multiple skills working together = automated workflows
-- **You can develop your own**: One SKILL.md + scripts = a new skill
+- **Skills = an App Store for AI**: Each Skill is a `~/.hermes/skills/<name>/SKILL.md`
+- **Three sources**: Bundled (40+ ship with the repo) / Agent-created / Community Hub (agentskills.io)
+- **Skill self-improvement**: The more you use it, the better it gets—correct it once and the rule lands in markdown
+- **agentskills.io standard**: Interoperates with Claude Code, Cursor, Gemini CLI—Skills aren't platform-locked
+- **Write your own**: A SKILL.md plus a script is a new Skill
 
 ---
 

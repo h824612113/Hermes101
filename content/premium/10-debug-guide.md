@@ -38,7 +38,7 @@ cat ~/.hermes/logs/hermes.log | tail -50
 |---------|------|---------|
 | `rate limit` | API 速率限制 | 等一会儿重试，或换模型 |
 | `401 Unauthorized` | API Key 失效 | 检查 Key 是否过期/被封 |
-| `context_length_exceeded` | 超出上下文长度 | 精简 MEMORY.md，清理对话历史 |
+| `context_length_exceeded` | 超出上下文长度 | 精简持久记忆 / Skill，清理对话历史 |
 | `timeout` | 请求超时 | 检查网络，或增加超时时间 |
 | `ECONNREFUSED` | 连接被拒绝 | 服务没启动或端口不对 |
 | `permission denied` | 权限不足 | 用 sudo 或检查文件权限 |
@@ -148,21 +148,22 @@ journalctl -u hermes -f
 ### 问题 3：AI 回复质量突然变差
 
 - 检查是不是换了模型（config 被改了）
-- 检查 MEMORY.md 是不是加了矛盾的规则
+- 检查持久记忆里是不是被写入了矛盾的规则（`ls ~/.hermes/memories/` 看一下）
 - 检查上下文是不是太长（被截断了）
 - 检查上游模型有没有更新（行为变了）
 
-### 问题 4：Cron 任务不执行
+### 问题 4：cronjob 不执行
+
+直接在对话里查：
+
+> 列出我所有的定时任务，告诉我它们最近的执行状态。
+
+> 把 ID 是 xxx 的 cron 手动触发一次，把执行结果给我看。
+
+如果你需要直接看底层数据，cronjob 状态存在 `~/.hermes/state.db`：
 
 ```bash
-# 列出所有 cron
-hermes cron list
-
-# 检查特定任务
-hermes cron status <job_id>
-
-# 手动触发看报错
-hermes cron run <job_id>
+sqlite3 ~/.hermes/state.db "SELECT * FROM cronjobs;"
 ```
 
 ### 问题 5：Skill 不生效
@@ -228,8 +229,8 @@ description: Diagnose Hermes issues
 # 只保留真正需要的 skill
 ls ~/.hermes/skills/ | wc -l  # 数量控制在 10 个以内
 
-# 精简 MEMORY.md
-wc -c ~/.hermes/MEMORY.md  # 控制在 2000 字节以内
+# 看一下持久记忆体积，太大就清理
+du -sh ~/.hermes/memories/
 ```
 
 ### 减少延迟
@@ -255,13 +256,13 @@ performance:
 - 常见错误关键词速查（rate limit, 401, timeout, OOM）
 - Bot 不回复时先检查 getMe 和 getUpdates
 - 让 AI 自己做系统检查 — 写成 skill 最省事
-- 控制 skill 数量和 MEMORY.md 大小来优化性能
+- 控制 skill 数量和持久记忆体积来优化性能
 
 ---
 
 ## 全书总结
 
-10 章内容覆盖了 Hermes 从"能用"到"用好"的完整路径：
+11 章内容覆盖了 Hermes 从"能用"到"用好"的完整路径：
 
 1. SOUL.md — 让 AI 懂你
 2. 模型路由 — 省钱不省质量
@@ -273,5 +274,6 @@ performance:
 8. 成本控制 — 月费压到 $5
 9. API 中转 — 自建网关变现
 10. Debug 心法 — 自己修自己的问题
+11. 工作流模板 — 5 个实战自动化
 
-**下一步：** 实战社群和 1v1 咨询。课程是知识，社群是持续学习。
+**下一章：** 工作流模板 — 从零搭 5 个实战自动化。

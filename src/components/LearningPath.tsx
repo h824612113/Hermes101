@@ -149,6 +149,19 @@ export default function LearningPath({ locale }: LearningPathProps) {
           </p>
         </div>
 
+        <div className="reveal mb-6 sm:mb-10 rounded-2xl border border-gray-200 bg-white p-3 sm:p-4 shadow-sm">
+          <div className="relative overflow-hidden rounded-xl border border-gray-100 bg-slate-950">
+            <img
+              src="/images/allpromptimages/Learning Path 路线图.png"
+              alt={isZh ? 'Hermes 学习路线总览图' : 'Hermes learning roadmap visual'}
+              className="block w-full h-auto object-cover"
+            />
+          </div>
+          <p className="mt-3 text-center text-xs sm:text-sm text-gray-500">
+            {isZh ? '路线总览图：直接使用你新生成的路线图。' : 'Roadmap visual: using the newly generated roadmap image.'}
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
           {days.map((d, i) => (
             <a

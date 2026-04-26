@@ -74,6 +74,13 @@ export default function Navbar({ locale, dict }: NavbarProps) {
           >
             {locale === 'zh' ? '💡 我的思考' : '💡 Thoughts'}
           </a>
+          <a
+            href={`${prefix}/pricing`}
+            className="text-sm transition-colors duration-200 font-medium"
+            style={{ color: '#EC4899' }}
+          >
+            {locale === 'zh' ? '🔒 付费进阶' : '🔒 Premium'}
+          </a>
 
           <LanguageSwitcher />
 
@@ -147,6 +154,14 @@ export default function Navbar({ locale, dict }: NavbarProps) {
             style={{ color: '#F59E0B' }}
           >
             {locale === 'zh' ? '💡 我的思考 →' : '💡 Thoughts →'}
+          </a>
+          <a
+            href={`${prefix}/pricing`}
+            onClick={() => setMobileOpen(false)}
+            className="block py-3 transition-colors duration-200 hover:text-white font-medium"
+            style={{ color: '#EC4899' }}
+          >
+            {locale === 'zh' ? '🔒 付费进阶 →' : '🔒 Premium →'}
           </a>
 
           <div className="py-3 border-t border-white/10 mt-2">

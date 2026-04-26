@@ -31,7 +31,7 @@ export default function Hero({ locale, dict }: HeroProps) {
         style={{ background: 'rgba(37, 99, 235, 0.05)', animationDelay: '4s' }}
       />
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -104,105 +104,120 @@ export default function Hero({ locale, dict }: HeroProps) {
           </a>
         </div>
 
-        <div className="mt-8 sm:mt-10 max-w-4xl mx-auto rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-4 sm:p-6 text-left">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <span
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-blue-300/30 bg-blue-400/10 w-fit"
-              style={{ color: 'rgba(219, 234, 254, 0.95)' }}
-            >
-              {dict.hero.metrics.badge}
-            </span>
-            <span className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              {dict.hero.metrics.range}
-            </span>
+        <div className="mt-8 sm:mt-12 max-w-5xl mx-auto grid gap-6 lg:grid-cols-[1.1fr_0.9fr] items-stretch">
+          <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-4 sm:p-6 overflow-hidden">
+            <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-white/10 bg-slate-950/60">
+              <img
+                src="/images/allpromptimages/Hermes首页图.png"
+                alt={isZh ? 'Hermes 首页主视觉' : 'Hermes homepage visual'}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            <div className="mt-3 text-left text-xs sm:text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              {isZh ? '首页主视觉：直接使用你新生成的 Hermes 首页图。' : 'Homepage hero visual: using the newly generated Hermes image.'}
+            </div>
           </div>
 
-          <h3 className="mt-3 text-lg sm:text-xl font-bold" style={{ color: '#fff' }}>
-            {dict.hero.metrics.title}
-          </h3>
-          <p className="mt-1 text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            {dict.hero.metrics.subtitle}
-          </p>
+          <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-4 sm:p-6 text-left">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <span
+                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-blue-300/30 bg-blue-400/10 w-fit"
+                style={{ color: 'rgba(219, 234, 254, 0.95)' }}
+              >
+                {dict.hero.metrics.badge}
+              </span>
+              <span className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                {dict.hero.metrics.range}
+              </span>
+            </div>
 
-          <div className="mt-4 space-y-3 md:hidden">
-            {metricItems.map((item) => (
-              <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 p-3">
-                <div className="text-sm font-semibold" style={{ color: '#fff' }}>
-                  {item.label}
-                </div>
-                <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
-                  <div>
-                    <div style={{ color: 'rgba(255,255,255,0.5)' }}>{dict.hero.metrics.columns.baseline}</div>
-                    <div className="mt-1 font-semibold" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                      {item.baseline}
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{ color: 'rgba(255,255,255,0.5)' }}>{dict.hero.metrics.columns.current}</div>
-                    <div className="mt-1 font-semibold" style={{ color: '#86efac' }}>
-                      {item.current}
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{ color: 'rgba(255,255,255,0.5)' }}>{dict.hero.metrics.columns.target}</div>
-                    <div className="mt-1 font-semibold" style={{ color: '#93c5fd' }}>
-                      {item.target}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            <h3 className="mt-3 text-lg sm:text-xl font-bold" style={{ color: '#fff' }}>
+              {dict.hero.metrics.title}
+            </h3>
+            <p className="mt-1 text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>
+              {dict.hero.metrics.subtitle}
+            </p>
 
-          <div className="hidden md:block mt-4 overflow-x-auto">
-            <table className="w-full text-sm border-separate border-spacing-y-2">
-              <thead>
-                <tr>
-                  <th
-                    className="text-left text-xs font-semibold px-3"
-                    style={{ color: 'rgba(255,255,255,0.55)' }}
-                  >
-                    {dict.hero.metrics.columns.metric}
-                  </th>
-                  <th
-                    className="text-left text-xs font-semibold px-3"
-                    style={{ color: 'rgba(255,255,255,0.55)' }}
-                  >
-                    {dict.hero.metrics.columns.baseline}
-                  </th>
-                  <th
-                    className="text-left text-xs font-semibold px-3"
-                    style={{ color: 'rgba(255,255,255,0.55)' }}
-                  >
-                    {dict.hero.metrics.columns.current}
-                  </th>
-                  <th
-                    className="text-left text-xs font-semibold px-3"
-                    style={{ color: 'rgba(255,255,255,0.55)' }}
-                  >
-                    {dict.hero.metrics.columns.target}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {metricItems.map((item) => (
-                  <tr key={item.label} className="bg-white/5">
-                    <td className="px-3 py-2 rounded-l-lg font-medium" style={{ color: '#fff' }}>
-                      {item.label}
-                    </td>
-                    <td className="px-3 py-2" style={{ color: 'rgba(255,255,255,0.8)' }}>
-                      {item.baseline}
-                    </td>
-                    <td className="px-3 py-2 font-semibold" style={{ color: '#86efac' }}>
-                      {item.current}
-                    </td>
-                    <td className="px-3 py-2 rounded-r-lg font-semibold" style={{ color: '#93c5fd' }}>
-                      {item.target}
-                    </td>
+            <div className="mt-4 space-y-3 md:hidden">
+              {metricItems.map((item) => (
+                <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-sm font-semibold" style={{ color: '#fff' }}>
+                    {item.label}
+                  </div>
+                  <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
+                    <div>
+                      <div style={{ color: 'rgba(255,255,255,0.5)' }}>{dict.hero.metrics.columns.baseline}</div>
+                      <div className="mt-1 font-semibold" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                        {item.baseline}
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ color: 'rgba(255,255,255,0.5)' }}>{dict.hero.metrics.columns.current}</div>
+                      <div className="mt-1 font-semibold" style={{ color: '#86efac' }}>
+                        {item.current}
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ color: 'rgba(255,255,255,0.5)' }}>{dict.hero.metrics.columns.target}</div>
+                      <div className="mt-1 font-semibold" style={{ color: '#93c5fd' }}>
+                        {item.target}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden md:block mt-4 overflow-x-auto">
+              <table className="w-full text-sm border-separate border-spacing-y-2">
+                <thead>
+                  <tr>
+                    <th
+                      className="text-left text-xs font-semibold px-3"
+                      style={{ color: 'rgba(255,255,255,0.55)' }}
+                    >
+                      {dict.hero.metrics.columns.metric}
+                    </th>
+                    <th
+                      className="text-left text-xs font-semibold px-3"
+                      style={{ color: 'rgba(255,255,255,0.55)' }}
+                    >
+                      {dict.hero.metrics.columns.baseline}
+                    </th>
+                    <th
+                      className="text-left text-xs font-semibold px-3"
+                      style={{ color: 'rgba(255,255,255,0.55)' }}
+                    >
+                      {dict.hero.metrics.columns.current}
+                    </th>
+                    <th
+                      className="text-left text-xs font-semibold px-3"
+                      style={{ color: 'rgba(255,255,255,0.55)' }}
+                    >
+                      {dict.hero.metrics.columns.target}
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {metricItems.map((item) => (
+                    <tr key={item.label} className="bg-white/5">
+                      <td className="px-3 py-2 rounded-l-lg font-medium" style={{ color: '#fff' }}>
+                        {item.label}
+                      </td>
+                      <td className="px-3 py-2" style={{ color: 'rgba(255,255,255,0.8)' }}>
+                        {item.baseline}
+                      </td>
+                      <td className="px-3 py-2 font-semibold" style={{ color: '#86efac' }}>
+                        {item.current}
+                      </td>
+                      <td className="px-3 py-2 rounded-r-lg font-semibold" style={{ color: '#93c5fd' }}>
+                        {item.target}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -277,18 +292,6 @@ export default function Hero({ locale, dict }: HeroProps) {
               {isZh ? '开源项目' : 'Open Source'}
             </div>
           </div>
-        </div>
-
-        <div className="mt-12 animate-bounce">
-          <svg
-            className="w-6 h-6 mx-auto"
-            style={{ color: 'rgba(255,255,255,0.3)' }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
         </div>
       </div>
     </section>

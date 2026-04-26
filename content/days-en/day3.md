@@ -71,10 +71,13 @@ The combined outcome is simple:
 
 SOUL.md is your assistant's personality manual. It determines who the assistant is, how it speaks, what it should and shouldn't do.
 
-Open your working directory and edit SOUL.md:
+> 💡 **Where it lives**: Hermes doesn't ship a `SOUL.md` by default, but `~/.hermes/skills/` is the directory it scans for Skills. Drop a SOUL/USER/AGENTS trio there and Hermes will load them as Skills into context. This pattern came out of the OpenClaw community and works just as well in Hermes—because a Skill is, fundamentally, markdown behavior instructions.
+
+Open `~/.hermes/skills/` and create a soul Skill:
 
 ```bash
-nano ~/hermes/SOUL.md
+mkdir -p ~/.hermes/skills/soul
+nano ~/.hermes/skills/soul/SKILL.md
 ```
 
 > 💡 Don't want to build from scratch? Use the GitHub template repo **Hermes template**: [Click here](https://github.com/NousResearch/hermes-agent)
@@ -145,8 +148,11 @@ You can't list everything it should do, but you can list a few things it absolut
 USER.md isn't written for others to see—it's written for your AI assistant to see. The clearer you introduce yourself, the better your assistant can help you.
 
 ```bash
-nano ~/hermes/USER.md
+mkdir -p ~/.hermes/skills/user-profile
+nano ~/.hermes/skills/user-profile/SKILL.md
 ```
+
+> 💡 **Side note**: Hermes also has an optional user-modeling system called Honcho that dialectically infers "what you say vs. what you actually do" from your conversations. USER.md is what you **explicitly** tell the agent; Honcho is what it **passively** infers. They complement each other. Honcho's toggle lives in `config.yaml`.
 
 **Reference template:**
 
@@ -190,20 +196,21 @@ You might think this is just a resume. But its real purpose is—**giving AI con
 
 AGENTS.md defines how the assistant works and operating standards. If SOUL.md is "who you are," then AGENTS.md is "how you work."
 
-Hermes Agent automatically generates a default AGENTS.md during installation. You can modify it from there:
+Drop it at `~/.hermes/skills/agents/SKILL.md`:
 
 ```bash
-nano ~/hermes/AGENTS.md
+mkdir -p ~/.hermes/skills/agents
+nano ~/.hermes/skills/agents/SKILL.md
 ```
 
 Key sections include:
 
-- **Memory management**: What files should the assistant read when starting, how to record what happened today
-- **Security boundaries**: Which operations can be done freely, which need confirmation
-- **Interaction rules**: How to behave in group chats, when to speak and when to stay quiet
-- **Heartbeat tasks**: What to do during periodic checks (we'll cover this in detail on Day 6)
+- **Memory management**: What files the assistant should read on startup, how to record today's events (Hermes auto-manages the three-layer memory by default; this is where you note your preferences)
+- **Security boundaries**: Which operations are free, which need confirmation
+- **Interaction rules**: How to behave in group chats, when to speak vs. stay quiet
+- **Cron job conventions**: Used on Day 6—what tone the scheduled jobs should report in
 
-Generally, the default AGENTS.md is already well-written; you just need to fine-tune based on your habits.
+> 💡 **Reminder**: Hermes ships 40+ bundled Skills (under `~/.hermes/skills/`—github, code-review, systematic-debugging, and more). The AGENTS.md you write sits *on top* of those, supplying global working principles that override defaults.
 
 ---
 
@@ -241,8 +248,11 @@ Look at the default AGENTS.md, change one or two things you care about. For exam
 ### Step 4: Restart Your Assistant
 
 ```bash
-hermes daemon restart
+# Ctrl+C the running hermes process in its terminal, then:
+hermes
 ```
+
+On next launch, the SOUL/USER/AGENTS skills under `~/.hermes/skills/` get loaded into context automatically.
 
 Then send another message to test. You'll notice—**it's different.**
 

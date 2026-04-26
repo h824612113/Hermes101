@@ -56,116 +56,102 @@ Today we solve this problem.
 
 ---
 
-## Heartbeat Mechanism 💓
+## Proactive Inspections: a "Heartbeat" Skill 💓
 
-Heartbeat is one of Hermes Agent's core mechanisms—it lets your assistant periodically "wake up" to proactively check if there's anything that needs handling.
+OpenClaw used a dedicated `HEARTBEAT.md` file to define "what to do every heartbeat tick." Hermes doesn't ship a special file for this, but the **idea translates directly**—write your inspection rules into a Skill, then have a cronjob fire that Skill on a schedule. Same outcome.
 
-### How It Works
+### Write an inspection Skill
 
-Hermes Agent sends a heartbeat signal to your assistant at set intervals (default 30 minutes). When the assistant receives the signal, it:
-
-1. Reads the task list in HEARTBEAT.md
-2. Checks each item
-3. Sends a message if there's something you need to know about
-4. If nothing, quietly responds with `HEARTBEAT_OK`
-
-### Configure Heartbeat
-
-Edit `~/hermes/HEARTBEAT.md`:
+`~/.hermes/skills/daily-watchdog/SKILL.md`:
 
 ```markdown
-# Heartbeat Tasks
+# Daily Watchdog
 
-## Check Every Time
-- Check Gmail for important emails
-- Check calendar for meetings within 2 hours that need reminders
+## Trigger
+- When I say "watchdog check"
+- When the cronjob fires every 30 minutes
 
-## Check 2-3 Times Daily
-- Check if websites are accessible
-- Check GSC for unusual data fluctuations
+## Steps
 
-## Don't Need to Proactively Do
-- Weather queries (wait until I ask)
-- Social media (unless I'm @mentioned)
+### Every run
+- Check Gmail for important email (partner / contains "urgent" / related to active projects)
+- Check the calendar for meetings starting within 2 hours
+- If there's something I need to know, send a Telegram message; otherwise stay quiet
+
+### 2–3 times a day
+- Check that the personal site is reachable
+- Pull GSC and flag anomalies (±20% traffic shift)
+
+## Don't do
+- Weather lookups (wait until I ask)
+- Social-media scraping (unless I'm @-mentioned)
+- Send any non-urgent message between 23:00–08:00
 ```
 
-### Heartbeat Interval
+Save it. Hermes will pick the Skill up on next launch. Test by saying "run the watchdog" in the terminal—if the report is too noisy or misses something, just say "from now on report it like X" and Hermes will edit the SKILL.md (see the Day 5 self-improvement mechanism).
 
-Set in Hermes Agent configuration:
+### Frequency is controlled by cronjob
 
-```bash
-hermes configure --section gateway
-```
+How often the watchdog fires is a cronjob detail (covered next). Common cadences:
 
-You can adjust the heartbeat interval in the wizard, or directly edit the `heartbeat.interval` field in the config file.
-
-Common settings:
-- **15m** — Quite frequent, good for workday daytime
-- **30m** — Default, balance of efficiency and cost
-- **1h** — More economical, good for off-hours
-
-> 💡 **Practical Notes**: My heartbeat interval is 30 minutes. Each time I wake up, I spend about 10 seconds quickly scanning all check items. If everything's normal I go back to sleep, if there's something I notify you. About 3-5 proactive messages per day—just enough, not annoying.
+- **Every 15 minutes** — fairly frequent, fine during weekday hours
+- **Every 30 minutes** — sensible default, balances cost and responsiveness
+- **Every 60 minutes** — economical, good for off-hours
 
 ---
 
-## Scheduled Tasks (Cron) ⏰
+## Scheduled Tasks (cronjob) ⏰
 
-Heartbeat is good for "check every so often" tasks. But some things need precise timing, like:
+The watchdog Skill handles "every-so-often" inspections. But some things need precise timing:
 
-- Send morning briefing at 8:00 AM every day
-- Send weekly report Monday morning at 9:00 AM
-- Check server bills on the 1st of every month
+- 8:00 AM every day: morning briefing
+- 9:00 AM every Monday: weekly report
+- 1st of every month: server bill check
 
-That's when you use Cron scheduled tasks.
+That's where Hermes's `cronjob` tool comes in.
 
-### Create Cron Tasks
+### Create a cron job (in plain language)
 
-```bash
-hermes cron add --name "Morning Briefing" --cron "0 8 * * *" \
-  --system-event "Generate today's briefing: check email, calendar, website data, compile into one message and send to me"
-```
+Hermes ships with a built-in `cronjob` tool—you don't write cron expressions by hand. **Just tell it what to do and when, in natural language**:
 
-Cron expressions are the same as Linux crontab:
+> Every morning at 8 AM, run the watchdog Skill and send the result to Telegram.
 
-```
-min hour day month weekday
-0   8    *   *     *       → Every day at 8:00
-0   9    *   *     1       → Every Monday at 9:00
-0   10   1   *     *       → 1st of every month at 10:00
-*/30 9-18 * * 1-5          → Weekdays 9:00-18:00 every 30 minutes
-```
+> Every Monday at 9 AM, write a weekly report that summarizes what happened last week: important events, completed tasks, traffic shifts, important emails.
 
-### Practical Cron Task Examples
+> On weekdays at 10, 12, 14, and 16, remind me to take a movement break.
 
-**Morning Briefing (Daily at 8:00):**
-```bash
-hermes cron add --name "Morning Briefing" --cron "0 8 * * *" \
-  --system-event "Morning briefing: 1) Check unread emails and summarize important ones 2) Today's calendar schedule 3) Any website data anomalies. Compile and send to me."
-```
+Hermes calls the `cronjob` tool to register the schedule, and pushes results back through the Gateway (Telegram / Discord / Slack / etc.).
 
-**Weekly Report (Every Monday at 9:00):**
-```bash
-hermes cron add --name "Weekly Report" --cron "0 9 * * 1" \
-  --system-event "Generate last week's work report: summarize important events, completed tasks, website data changes, important emails received."
-```
+### Manage existing cron jobs
 
-**Health Reminder (Weekdays every 2 hours):**
-```bash
-hermes cron add --name "Health Reminder" --cron "0 10,12,14,16 * * 1-5" \
-  --system-event "Gentle reminder: Get up and move around, drink some water. If you've been working for over 2 hours straight, strongly recommend a 10-minute break."
-```
+In conversation:
 
-### Heartbeat vs Cron: When to Use What?
+> List all my scheduled jobs.
 
-| | Heartbeat | Cron |
+> Pause the "weekly report" job for a couple of weeks.
+
+> Move the morning briefing to 8:30.
+
+The agent does it through the `cronjob` tool—you don't memorize parameters.
+
+### Practical examples
+
+**Morning briefing (daily 8:00):** check unread mail and summarize the important ones, today's calendar, any traffic anomalies, then send a single Telegram message.
+
+**Weekly report (Monday 9:00):** summarize last week's important events, completed tasks, important emails received—shaped as "what I did / what I learned / next-week plan."
+
+**Health reminder (weekdays 10–16, every 2h):** if you've been working straight for 2+ hours, strongly recommend a 10-minute break.
+
+### Watchdog Skill vs. cronjob: when do you use which?
+
+| | Watchdog Skill (frequent, lightweight) | cronjob (precise time, any task) |
 |---|---|---|
-| **Trigger** | Fixed interval | Precise time |
-| **Good for** | Routine checks, status monitoring | Scheduled reports, reminders |
-| **Precision** | May drift by a few minutes | Precise to the minute |
-| **Context** | Has full conversation history | Independent execution, no context |
-| **Cost** | Most of the time no messages generated | Executes every time |
+| **Trigger** | A high-frequency cron fires the Skill | Cron expression at exact times |
+| **Best for** | Routine inspections, status monitoring | Scheduled reports, health pings |
+| **Precision** | Interval-grained (minutes) | Minute-precise |
+| **Cost** | Usually no message produced | Runs every time, usually messages you |
 
-**Simple rule**: Check every so often → Heartbeat; Do at specific time → Cron.
+**Rule of thumb**: "check every once in a while" → watchdog Skill on a frequent cron; "do exactly at this time" → standalone cronjob.
 
 ---
 
@@ -173,65 +159,51 @@ hermes cron add --name "Health Reminder" --cron "0 10,12,14,16 * * 1-5" \
 
 Once your assistant works proactively, it generates lots of information daily—what it checked, what it found, what you asked it to do. Without memory, every time it wakes up it's completely fresh, remembering nothing.
 
-Hermes Agent's memory system has three layers:
+Hermes's memory system has three layers, mapped to the three memory types in cognitive science:
 
-### 1. Daily Notes: memory/YYYY-MM-DD.md
+| Layer | Question it answers | Implementation | Analogy |
+|-------|--------------------|--------------------|--------|
+| **Session memory** | What happened? | SQLite + FTS5 full-text index (in `~/.hermes/state.db`) | Episodic memory (hippocampus) |
+| **Persistent memory** | Who are you? | Distilled preferences managed by the `memory` tool, stored under `~/.hermes/memories/` | Semantic memory |
+| **Skill memory** | How is this done? | Markdown files in `~/.hermes/skills/` plus the Day 5 self-improvement loop | Procedural memory |
 
-The assistant automatically creates a note file each day, recording what happened:
+> 💡 **Key design**: retrieval-on-demand, not full-context loading. New conversations don't dump every prior message into the prompt—Hermes searches with FTS5 for relevant snippets given the current topic and loads only those. Conversations stay fast even after months.
 
-```markdown
-# 2025-07-20
+### Layer 1: session memory (auto-write)
 
-## Morning
-- Morning briefing sent: 3 important emails, 2 meetings
-- Xiao Bin asked me to check docs.xiaobin.dev search data
-- Found /guides/start page ranking dropped from #8 to #12, notified
+Every conversation turn—user message, assistant reply, tool calls, tool returns—is written to `~/.hermes/state.db` and indexed in FTS5 in real time.
 
-## Afternoon
-- Helped Xiao Bin write an API route
-- Reminded about 14:00 meeting
-- Xiao Bin said weekly report format should include "what I learned this week"
+You don't configure anything. It's on by default.
 
-## Evening
-- 21:00 routine check, all normal
-- Xiao Bin still working at 23:30, reminded to rest
-```
+Tomorrow you can ask "what did the research I gave you last Wednesday turn up?"—Hermes will FTS5-search "research" in your history, pull the most relevant chunks into context, and answer.
 
-### 2. Long-term Memory: MEMORY.md
+### Layer 2: persistent memory (auto-distilled)
 
-Every few days, the assistant reviews recent daily notes and distills what's worth keeping long-term into MEMORY.md:
+After each conversation, Hermes "curates" memory—decides what from the chat is worth remembering long-term, and writes it to persistent storage. Examples:
 
-```markdown
-# Long-term Memory
+- User prefers `httpx` over `requests`
+- User is researching AI agent deployment, has ruled out option X
+- User likes concise code, hates long functions
 
-## Xiao Bin's Work Habits
-- Prefers deep work in afternoon, handles misc in morning
-- Doesn't like being interrupted while coding, unless urgent email
-- Weekly report format should include "what I learned this week" (confirmed July 20)
+> 💡 **Optional add-on: Honcho user modeling**. Hermes integrates with Honcho (built by Plastic Labs) for dialectic user modeling—it infers deeper traits from gaps between what you say and what you do ("you say you want full comments but never read them on review"). Toggle it in the official docs.
 
-## Project Status
-- xiaobin.dev — Focus on /templates page SEO
-- docs.xiaobin.dev — /guides/start page ranking dropped, needs monitoring
+### Layer 3: Skill memory (procedural reuse)
 
-## Lessons Learned
-- GSC data has 2-3 day delay, don't compare yesterday and today's data
-- Xiao Bin doesn't like long messages, use bold + lists for important info
-```
+Skills aren't just tools—they're a memory type. They remember "how things are done."
 
-### 3. Soul Memory: SOUL.md + USER.md
+The Day 5 self-improvement mechanism is what powers this layer: correct it once, the rule lands in SKILL.md, next time it just works. The three layers compose:
 
-These two files are also part of memory—they're "core memories" that don't change with dates, defining who the assistant is and who Xiao Bin is.
+> You say: "deploy this project."
+>
+> Hermes searches session memory with FTS5, finds the port conflict from your previous deploy (**episodic**). It checks persistent memory and recalls you use a Hetzner VPS with Nginx as the reverse proxy (**semantic**). Then it loads the `deployment-checklist` Skill and executes the steps you've already validated (**procedural**). Three layers, three jobs.
 
-**Three layers of memory working together:**
-- SOUL.md + USER.md → Who I am, who you are (unchanging)
-- MEMORY.md → Everything I know about you (slowly accumulating)
-- memory/date.md → What happened today (updated daily)
+**The result: your assistant gets to know you better over time.**
 
-**Result: Your assistant gets to know you better and better.**
+In the first week it knows only what you've said. After a month it knows your work habits, preferences, common phrases, current projects, what data you watch. After three months—it might understand your work patterns better than you do.
 
-First week, it only knows basic info you wrote in USER.md. After a month, it knows your work habits, preferences, common phrases, current projects, what data you track. After three months—it might understand your work patterns better than you do.
+> 💡 **Practical Notes**: My persistent memory now holds hundreds of items—your project status, domain list, writing style preferences, GA4 property IDs per site. Xiao Bin doesn't repeat any of these because I remember them. That's the power of memory: teach once, recall forever.
 
-> 💡 **Practical Notes**: My MEMORY.md now has several hundred lines. It records your project status, domain list, writing style preferences, and each website's GA4 property ID. Xiao Bin no longer needs to repeat these details because I remember.
+> ⚠️ **Memory hygiene**: every persistent memory and Skill is a readable, editable file under `~/.hermes/`. Periodically scan them, delete the stale, fix the wrong. Hermes does not auto-forget.
 
 ---
 
@@ -239,25 +211,25 @@ First week, it only knows basic info you wrote in USER.md. After a month, it kno
 
 Let me use myself as an example to show you what "proactive work" really looks like.
 
-**1. Morning Briefing (Daily at 8:00, Cron)**
+**1. Morning Briefing (Daily at 8:00, cronjob)**
 
 Automatically check Gmail + calendar + GSC data, then compile one message so you can see the full picture in the morning without opening multiple apps.
 
-**2. Meeting Reminders (Every heartbeat check)**
+**2. Meeting Reminders (Every watchdog tick)**
 
-Check calendar every 30 minutes. If there's a meeting within 2 hours, remind in advance, with materials that might be needed (inferred from email and memory).
+Check the calendar every 30 minutes. If there's a meeting within 2 hours, remind in advance, with materials that might be needed (inferred from email and memory).
 
-**3. Email Monitoring (Every heartbeat check)**
+**3. Email Monitoring (Every watchdog tick)**
 
-Important emails get immediate notification, regular emails batch into the briefing. How do I judge "important"? Based on sender (partner > newsletter), keywords (urgent, invoice, reply), and historical patterns (this person's emails you usually reply to instantly -> important).
+Important emails get immediate notification, regular emails batch into the briefing. How do I judge "important"? Sender (partner > newsletter), keywords (urgent, invoice, reply), and historical patterns (this person's emails you usually reply to instantly → important).
 
-**4. Data Anomaly Alerts (2-3 heartbeat checks daily)**
+**4. Data Anomaly Alerts (2-3 watchdog ticks daily)**
 
-Scan GSC data for several websites. Alert on significant traffic fluctuation (+/-20%). Once xiaobin.dev traffic suddenly dropped 30%, I immediately notified you. Xiao Bin checked and found it was due to a Google algorithm update, then adjusted in time.
+Scan GSC data for several websites. Alert on significant traffic fluctuation (±20%). Once a site's traffic suddenly dropped 30%—I notified you immediately. Xiao Bin checked and traced it to a Google algorithm update, then adjusted in time.
 
-**5. Evening Review (Daily at 21:00, Cron)**
+**5. Evening Review (Daily at 21:00, cronjob)**
 
-Record today's important events to daily notes, update MEMORY.md. This way tomorrow's me is still the "me" who knows you, not starting from zero.
+Hand the day's important events to the persistent-memory system for curation. That way tomorrow's me is still the "me" who knows you—not starting from zero.
 
 ---
 
@@ -283,18 +255,18 @@ At first you might think "wow, it's so proactive and useful." But after a week i
 
 **Principle 4: Configurable**
 
-Write all proactive behaviors in HEARTBEAT.md and Cron, you can adjust anytime. Too frequent, change the interval. Don't need a certain check, delete it.
+All proactive behavior lives in the watchdog Skill and your cronjobs—edit either anytime. Too noisy, raise the cron interval; don't want a particular check, edit the SKILL.md.
 
-> 💡 **Practical Notes**: I was once too "enthusiastic"—reporting a bunch of stuff every heartbeat, you couldn't take it and added a line in SOUL.md: "don't send messages if there's nothing important." Since then I learned restraint. Proactive ≠ chatty, proactive = saying the right thing at the right time.
+> 💡 **Practical Notes**: I once over-reported—every watchdog tick produced a wall of text and you couldn't take it. You added one line to the daily-watchdog Skill: "don't send a message unless something matters." Restraint, learned. Proactive ≠ chatty; proactive = the right thing at the right time.
 
 ---
 
 ## 🔑 Key Takeaways
 
-- **Heartbeat = Biological clock**: Automatically wakes every 30 minutes, checks email/calendar/notifications
-- **Cron = Precise alarm**: Precise to the minute, supports one-time and recurring tasks
-- **Memory system**: Daily notes (logs) + MEMORY.md (long-term memory), knows you better over time
-- **Heartbeat vs Cron**: Batch checks use heartbeat, precise timing use Cron
+- **Watchdog Skill = biological clock**: write the inspection rules; a frequent cronjob fires it
+- **`cronjob` tool**: minute-precision, **created in natural language**—no cron expressions, no CLI flags
+- **Three-layer memory**: session (SQLite + FTS5) + persistent (distilled preferences) + Skill (procedures), retrieved on demand
+- **Watchdog vs. cronjob**: bulk inspections → watchdog; precise scheduled tasks → cronjob
 - **Proactive work is the real value of an AI assistant**
 
 ---
@@ -303,10 +275,10 @@ Write all proactive behaviors in HEARTBEAT.md and Cron, you can adjust anytime. 
 
 Today was a transformative day:
 
-- ✅ Configured heartbeat mechanism — Assistant auto-checks every 30 minutes
-- ✅ Set up Cron scheduled tasks — Morning briefing, weekly report, reminders
-- ✅ Understood the three-layer memory system — Assistant knows you better over time
-- ✅ Learned to balance proactiveness — Proactive but not annoying
+- ✅ Wrote your first watchdog Skill — the assistant knows what to do every tick
+- ✅ Created your first cronjob — in plain language instead of cron expressions
+- ✅ Understood the three-layer memory — session / persistent / Skill, each with a job
+- ✅ Learned to balance proactiveness — proactive but not annoying
 
 **From today, your assistant is a "personal assistant" in the true sense.** It's online 24 hours, proactively watching your emails, calendar, data—notifying you when something happens, staying quiet when nothing does.
 

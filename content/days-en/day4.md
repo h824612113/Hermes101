@@ -76,6 +76,12 @@ Today we'll install four core skills:
 
 This is your first "practical skill" and what most people need most.
 
+> 💡 **How the connection works**: Gmail/Calendar can be wired in two main ways:
+> 1. **MCP Server** (recommended): Use a community Gmail/GCal MCP (e.g. `@modelcontextprotocol/server-gmail`, `@modelcontextprotocol/server-google-calendar`) and declare it in `~/.hermes/config.yaml`
+> 2. **Custom Skill**: Write a Skill that drives the Google API via shell tools (`gcalcli`, `mbsync`, etc.)
+>
+> We'll use MCP below. The Model Context Protocol is an open standard introduced by Anthropic in late 2024; the ecosystem now has 6,000+ MCP servers, all reachable from Hermes.
+
 ### Step 1: Create a Google Cloud Project
 
 1. Go to [console.cloud.google.com](https://console.cloud.google.com)
@@ -90,19 +96,29 @@ This is your first "practical skill" and what most people need most.
 2. Click **Create Credentials → OAuth client ID**
 3. Application type: choose **Desktop app**
 4. Download the JSON file, name it `credentials.json`
-5. Place it in your working directory (you can send it to your AI and have it place it for you): `~/hermes/credentials.json`
+5. Place it in the Hermes data directory: `~/.hermes/credentials.json`
 
-### Step 3: Install Gmail Skill
+### Step 3: Wire Gmail MCP into config.yaml
 
-Installing Hermes Agent skills is simple (you can have your AI install it for you):
+Open `~/.hermes/config.yaml` and append an `mcp_servers` block at the bottom:
 
-```bash
-hermes skills install gog
+```yaml
+mcp_servers:
+  gmail:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-gmail"]
+    env:
+      GMAIL_CREDENTIALS_PATH: "${HOME}/.hermes/credentials.json"
+  gcal:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-google-calendar"]
+    env:
+      GMAIL_CREDENTIALS_PATH: "${HOME}/.hermes/credentials.json"
 ```
 
-> 💡 **gog** is the Google Workspace skill, which includes Gmail + Google Calendar + Google Drive.
+> ⚠️ **Package names move**: MCP package names change frequently. Check the canonical [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) repo, or browse [agentskills.io](https://agentskills.io) and [awesome-hermes-agent](https://github.com/0xNyk/awesome-hermes-agent) for community alternatives if those exact slugs don't resolve.
 
-The first time you run it, it will open a browser link for you to authorize your Google account. After authorization, it generates a `token.json`—that's your key.
+Save, then Ctrl+C the running hermes process and relaunch it. On first connection Hermes opens a browser window for the Google OAuth flow. After authorization a token file is written—that's your key.
 
 ### Step 4: Test
 
@@ -129,7 +145,7 @@ If everything is working, you'll get a response like this:
 
 With Gmail set up, calendar is simple—they share the same Google OAuth authentication.
 
-Since you already authorized your Google account when installing the gog skill, and we enabled the Calendar API in Step 1, calendar functionality works directly without extra steps.
+Since we already declared the `gcal` MCP server alongside `gmail`, and we enabled the Calendar API in Step 1, calendar functionality works without any extra steps.
 
 Test it:
 
@@ -161,19 +177,24 @@ Before, you'd open your calendar app, scroll up and down to find free slots, man
 
 Letting your assistant search the web is key to breaking the "information silo."
 
-Hermes Agent supports multiple search methods. The simplest is Brave Search API:
+Hermes ships with a `web` toolset (search + fetch) that works out of the box. If you want a more focused, separately-billed search source like Brave Search or Tavily, you can layer it on.
 
-### Configure Brave Search
+### Configure Brave Search (optional)
 
 1. Go to [brave.com/search/api](https://brave.com/search/api) and register a free account
-2. Get your API Key
-3. Add it to Hermes Agent configuration:
+2. Get your API key
+3. Edit `~/.hermes/config.yaml` and add Brave Search as an MCP server:
 
-```bash
-hermes configure --section web
+```yaml
+mcp_servers:
+  brave-search:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-brave-search"]
+    env:
+      BRAVE_API_KEY: "your_key_here"
 ```
 
-The wizard will prompt you to enter your Brave Search API Key and automatically write it to the config.
+Save, Ctrl+C the hermes process, and relaunch.
 
 After configuration:
 
@@ -197,11 +218,22 @@ Some information search engines can't find—like specific content on a particul
 
 That's when you need the browser skill—letting your assistant "see" webpages.
 
-Hermes Agent has a built-in browser skill (based on Playwright), already auto-configured during installation. It can:
+The built-in `browser` toolset (powered by Playwright) ships enabled by default and can:
 
 - **Visit any URL** and extract content
 - **Take screenshots** of the current page
 - **Interact** with clicks, inputs, scrolling
+
+If `browser` isn't listed in your active toolsets, enable it in `~/.hermes/config.yaml`:
+
+```yaml
+toolsets:
+  - web        # web search + fetch
+  - browser    # Playwright browser
+  - terminal   # shell commands
+  - file       # file ops
+  - skills     # Skill management
+```
 
 Usage example:
 
@@ -227,15 +259,17 @@ It will open the page, extract pricing information, and even compare with previo
 
 With email, calendar, and browser connected—your assistant can now touch a lot of personal data. Security is something you must take seriously.
 
-I recommend running a security check first (especially if you've changed configs or exposed network ports):
+A quick audit (do this whenever you've changed config or exposed network ports):
 
 ```bash
-hermes security audit
-hermes security audit --deep
-hermes security audit --fix  # Confirm it's safe before using this
+# verify ~/.hermes permissions are sane
+ls -la ~/.hermes/
+chmod 700 ~/.hermes/                       # only the current user can read
+chmod 600 ~/.hermes/config.yaml            # no one else should read the config
+chmod 600 ~/.hermes/credentials.json       # same for OAuth credentials
 ```
 
-> ⚠️ **Browser-related reminder**: Browser Relay / CDP is basically equivalent to "remote control permissions." Only recommended for localhost or tailnet use—avoid exposing to public internet.
+> ⚠️ **Browser caveat**: If you run the `browser` toolset on a VPS, set `terminal: docker` so Playwright runs inside a container—this prevents a hostile site from reaching your host filesystem via a browser exploit.
 
 ### 1. API Key Security
 

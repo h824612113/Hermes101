@@ -10,7 +10,7 @@ description: "Hermes Agent 7天教程 - 第 5 天：解锁技能树"
 
 ## 📖 本章导读
 
-![Hermes 助手与技能拼图](/images/days/day5/day5-hero.jpg)
+![Hermes 助手 - Day 5 技能树](/images/allpromptimages/day5.png)
 
 今天你将完成技能体系的基础建设：
 - 理解 Skills 在执行链路中的位置
@@ -24,7 +24,7 @@ description: "Hermes Agent 7天教程 - 第 5 天：解锁技能树"
 ## 主线进度（Day 5）
 
 - Day 4 已经打通小滨的邮件、日历和网页上下文。
-- 今天把这些能力做成可维护模块，围绕 `他的个人网站` 发布冲刺选择技能组合。
+- 今天把这些能力做成可维护模块，围绕 Hermes 101 发布冲刺选择技能组合。
 - `Day 5` 里程碑：形成“安装-验证-回滚”闭环，而不是随手堆功能。
 
 ---
@@ -52,18 +52,31 @@ description: "Hermes Agent 7天教程 - 第 5 天：解锁技能树"
 每个 Skill 是一组文件，通常包括：
 
 - **SKILL.md** — 技能说明书（告诉 AI 这个技能做什么、怎么用）
-- **配置文件** — API Key、连接参数等
+- **配置文件** — API Key、连接参数等（一般写在 `~/.hermes/config.yaml` 里，而不是 Skill 自身）
 - **脚本文件** — 具体的执行逻辑（如果需要的话）
 
-安装一个 Skill，就是把这些文件放到 `~/hermes/skills/` 目录下。助手启动时会自动加载它们，就像手机开机自动加载已安装的 App 一样。
+安装一个 Skill，就是把这些文件放到 `~/.hermes/skills/` 目录下。Hermes 启动时会自动加载它们，就像手机开机自动加载已安装的 App 一样。
 
-> 💡 **核心思想**：真正的效率提升不靠“装得多”，而靠“装得准、配得稳、用得可复现”。
+> 💡 **核心思想**：真正的效率提升不靠”装得多”，而靠”装得准、配得稳、用得可复现”。
+
+### Skill 三种来源
+
+| 来源 | 说明 | 数量级 |
+|------|------|--------|
+| **Bundled Skills** | 仓库自带，覆盖 GitHub 工作流、code-review、systematic-debugging 等 40+ 场景 | 40+ |
+| **Agent 自主创建** | 完成复杂任务（5+ 工具调用）后，Agent 自动把方案沉淀成新 Skill | 按使用积累 |
+| **Skills Hub** | 社区贡献，遵循 [agentskills.io](https://agentskills.io) 标准 | 持续增长 |
+
+> 💡 **跨工具互通**：agentskills.io 是 Skill 的开放标准，目前 Claude Code、Cursor、Gemini CLI、Hermes 等 30+ 工具都支持。你在一个工具里写的 Skill，可以直接被另一个工具加载。Skill 不是绑定某个 Agent 的专属资产。
 
 ---
 
 ## 技能市场
 
-Hermes Agent 社区维护了一个不断增长的技能仓库：[hermes skills catalog](https://hermes skills catalog)
+Skills 主要去这两个地方找：
+
+- **官方 Hub**：[agentskills.io](https://agentskills.io)（跨工具通用标准）
+- **社区清单**：[awesome-hermes-agent](https://github.com/0xNyk/awesome-hermes-agent)（Hermes 社区维护的精选清单）
 
 **按类别浏览：**
 
@@ -84,40 +97,55 @@ Hermes Agent 社区维护了一个不断增长的技能仓库：[hermes skills c
 
 我们以 **remind-me**（提醒）技能为例——这是对小白最友好的第一个技能：装完立刻就能用。
 
-### 方式一：从 Hermes Skills Hub 安装（推荐）
+### 方式一：让 Agent 帮你装（推荐）
+
+直接在对话里说：
+
+> 帮我装一下 remind-me 这个 Skill
+
+Hermes 会去 agentskills.io 拉对应的 markdown 文件，写入 `~/.hermes/skills/remind-me/SKILL.md`，并立刻生效（不需要重启）。
+
+> 💡 **为什么是对话式安装**：Hermes 的 Skill 安装走的是 Agent 工具调用（`skills` toolset），而不是单独的 CLI 子命令。你也可以直接说"看看 agentskills.io 上 Python 开发相关的 Skill 有哪些"，让它先列再装。
+
+### 方式二：手动从 GitHub clone
 
 ```bash
-hermes skills install remind-me
+cd ~/.hermes/skills/
+git clone https://github.com/<author>/<skill-repo>.git remind-me
 ```
 
-它会从 Hermes Skills Hub 下载 skill，并安装到你的技能目录里：
-- 默认：`<workspace>/skills/`（通常就是当前目录下的 `./skills`）
-- 共享安装：`~/.hermes/skills`（同一台机器上的多个 agent/工作区可复用）
-
-### 方式二：手动安装
-
-```bash
-cd ~/.hermes/skills
-git clone https://github.com/NousResearch/skill-remind-me remind-me
-```
-
-手动安装适合想自己管理 skill 源码的人；如果你只是想快速用起来，优先用上面的 Hermes Skills Hub 方式。
+适合想自己管理 skill 源码的人——可以 fork、改、提 PR。
 
 ### 方式三：自己写（Day 7 会讲）
 
-创建 `<workspace>/skills/my-skill/SKILL.md`（或 `~/.hermes/skills/my-skill/SKILL.md`），写好说明，助手就会自动使用它。
+在 `~/.hermes/skills/<my-skill>/SKILL.md` 写好说明，Hermes 下次启动会自动扫描到。
 
-### 方式四：从 GitHub 清单挑选（替代 Hermes Skills Hub）
+### 方式四：从社区清单挑选
 
-如果你觉得 Hermes Skills Hub 网站不好用，我更推荐直接在 GitHub 清单里挑：
-https://github.com/VoltAgent/awesome-hermes-skills
+直接在 [awesome-hermes-agent](https://github.com/0xNyk/awesome-hermes-agent) 仓库里按分类找你要的 Skill，把名称或 URL 发给 Hermes，让它装上并给你 3 条可复制的使用示例。
 
-用法：
-1. 在仓库里按分类找到你需要的 skill
-2. 把 skill 名称/链接发给 AI，让它帮你安装并验证
-3. 装完让 AI 给你 3 条可复制的使用示例（你直接照着问就行）
+---
 
-安装完成后，不需要重启——大多数 Skill 会在下次对话时自动加载。
+## Skill 自我进化：Hermes 的杀手锏
+
+这是 Hermes 和 OpenClaw、Claude Code 等其他 Agent Skill 系统最大的区别——
+
+**传统 Skill 是静态的**：你写好规则，它按规则执行。要改？你自己手动改 markdown。
+
+**Hermes Skill 是活的**：它跑在学习循环里，根据你的反馈自动优化。
+
+具体机制：
+
+1. **执行 Skill** — Agent 按 Skill 中的步骤完成任务
+2. **收集反馈** — 你的反应（满意 / 不满意 / 修正）被记录到会话记忆
+3. **更新 Skill** — Agent 分析反馈，自动修改 Skill 文件中的相关步骤
+4. **下次执行用新版本** — 改进后的 Skill 在后续任务中自动生效
+
+举个例子：你装了"写 Git commit message"的 Skill。第一次它写的格式不是你喜欢的，你说"中文写正文，类型用英文"。下次你不用重复说，Hermes 已经把这条规则写进了 Skill 文件——你打开 `~/.hermes/skills/git-commit-style/SKILL.md` 能看到 diff。
+
+> ⚠️ **可观测**：所有 Skill 改动都是 markdown diff，可读、可回滚、可手动修正。如果某条规则学偏了，你直接 `nano` 改回去，Hermes 也会把你的修正纳入下次学习。
+
+> 💡 **前提是反馈清晰**：如果你只说"不太对"但不说具体哪里不对，Agent 很难精准改进。**好的反馈 = 好的进化方向。**
 
 ---
 
@@ -183,7 +211,7 @@ https://github.com/VoltAgent/awesome-hermes-skills
 
 ### 组合 3：GSC + GA4 + 浏览器
 
-> 分析一下 xiaobin.dev 的 /templates 页面——搜索表现怎么样、用户行为怎么样、页面现在长什么样
+> 分析一下 Hermes 101 的 Day 1 页面——搜索表现怎么样、用户行为怎么样、页面现在长什么样
 
 助手分别调用三个技能：
 - GSC 查搜索表现（排名、点击、CTR）
@@ -200,29 +228,23 @@ https://github.com/VoltAgent/awesome-hermes-skills
 
 ## 管理你的技能
 
-**查看已安装技能**
+Hermes 的 Skill 管理大部分通过对话完成。你可以这样问：
+
+- "列一下我现在装了哪些 Skill" → Agent 会扫 `~/.hermes/skills/` 给你列表
+- "去 agentskills.io 看看有什么 Python 开发相关的 Skill" → Agent 会去 hub 搜
+- "把 remind-me 装上" / "把 xxx Skill 删掉" → Agent 调 `skills` 工具完成
+
+如果你更喜欢命令行，所有 Skill 本质上就是 `~/.hermes/skills/` 下的 markdown 文件夹，可以直接：
 
 ```bash
-hermes skills list
-```
-
-**从 Hermes Skills Hub 安装/更新技能**
-
-```bash
-hermes skills install <skill-name>    # 安装
-hermes skills update <skill-name>     # 更新单个
-hermes skills update --all            # 更新全部
-```
-
-**搜索技能市场**
-
-```bash
-hermes skills search <keyword>
+ls ~/.hermes/skills/                   # 列出已装
+nano ~/.hermes/skills/<name>/SKILL.md  # 编辑
+rm -rf ~/.hermes/skills/<name>         # 卸载
 ```
 
 **技能配置**
 
-每个技能的配置通常写在 SKILL.md（以及 `hermes.json` 的 `skills.entries.*` 覆盖）里。技能目录一般在：`<workspace>/skills/<skill-name>/` 或 `~/.hermes/skills/<skill-name>/`。
+每个技能的核心是 `~/.hermes/skills/<skill-name>/SKILL.md`。如果 Skill 需要 API Key 或其他参数，统一写在 `~/.hermes/config.yaml` 里（toolsets / mcp_servers / 自定义字段），而不是塞进 SKILL.md。这样配置可以集中管理，Skill 自身保持纯净。
 
 ---
 
@@ -244,10 +266,10 @@ hermes skills search <keyword>
 
 ## 🔑 本章要点回顾
 
-- **Skills = AI 的 App Store**：每个技能一组文件，装上就能用
-- **Hermes Skills Hub 技能市场**：社区贡献，一行命令安装
-- **核心推荐**：天气、GitHub、Reddit、SEO、社交媒体、视频转录
-- **技能组合才是王道**：多个技能配合 = 自动化工作流
+- **Skills = AI 的 App Store**：每个 Skill 是 `~/.hermes/skills/<name>/SKILL.md`
+- **三种来源**：Bundled（40+ 仓库自带）/ Agent 自动创建 / 社区 Hub（agentskills.io）
+- **Skill 自改进**：用得越多越懂你，纠正一次它就把规则写进 markdown
+- **agentskills.io 标准**：和 Claude Code、Cursor、Gemini CLI 互通，Skill 不绑定平台
 - **可以自己开发**：一个 SKILL.md + 脚本，就是一个新技能
 
 ---

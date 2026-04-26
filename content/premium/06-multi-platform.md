@@ -159,15 +159,15 @@ token: "123456:ABC-DEF"         # ❌
 ```
 
 ### 坑 2：群聊里泄露私人信息
-AI 有你的 MEMORY.md 里的私人内容。在群聊里它可能不小心说出来。
+AI 的持久记忆里有你的私人内容。在群聊里它可能不小心说出来。
 
-**防御：** 在 SOUL.md 里加：
+**防御：** 在 group-chat-rules Skill（`~/.hermes/skills/group-chat-rules/SKILL.md`）里加：
 ```markdown
-## Group Chat
+## Group Chat Rules
 
-- 不泄露 MEMORY.md 里的私人信息
+- 不泄露持久记忆里的私人信息（API Key、域名、个人邮箱、地理位置等）
 - 不代表用户发言
-- 用 HEARTBEAT_OK 回复不需要响应的消息
+- 不需要响应的消息保持安静，不要刷屏
 ```
 
 ### 坑 3：Discord 长消息被截断

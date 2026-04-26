@@ -74,21 +74,23 @@ description: Execute untrusted code in Docker sandbox
 - 内存限制 512MB。大数据处理可能 OOM
 ```
 
-### 方案 2：Hermes 内置沙箱
+### 方案 2：Hermes 原生 docker terminal（推荐）
 
-新版 Hermes 支持在 config.yaml 配置沙箱：
+这是 Hermes 内置的方式——一行配置切换：
 
 ```yaml
-sandbox:
-  enabled: true
-  provider: docker
-  image: ubuntu:22.04
-  memory_limit: 512m
-  cpu_limit: 1
-  network: none
-  read_only: true
-  workspace: /tmp/hermes-sandbox-workspace
+# ~/.hermes/config.yaml
+terminal: docker
+
+# 可选：指定基础镜像和资源限制
+docker:
+  image: nousresearch/hermes-sandbox:latest    # 也可以用 ubuntu:22.04
+  memory: 512m
+  cpu: 1
+  network: bridge                              # 或 none / host
 ```
+
+切到 `terminal: docker` 之后，所有 `terminal` 工具调用都自动在容器里执行。Agent 不知道差别，但宿主机干净——这是和 OpenClaw 自己手动包一层 `docker exec` 最大的区别：**你不用改任何 Skill，沙箱"对 Agent 透明"**。
 
 ## 有网络的沙箱（谨慎使用）
 

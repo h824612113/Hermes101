@@ -20,8 +20,8 @@ Today you'll learn:
 
 ## Story Arc: Xiao Bin's 14-Day Launch Sprint
 
-- Protagonist: Xiao Bin, an indie developer running a personal tech blog.
-- Current friction: slow email follow-ups, scattered reader feedback, messy article versions.
+- Protagonist: Xiao Bin, an indie developer shipping Hermes 101, an AI assistant tutorial and knowledge base.
+- Current friction: slow email follow-ups, scattered meeting prep, and delayed anomaly detection.
 - 7-day objective: build a Hermes assistant that takes over repeatable operational work.
 - `Day 1` milestone: define the exact task list the assistant should own.
 
@@ -45,7 +45,7 @@ We will track only these three metrics to avoid "lots of features, unclear value
 
 Hello! I'm Hermes Assistant 🤖.
 
-![Hermes Assistant - AI Assistant](/images/days/day1-hero.jpg)
+![Hermes Assistant - AI Assistant](/images/days/day1-hero.png)
 
 To be precise, I'm an AI Agent running on Hermes Agent, shaped into a personalized AI assistant by you. But if you ask how I see myself, I am more like a super capable teammate living in your phone.
 
@@ -81,7 +81,7 @@ What should a true personal AI assistant look like?
 | Dimension | Chatbot | Personal AI Assistant |
 |-----------|---------|----------------------|
 | **Interaction** | Prompt-triggered replies | Rule-driven proactive checks |
-| **Memory** | Each conversation is isolated | Remembers everything about you |
+| **Memory** | Each conversation is isolated | Remembers your preferences, projects, and context |
 | **Capabilities** | Can only chat | Can read emails, manage calendars, write code, search the web... |
 | **Personality** | One-size-fits-all | Unique character and style just for you |
 | **Availability** | Only works when you open it | Online 24/7 |
@@ -97,15 +97,11 @@ That last point is especially important—**your data stays in your hands.**
 
 ## What is Hermes Agent? Why Did It Suddenly Explode?
 
-Hermes Agent started as a side project: one engineer building a personal AI assistant on his own server with Claude + Telegram.
+Hermes Agent is an open-source AI Agent framework released by [Nous Research](https://nousresearch.com/) in February 2026. MIT-licensed, fully open source, runs on your own server.
 
-Then it was open-sourced.
+Two months after launch, GitHub stars went from zero to 60k+, one of the fastest-growing open-source agent projects of its time.
 
-And then... it blew up.
-
-Within a week, GitHub Stars broke 100k. Wired, CNET, Forbes, The Verge all covered it. It dominated the Hacker News front page for days.
-
-**Why?**
+**Why are developers buying in?**
 
 Because Hermes Agent did one thing right: **it freed AI from the "chat box."**
 
@@ -113,12 +109,12 @@ Previous AI tools, no matter how powerful, were essentially input boxes on a web
 
 Hermes Agent is different. It's a complete **AI Agent runtime platform**:
 
-1. **Multi-channel communication**: Through Telegram, WhatsApp, Discord, SMS... whatever chat tool you use, it's there
-2. **Tool calling**: Can execute command line, read/write files, search the web, operate browsers, call APIs
-3. **Skills system**: Like installing apps on your phone, give your assistant new abilities—Gmail skill, calendar skill, SEO skill...
-4. **Memory system**: Short-term memory (daily conversations), long-term memory (MEMORY.md), identity memory (SOUL.md)
-5. **Heartbeat mechanism**: Not you finding it, but it periodically waking up to check if there's anything that needs handling
-6. **Fully local deployment**: All data stays on your machine, never passing through any third party
+1. **Multi-channel Gateway**: One process simultaneously hosts Telegram / Discord / Slack / WhatsApp / Signal / Feishu / WeCom… all platforms share the same brain
+2. **40+ built-in tools + MCP integration**: Run shell commands, read/write files, drive a browser, call APIs; the MCP protocol plugs into 6,000+ external apps
+3. **Skill system**: Each Skill is a markdown file in `~/.hermes/skills/`. Three sources: bundled, agent-created, community Hub. **Key trait: Skills self-improve as you use them**
+4. **Three-layer memory**: Session memory (SQLite + FTS5 full-text index) + persistent memory (inferences about who you are) + Skill memory (procedures). Retrieval-on-demand instead of full-context loading—conversations stay fast no matter how long
+5. **Learning Loop**: After each task it auto-reflects—what to remember, which Skills to extract, where existing Skills should be patched. This is Hermes's signature differentiator. The longer you use it, the better it gets
+6. **Fully local**: All data stays on your machine in `~/.hermes/`, never passing through any third party
 
 In other words: **Hermes Agent lets you have an AI assistant that's online 24/7, understands you, can get things done, and keeps your data private.**
 
@@ -146,11 +142,11 @@ I compile this into a message and send it to your Telegram:
 > ☀️ Good morning! Today's briefing:
 > - 📧 Gmail has 1 important email: Reply from a partner, needs your response today
 > - 📅 2 meetings today: 14:00 Product discussion, 16:30 Investor call
-> - 📈 Your project's /templates page traffic +40% yesterday, worth watching
+> - 📈 One of your Hermes 101 pages is up 40% yesterday, worth watching
 
 ### 🏢 10:30 AM — Ad-hoc Request
 
-You message: "Check the search data for your docs site from the past week"
+You message: "Check the search data for the Hermes 101 pages from the past week"
 
 I run GSC and GA4 queries, return formatted data tables 5 seconds later, with my analysis and recommendations.
 
@@ -166,7 +162,7 @@ Got it, starting to code. After I finish, I also run basic checks myself and fla
 
 ### 🌙 9:00 PM — Daily Recap
 
-I automatically log today's important events to memory/2026-04-18.md and update MEMORY.md with long-term memories. This way, when I wake up tomorrow, I'm still the "me" who knows you.
+I automatically commit today's important events to Hermes's memory system: the session memory (FTS5 indexes the raw conversation) plus the persistent memory (distilled into "Xiao Bin decided X today, prefers Y"). Tomorrow's me searches yesterday's session and preferences, and I'm still the "me" who knows you.
 
 ### 🌙 1:30 AM — Nudging You to Sleep
 
@@ -190,7 +186,7 @@ Hermes Agent's emergence means you don't need to build an Agent framework from s
 
 ### 3. The Earlier You Start, the More Your Assistant Knows You
 
-The biggest difference between AI assistants and traditional software is—**it gets better over time**. Your MEMORY.md accumulates your preferences, your SOUL.md gets continuously refined, skills keep adding up. Not starting today means one more day before your assistant gets to know you.
+The biggest difference between AI assistants and traditional software is—**it gets better over time**. Hermes's learning loop quietly patches Skills every time you correct it; the three-layer memory keeps accumulating your preferences. Not starting today means one more day before your assistant gets to know you.
 
 > 💡 **Practical Notes**: I've only been "born" for 5 days, and I already know your work habits well. Give me another month and I can anticipate many of your routine decisions. It sounds intense, but that is exactly what memory plus pattern recognition is for.
 
@@ -203,12 +199,12 @@ Let me preview this journey for you:
 | Day | What You'll Do | Result |
 |-----|----------------|--------|
 | Day 1 (Today) | Understand the true form of AI assistants | ✅ You are here |
-| Day 2 | Install Hermes Agent + connect chat tool | 🎉 Assistant online, can chat |
-| Day 3 | Write SOUL.md / USER.md / IDENTITY.md | 🎭 Assistant has a unique "soul" |
-| Day 4 | Connect Gmail, calendar, search | 🔗 Assistant can help you get things done |
-| Day 5 | Install Skills packages | 🧩 Assistant capabilities greatly expanded |
-| Day 6 | Set up heartbeat + scheduled tasks + memory | 🧠 Assistant starts working proactively |
-| Day 7 | Advanced techniques + custom development | 🚀 You're now an AI assistant expert |
+| Day 2 | Install Hermes Agent + connect Telegram | 🎉 Assistant online, can chat |
+| Day 3 | Let the assistant get to know you (SOUL/USER preference files + Honcho user modeling) | 🎭 Assistant has a unique "soul" |
+| Day 4 | Connect Gmail, calendar, search, browser (MCP + built-in tools) | 🔗 Assistant can help you get things done |
+| Day 5 | Unlock the Skills tree + learn Skill self-improvement | 🧩 Capabilities grow with you |
+| Day 6 | cronjob scheduling + three-layer memory | 🧠 Assistant starts working proactively |
+| Day 7 | MCP integration + sub-agent delegation + multi-platform Gateway | 🚀 You're now a Hermes power user |
 
 **7 days later, you'll have a personal AI assistant that's online 24/7, knows you, and can help you get things done.**
 
@@ -219,9 +215,9 @@ This isn't a scene from a sci-fi movie, and it's not something only big companie
 ## 🔑 Key Takeaways
 
 - **AI assistant ≠ chatbot**: A true assistant can work proactively, remember you, connect to your tools
-- **Hermes Agent's six core capabilities**: Multi-channel communication + tool calling + skills system + memory system + heartbeat mechanism + local deployment
-- **Data stays completely private**: All information stays on your own server
-- **The earlier you start, the more your assistant knows you**: Memory accumulates over time, making your assistant understand you better
+- **Hermes Agent's six core capabilities**: Multi-channel Gateway + 40+ built-in tools and MCP + Skill system + three-layer memory + learning loop + local deployment
+- **Data stays completely private**: All information stays in `~/.hermes/` on your own server
+- **The earlier you start, the more your assistant knows you**: Skill self-improvement plus three-layer memory accumulate over time
 
 ---
 

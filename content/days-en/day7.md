@@ -72,21 +72,25 @@ Don't worry, writing a Skill is simpler than you think—essentially it's just w
 
 ### Minimal Skill Example
 
-Create file `~/hermes/skills/weather/SKILL.md`:
+Create file `~/.hermes/skills/weather/SKILL.md`:
 
 ```markdown
 # Weather Query Skill
 
-## Capability
-You can query weather information for any city.
+## Trigger
+Activate when the user mentions "weather", "rain", "going out", and similar keywords.
 
-## Usage
+## Steps
 Call the wttr.in API to get weather:
 
+\`\`\`bash
 curl "wttr.in/CityName?format=3"
+\`\`\`
 
 Example:
+\`\`\`bash
 curl "wttr.in/NewYork?format=3"
+\`\`\`
 
 ## Output Format
 Tell the user the current weather in concise language, including temperature and conditions.
@@ -102,60 +106,113 @@ After saving, tell your assistant "What's the weather like in New York today"—
 - **Keep it simple**: One Skill does one thing, does it well
 - **Error handling**: Write in SKILL.md "what to do if it fails"
 - **Security notes**: For Skills involving sensitive operations, note that confirmation is needed
+- **Follow the agentskills.io standard**: Skills you write here also load directly in Claude Code, Cursor, and other supported tools
 
-> 💡 **Practical Notes**: One useful custom Skill is sleep reminders: if activity continues after 23:00, send progressively stronger nudges to rest. Practical patterns like this often spread quickly in the community.
-
----
-
-## Advanced Level 2: Multi-Device Collaboration (Nodes)
-
-Your assistant currently runs on one server. But what if it could simultaneously "see" your phone's camera, "control" your computer's browser, "access" your home smart devices?
-
-That's the **Nodes** system.
-
-### What Are Nodes?
-
-A Node is a lightweight client installed on other devices that connects to your main Hermes Agent server, letting your assistant:
-
-- **Phone Node**: Take photos (front/back camera), get location, send system notifications
-- **Computer Node**: Screenshot, screen record, control browser
-- **Raspberry Pi Node**: Control smart home devices
-
-### Example Scenarios
-
-**Scenario 1: Remote Viewing**
-You're traveling for business, tell your assistant: "Show me what's on my office computer screen"—the office computer with Node installed automatically takes a screenshot and sends it to you.
-
-**Scenario 2: Phone Collaboration**
-Assistant pops up a notification on your phone: "You have a meeting at 3 PM, should I open the meeting link for you?"—you tap confirm, it opens directly on your phone.
-
-**Scenario 3: Smart Home**
-"Turn off the living room lights" → Assistant controls HomeAssistant through Raspberry Pi Node → Lights off.
-
-### How to Set Up
-
-Install the Node client on the device you want to connect:
-
-```bash
-# Computer
-curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-```
-
-For phones, search Hermes Agent in the App Store (currently supports iOS).
-
-After installation, approve the pairing request on your main server:
-
-```bash
-hermes nodes approve <device-name>
-```
-
-Once paired, you can issue cross-device commands directly in Telegram.
+> 💡 **Practical Notes**: One useful custom Skill is sleep reminders: if activity continues after 23:00, send progressively stronger nudges to rest. After a few weeks of use, the Skill itself self-improved several times (see Day 5's self-improvement mechanism)—you don't have to keep rewriting.
 
 ---
 
-## Advanced Level 3: Security Checklist 🔒
+## Advanced Level 2: MCP Integration — Plug Into 6,000+ Apps
 
-Your AI assistant can now access your emails, calendar, files, browser, and possibly your phone and computer. Security isn't optional—it's mandatory.
+We used MCP on Day 4 to wire Gmail. But MCP's real value goes well beyond that—it's an open protocol with **6,000+ servers** in the ecosystem, covering nearly every major SaaS.
+
+### Hands-on: GitHub MCP
+
+GitHub is one of the most useful MCP integrations. After connecting, Hermes can create issues, open PRs, review code, and manage project boards directly.
+
+```yaml
+# Append to ~/.hermes/config.yaml:
+mcp_servers:
+  github:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-github"]
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+```
+
+> 1. Create a personal access token in GitHub Settings → Developer settings (`repo` and `read:org` minimum)
+> 2. Export it as `GITHUB_TOKEN` in your shell rc file (don't paste secrets into the YAML)
+> 3. Restart `hermes`
+
+Then you can say: "Open an issue in repo X titled 'fix login redirect bug'", or "review the diff on this PR for me."
+
+### Hands-on: database MCP
+
+```yaml
+mcp_servers:
+  postgres:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-postgres"]
+    env:
+      POSTGRES_CONNECTION_STRING: "postgresql://user:pass@localhost:5432/mydb"
+```
+
+> ⚠️ **Database MCPs default to read-write**. In production, strongly recommend using a read-only DB account.
+
+### Per-server tool filtering
+
+When you wire several MCPs, the tool count grows fast and decision quality drops. Hermes lets you whitelist specific tools per server:
+
+```yaml
+mcp_servers:
+  github:
+    command: "npx"
+    args: ["-y", "@modelcontextprotocol/server-github"]
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+    allowed_tools:
+      - "list_issues"
+      - "create_issue"
+      - "get_pull_request"
+      - "create_pull_request_review"
+```
+
+Least privilege has never mattered more than in the agent era.
+
+---
+
+## Advanced Level 3: Sub-Agent Delegation — Three Horses Running
+
+Hermes ships a built-in `delegate_task` tool that can spin up **up to 3 sub-agents** in parallel, each with its own context and toolset.
+
+Best use case: "do several unrelated things and then aggregate." For example, asking Hermes to write a competitive comparison:
+
+> Write a competitive analysis of "Claude Code vs Cursor vs Hermes Agent."
+
+The main agent automatically spawns 3 sub-agents:
+- Sub-agent A researches Claude Code (only `web` + `browser` tools)
+- Sub-agent B researches Cursor (same)
+- Sub-agent C researches Hermes Agent (same)
+
+All three run in parallel; the main agent aggregates the results. A 40-minute research task becomes 15 minutes.
+
+> 💡 **Why 3 and not more**: Nous Research's tests showed that beyond 3 sub-agents, the main agent's aggregation quality degrades sharply. It's not a compute issue—it's the LLM's attention split when integrating many independent sources.
+
+---
+
+## Advanced Level 4: Multi-Platform Gateway
+
+Day 2 you only configured Telegram. Hermes's Gateway module **runs all platforms in a single process**, all sharing the same brain.
+
+```yaml
+gateway:
+  telegram:
+    token: 12345:xxx
+  discord:
+    token: YOUR_DISCORD_BOT_TOKEN
+  slack:
+    token: xoxb-YOUR-SLACK-BOT-TOKEN
+```
+
+Supported platforms: Telegram / Discord / Slack / WhatsApp / Signal / Mattermost / Matrix / Email / SMS / Feishu / WeCom / DingTalk / Home Assistant / BlueBubbles—12+ in total.
+
+**Cross-platform conversation continuity**: chat with Hermes on Telegram during your morning commute, then open `hermes` in the terminal at the office and say "how did that research turn out?"—it knows exactly what you mean, because all platforms share the same memory.
+
+---
+
+## Advanced Level 5: Security Checklist 🔒
+
+Your AI assistant can now access your emails, calendar, files, browser, and possibly GitHub, databases, and Slack. Security isn't optional—it's mandatory.
 
 Here's a complete security checklist:
 
@@ -178,7 +235,7 @@ Here's a complete security checklist:
 ### Data Security
 
 - ✅ OAuth Token file permissions set to 600
-- ✅ Regular backup of working directory: `~/hermes/`
+- ✅ Regular backup of the Hermes data directory: `~/.hermes/`
 - ✅ Sensitive files not committed to Git
 - ✅ Clear understanding of what data assistant can and cannot access
 
@@ -192,11 +249,11 @@ Here's a complete security checklist:
 
 ### Cost Control
 
-- ✅ Set monthly API budget limit
+- ✅ Set monthly API budget limits (OpenRouter / Anthropic / OpenAI consoles all support this)
 - ✅ Monitor token usage
-- ✅ Heartbeat interval not too short (30 minutes is enough)
-- ✅ Disable unneeded Skills promptly
-- ✅ Large model calls only for tasks that need them (simple tasks can use smaller models)
+- ✅ Watchdog cron interval not too short (30 min is usually enough)
+- ✅ Comment out unused toolsets in config.yaml
+- ✅ Reserve big models for tasks that need them—route simple tasks to GPT-4o-mini, Claude Haiku, etc.
 
 > 💡 **Security isn't a one-time thing—it's an ongoing habit.** I recommend spending 10 minutes each month going through this checklist.
 
@@ -226,9 +283,9 @@ The official Discord is the most active English discussion venue: https://discor
 
 ### Hermes Skills Hub Skill Marketplace
 
-Community-maintained skill repository, one command to install:
-- Website: https://agentskills.io
-- Awesome list: https://github.com/VoltAgent/awesome-hermes-skills
+- Official Hub: https://agentskills.io
+- Awesome list: https://github.com/0xNyk/awesome-hermes-agent
+- Third-party docs: https://github.com/mudrii/hermes-agent-docs
 
 ### Chinese Community
 
@@ -295,14 +352,35 @@ The 7-day guide is over, but your AI assistant journey has just begun.
 In the coming week, I suggest you:
 
 1. **Chat with your assistant at least 10 minutes daily** — Let it get familiar with your needs and style
-2. **Adjust SOUL.md whenever you're not satisfied** — Souls are nurtured over time
+2. **Correct it once whenever you're not satisfied** — Skill self-improvement writes the rule into markdown for next time
 3. **Try 2-3 new Skills** — See which ones are most useful for you
-4. **Adjust heartbeat and Cron** — Find your comfortable frequency
+4. **Tune your cronjob cadences** — Find your comfortable frequency
 5. **Browse the community** — See how others use it, get inspired
 
 **In a month, your assistant will be in a completely different state.** Not because you made any big changes, but because it's understanding you day by day, getting better bit by bit.
 
 That's the fundamental difference between AI assistants and traditional tools—it grows.
+
+---
+
+## Want to Go Deeper?
+
+This 7-day guide covers the core build path for Hermes. But if you want to take it to production—cost control, model routing, Docker sandboxing, multi-platform distribution, API relays, debugging—there's a separate set of **operational** topics worth unpacking:
+
+| Advanced Topic | What It Solves |
+|---|---|
+| **Advanced SOUL.md** | Make the AI output to your actual style, not template-speak |
+| **Multi-model routing** | Send simple tasks to GPT-4o-mini, important calls to Sonnet 4—drop monthly bill from $50 to $5 |
+| **Tuning the three-layer memory** | How to write good persistent memories, prevent memory pollution, and force-forget |
+| **Skill development & debugging** | What a genuinely reusable Skill looks like |
+| **Hooks + security sandbox** | Auto-block dangerous operations, auto-filter sensitive data |
+| **Multi-platform orchestration** | Telegram + Discord + Slack + Feishu + WeCom on one Gateway |
+| **Docker sandbox deployment** | Run the agent inside a container, keep the host clean |
+| **Cost control playbook** | Token monitoring, monthly budgets, cheap-model routing |
+| **API relay strategies** | Several reliable ways to keep using Claude after Anthropic's third-party block |
+| **Troubleshooting guide** | Won't install, won't start, gateway dropped—what now |
+
+> 👉 These advanced chapters are unpacked in detail in the [paid edition](/pricing). Every piece is copy-paste production material—no fluff.
 
 ---
 
